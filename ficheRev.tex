@@ -1,0 +1,96 @@
+\documentclass{article}
+\input{../preambule}
+%\usepackage[8pt]{extsizes}
+
+\hypersetup{colorlinks=true, urlcolor=bleu, linkcolor=red}
+
+%Def = Definition
+%Theo = Théorème
+%Prop = Propriété
+%Coro = Corollaire
+%Lem = Lemme
+
+\makeatletter
+\@addtoreset{section}{part}
+\makeatother
+
+\begin{document}
+
+\setcounter{tocdepth}{4}
+\tableofcontents
+\newpage
+
+\part{Automatique}
+\begin{enumerate}
+\item Définition linéaire, invariant.
+\item Définition accessible, ensemble d'accessibilité, contrôlable, complètement contrôlable.
+\item Solution de l'équation $\dot{x}(t)=Ax(t)+Bu(t)$
+\item Définition transformée de Laplace. Transformée de $f'$. Transformée de cos, sin et exponentielle.
+\item Fonction de transfert
+\end{enumerate}
+
+\part{\'El\'ements finis}
+\begin{enumerate}
+\item Théorème de Lax-Milgram
+\item Choix de $V_h$, dimension ?
+\item Fonctions de base, problème discrétisé
+\item Matrice de rigidité
+\item \textbf{R est définie positive}
+\end{enumerate}
+
+\part{Optimisation linéaire}
+\begin{enumerate}
+\item Définition infimum, minimum
+\item Définition coercive
+\item Deux exemples fonctions coercives
+\item \textbf{Exemple de J coercive}
+\item \textbf{Condition pour que J atteigne son minimum}
+\item \textbf{Rapport frontière et minimum}
+\item Définition dérivée directionnelle, Gâteaux-différentiable, gradient
+\item Définition de Fréchet-différentiable
+\item \textbf{Fréchet $\Rightarrow$ Gâteaux}
+\item Définition espace convexe, épigraphe.
+\item \textbf{Équivalence fonction convexe}
+\item Définition strictement convexe, $\alpha$-convexe.
+\item Équivalence à $f$ convexe
+\item \textbf{Équivalence à $\alpha$-convexe}
+\end{enumerate}
+
+\part{Processus de Markov}
+\begin{enumerate}
+\item Définition de processus
+\item Propriété de Markov, homogénéité
+\item Mesure de probabilité, $f:E\to\mathbb{C}$ : représentation vectorielle
+\item Matrice stochastique
+\item \textbf{Relations de Kolmogorov}
+\item Définition "$i$ conduit à $j$", conduit ) un préordre. Notation.
+\item $i$ et $j$ communiquent, relation d'équivalence, notation.
+\item Définition transitive, finale, ergodiques.
+\item Existence de classes finales dans le cas fini
+\item Forme canonique matrice de transition, puissance n
+\item \textbf{Si E fini, alors le processus finira presque surement dans une des classes finales}
+\item \textbf{A quoi correspond $(I-Q)^{-1}$ ?}
+\item \textbf{B=NR ?}
+\item Ensemble des entiers avec un chemin
+\item Propriété fondamentale
+\item \textbf{PGCD($N_{ii}$)}
+\item Période d'une classe, classe apériodique.
+\item \textbf{Forme de $N_{ii}$ et de $N_{ij}$}
+\item Définition de $i\sim j$
+\item Nombre de sous-classes cycliques
+\item Chaîne régulière
+\item \textbf{Équilvalence à chaîne régulière}
+\item \textbf{Théorème fondamental des chaînes régulières}
+\item \textbf{Théorème ergodique}
+\end{enumerate}
+
+\part{Statistiques}
+\begin{enumerate}
+\item Définition suite chronologique
+\item Deux modèles de décomposition : quelle combinaison ? Dans quels cas va-t-on choisir l'un ou l'autre ?
+\item Moindres carrés : expression de $a$ et $b$. 
+\item Mise en place de la méthode des deux points
+\item Expression de $r$
+\item Moindre carré polynomial : expression de $\theta^{MC}$
+\end{enumerate}
+\end{document}

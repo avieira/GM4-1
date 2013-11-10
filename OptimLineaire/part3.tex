@@ -1,0 +1,60 @@
+\part{Programmation lin\'eaire, algotihme du simplexe}
+\section{Introduction}
+Un problème d'optimisation linéaire est un problème d'optimisation dans lequel le coût et les contraintes sont linéaires (ou plutôt affines).\\
+Il s'agit de trouver les solutions $x\in\mathbb{R}^n$ du problème :
+\begin{equation}\tag{$P_L$} \label{PL}
+	\left\{ \begin{array}{c c c c} \inf_{x\in\mathbb{R}^n} & \multicolumn{3}{c}{\langle c,x\rangle} \\
+						\text{s. c.}     & Ax &=& b \\
+								& x &\geq& 0
+	\end{array} \right.
+\end{equation}
+
+où $A$ est une matrice de raille $m\times n$, $b\in\mathbb{R}^m$, $c\in\mathbb{R}^n$.\\
+$x\geq 0$ signifie que toutes les composantes de $x$ sont positives.\\
+Ce problème est dit sous forme standard.
+
+\bigskip
+\underline{Remarque :} On a l'impression que \ref{PL} est un cas particulier du problème (sous forme canonique) : 
+\begin{equation} \label{PC}
+	\left\{ \begin{array}{c c c c} \inf_{x\in\mathbb{R}^n} & \multicolumn{3}{c}{\langle c,x\rangle} \\
+						\text{s. c.}     & A'x &=& b' \\
+								& Ax &\geq& b
+	\end{array} \right.
+\end{equation}
+
+Mais un problème sous forme canonique peut toujours se ramener à un problème sous forme standard. En effet, la contrainte $A'x=b'$ est équivalent à $A'x\geq b'$ et $-A'x\geq -b'$. Donc \ref{PC} est équivalent à :
+\begin{equation} \label{PC2} \inf_{x\in\mathbb{R}^n,\ Ax\geq b} \langle c,x\rangle\end{equation}
+
+On introduit des variables d'écart $\lambda\in\mathbb{R}^n_+$ tel que $Ax=b+\lambda$. Donc \ref{PC2} se ramène à :
+\[	\left\{ \begin{array}{c c c c} \inf_{x\in\mathbb{R}^n,\ \lambda\in\mathbb{R}^n_+} & \multicolumn{3}{c}{\langle c,x\rangle} \\
+						\text{s. c.}     & Ax-\lambda &=& b \\
+								& b &>& 0
+	\end{array} \right.\]
+
+On décompose $x$ sous la forme :
+	\[x=x^+-x^-\]
+où $x^+=\max (0,x) \geq 0$ et $x^-=-\min (0,x)\geq 0$ \\
+\ref{PC2} revient donc à résoudre :
+\[	\left\{ \begin{array}{c c c c} \inf_{x^+\in\mathbb{R}^n, x^-\in\mathbb{R}^n, \lambda\in\mathbb{R}^n}& \multicolumn{3}{c}{\langle c,x\rangle} \\
+						\text{s. c.}     & Ax-\lambda &=& b \\
+								& b &>& 0
+	\end{array} \right.\]
+qui est bien sous forme standard (mais avec plus de variables).
+
+\bigskip
+\underline{Remarque :} On peut supposer sans perte de généralité que toutes les lignes de $A$ sont linéairement indépendantes.\\
+Si ce n'est pas le cas, soit certaines constraintes sont redondantes, soit les contraintes sont incompatibles, ie $rg(A)=m\leq n$
+
+\Def{}{L'ensemble \[X_{ad}=\{x\in\mathbb{R}^n,\ Ax=b,\ x\geq 0\}\]
+est appelé l'ensemble des solutions réalisables (ou admissibles).\\
+On appelle sommet (ou point extremal) de $X_{ad}$ un point $x\in X_{ad}$ tel qu'il n'existe pas $\alpha\in]0,1[$ et $y,z\in X_{ad}$, $y\neq z$ tel que $x=\alpha y+(1-\alpha)z$.}
+
+\section{Solutions de base d'un problème sous forme standard}
+On note $A_1=\begin{pmatrix} a_{1,1} \\ \vdots \\ a_{m,1} \end{pmatrix}$, ..., $A_n=\begin{pmatrix} a_{1,n} \\ \vdots \\ a_{m,n} \end{pmatrix}$. \\
+Comme $rg(A)=m$, on peut toujours trouver $m$ colonnes de $A$ linéairement indépendantes.\\
+On note
+	\[\Gamma=\{\gamma:\{1,...,m\}\to \{1,...,n\}, \text{ strictement croissante} \}\]
+On définit :
+	\[A_{\gamma}=(A_{\gamma(1)} \cdots A_{\gamma(m)})\]
+et :
+	\[\mathcal{B}=\{\gamma\in\Gamma,\ rg(A_{\gamma})=m\}\]

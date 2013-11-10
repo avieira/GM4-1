@@ -1,0 +1,227 @@
+\part{Conditions d'optimalit\'e}
+
+On considère le problème d'optimisation suivant :
+\[\inf_{u\in\mathcal{U}_{ab}} J(u) \ (\mathcal{P}_{\mathcal{U}_{ab}})\]
+
+Ici, $J:\mathbb{R}^d\to \mathbb{R}$ et $\mathcal{U}_{ab}$ est un sous-ensemble non vide de $\mathbb{R}^d$. \\
+J s'appelle la fonction coût.\\
+$\mathcal{U}_{ab}$ s'appelle l'ensemble admissible.
+
+\section{Existence d'un minimum}
+\Def{}{Soit $J : \mathbb{R}^d\to \mathbb{R}$ et $\mathcal{U}_{ad}$ un sous-ensemble non vide.\\
+On dit que $l\in[-\infty,+\infty[$ est l'infimum de $J$ sur $\mathcal{U}_{ad}$ si :
+\begin{enumerate}
+\item $J(u)\geq l\ \forall u\in\mathcal{U}_{ad}$
+\item $\exists (u_n)_n\subset \mathbb{R}^d;\ u_n\in\mathcal{U}_{ad}$ et $J(u_n)\to l$
+\end{enumerate}
+
+On note $l=\inf_{u\in\mathcal{U}_{ad}} J(u)$ et les suites vérifiant $(u_n)_n \subset \mathcal{U}_{ad}$ et $J(u_n)\xrightarrow[n\to+\infty]{} \inf_{\mathcal{U}_{ad}} J(u)$ sont appelées suites minimisantes.}
+
+\textit{\underline{Remarque :}} L'infimum existe toujours. Il est fini si et seulement si J est minorée.
+
+\Def{}{Soit $J : \mathbb{R}^d\to \mathbb{R}$ et $\mathcal{U}_{ab}$ un sous-ensemble non vide.\\
+On dit que $l\in\mathbb{R}$ est le minimum de J sur $\mathcal{U}_{ad}$ (si cette valeur existe) si on a :
+\begin{enumerate}
+	\item $J(u)\geq l\ \forall u\in\mathcal{U}_{ad}$
+	\item $\exists \bar{u}\in\mathcal{U}_{ad}$ tel que $J(\bar{u})=l$
+\end{enumerate}
+On dit alors que $J$ atteint son minimum sur $\mathcal{U}_{ad}$ et on note $l=\min_{u\in\mathcal{U}_{ad}} J(u)$}
+
+\textit{\underline{Remarque :}} \begin{enumerate}
+\item Le minimum n'existe pas toujours
+\item Par abus de langage, on appelle aussi minimum le point $\bar{u}$ qui vérifie $J(u)\geq J(\bar{u})\ \forall u\in\mathcal{U}_{ad}$ ($\bar{u}$ est l'argument du minimum).
+\end{enumerate}
+
+\Def{}{On dit que $J:\mathbb{R}^d\to\mathbb{R}$ est coercive si : \[\lim_{\|u\|\to+\infty} = +\infty\]}
+
+\underline{\textit{Remarque :}} En dimension finie, toutes les normes sont équivalentes. Il suffit donc de le vérifier pour la norme la plus "facile"
+
+\Exemp{}{\begin{enumerate}
+		\item Soit A une matrice symétrique de taille d, $b\in\mathbb{R}^d$ et $c$ un réel.\\
+On considère l'application :
+\begin{eqnarray*}
+J : \mathbb{R}^d &\to& \mathbb{R}\\
+	u &\mapsto& \langle Au,u\rangle + \langle b,u\rangle + c
+\end{eqnarray*}
+$J$ est coercive si et seulement si A est définie positive.
+
+Si A est symétrique, on a :
+\[\lambda_{min}\|u\|^2 \leq \langle Au,u\rangle \leq \lambda_{max}\|u\|^2\]
+où $\lambda_{min}$ est la plus petite valeur propre, et $\lambda_{max}$ est la plus grande valeur propre.
+
+\item Toute fonction minorée par une fonction coercive est coercive.
+	\end{enumerate}
+}
+
+\Prop{}{On suppose que $J:\mathbb{R}^d\to\mathbb{R}$ prend la forme :
+	\[\forall u=(u_1,...,u_d)\in\mathbb{R}^d, J(u)=\sum_i J_i(u_i)\]
+avec $J_i:\mathbb{R}\to\mathbb{R}$ coercive et minorée. Alors J est coercive.}
+
+\begin{dem}
+$\forall i\in\{1,...,d\}$, $J_i$ est minorée par une constante $m_i$. \\
+On note $m=\max_{i\in\{1,...,d\}} |m_i|$. 
+
+\bigskip
+Soit $M>0$ fixé. $\forall i\in\{1,...,d\}$, $\exists R_i>0;\ \forall |u_i|>R_i$, on a $J_i(u_i)>M+md$ (car $J_i$ coercive).\\
+Posons $R=\max_{i\in\{1,...,d\}} R_i$
+
+\bigskip
+Soit $u\in\mathbb{R}^d$; $\|u\|_{\infty}\geq R$. 
+\[\Rightarrow \exists j\in\{1,...,d\};\ |u_j|\geq R\geq R_j\]
+On a donc $J_j(u_j)\geq M+md$\\
+Ainsi :
+\begin{eqnarray*}
+	J(u)&=&\sum_i J_i(u_i)\\
+	    &=&J_j(u_j)+\sum_{i\neq j} J_i(u_i)\\
+	    &\geq& M+md + \sum_{j\neq j} m_i \\
+	    &\geq& M+\sum_{i\neq j} (m+m_i)\\
+	    &\geq& M
+\end{eqnarray*}
+On a montré que :
+\[\forall M>0, \exists R; \forall u;\ \|u\|_{\infty}\geq R \Rightarrow J(u)\geq M\]
+ie $\lim_{\|u\|_{\infty}\to\infty} J(u)=+\infty$ \\
+Par conséquent, J est coercive.
+\end{dem}
+
+\Theo{}{Soit $J:\mathbb{R}^d\to\mathbb{R}$ une fonction continue et $\mathcal{U}_{ad}$ un ensemble fermé non vide. On suppose que :
+\begin{itemize}
+	\item Soit J est coercive
+	\item Soit $\mathcal{U}_{ad}$ est borné
+\end{itemize}
+Alors J atteint son minimum sur $\mathcal{U}_{ad}$.}
+
+\Prop{}{Soit $\mathcal{U}_{ad}$ un ouvert fermé de $\mathbb{R}^d$ et soit $J:\mathbb{R}^d\to\mathbb{R}$ une fonction continue.\\
+On suppose qu'il existe $u_0\in\mathcal{U}_{ad}$ tel que :
+\[J(u_0)<J(u)\ \forall u\in\partial \mathcal{U}_{ad}\]
+où $\partial \mathcal{U}_{ad}$ est la frontière de $\mathcal{U}_{ad}$.\\
+Alors J atteint son minimum sur $\mathcal{U}_{ad}$.}
+
+\begin{dem}
+$\overline{\mathcal{U}_{ad}}$ est un compact et $J$ est continue, donc :
+\[\exists \bar{u}\in\overline{\mathcal{U}_{ad}};\ J(\bar{u})\leq J(u)\forall u\in\overline{\mathcal{U}_{ad}}\]
+Montrons que $\bar{u}\in\mathcal{U}_{ad}$. \\
+Si $\bar{u}\not\in\mathcal{U}_{ad}$, alors $\bar{u}\in\partial \mathcal{U}_{ad}$ et par hypothèse, on a $J(\bar{u})>J(u_0)$ avec $u_0\in\mathcal{U}_{ad}$. Contradiction.\\
+Donc $\bar{u}\in\mathcal{U}_{ad}$ et $J(\bar{u})\leq J(u) \forall u\in\mathcal{U}_{ad}$. 
+\end{dem}
+
+\section{Conditions nécessaires d'optimalité}
+\subsection{Plusieurs notions de dérivabilité}
+
+\Def{Dérivées directionnelle}{Soit $H_1$ et $H_2$ deux espaces de Hilbert et $f:H_1\to H_2$.\\
+On appelle dérivée directionnelle de f au point $x\in H_1$ dans la direction $d\in H_1$, notée $f'(x,d)$, la limite (si elle existe) : 
+\[f'(x,d)=\lim_{\varepsilon\to 0^+} \frac{f(x+\varepsilon d)-f(x)}{\varepsilon}\]}
+
+\Def{Gâteaux-différentiabilité}{On dit que $f$ est Gâteaux-différentiable en $x\in H_1$ si $f$ admet des dérivées directionnelles au point $x$ dans toutes les directions et si l'application
+	\[d\in H_1 \mapsto f'(x,d)\]
+est linéaire continue.
+
+\bigskip
+On note alors $f'(x)$ cette application :
+\[f'(x,d)=f'(x) d\ \forall d\in H_1\]
+On dit que $f$ est Gâteaux-différentiable en tout point $x\in H_1$.}
+
+\Def{}{Soit $f: H\to \mathbb{R}$ une fonction Gâteaux-différentiable en $x\in H$.\\
+On note $\nabla f(x)$ (appelé gradient de $f$ au point $x$) l'unique élément de $H$ tel que 
+\[f'(x) d = \langle \nabla f(x),d\rangle\]}
+
+\Def{}{On dit que $f:H_1 \to H_2$ est Fréchet-différentiable en $x$ s'il existe une application linéaire continue de $H_1$ dans $H_2$ tel que :
+	\[\lim_{h\to 0} \frac{f(x+h)-f(x)-Lh}{\|h\|}=0\]
+L'opérateur $L$ est appelé la dérivée de f en a.}
+
+\Prop{}{Soient $H_1$ et $H_2$ deux espaces de Hilbert et $f:H_1\to H_2$. On suppose que $f$ est Fréchet-différentiable en $x\in H_1$ avec une dérivée L. Alors $f$ est Gâteaux-différentiable et $L=f'(x)$.}
+
+\begin{dem}
+Soit $d\neq0\in H_1$. $\forall h>0$ :
+\[\begin{array}{c c c c}
+ &\frac{f(x+hd)-f(x)-Lhd}{h\|d\|}&\rightarrow&0 \\
+\Rightarrow &\frac{f(x+h)-f(x)}{h}-Ld&\rightarrow& 0 \\
+\Rightarrow & \frac{f(x+h)-f(x)}{h}&\rightarrow& Ld
+\end{array}\]
+
+$f$ admet une dérivée directionnelle dans la direction $d$, et on a $f'(x,d)=Ld$, ie $f'(x,\bullet)=L$ est linéaire continue.
+\end{dem}
+
+\subsection{Quelques rappels d'analyse convexe}
+\Def{}{Soit C un sous ensemble d'un espace vectoriel. On dit que C est convexe si \[\forall x,y\in C, \forall \alpha\in[0,1], \alpha x + (1-\alpha)y\in C\]}
+
+\Def{}{Soit $f:H\to \mathbb{R}$. On appelle épigraphe de $f$, noté $\text{epi}(f)$, l'ensemble :
+\[\text{epi}(f)=\{(\alpha,x)\in\mathbb{R}\times H; \alpha\geq f(x)\}\]}
+
+\Def{}{Soit $f:H\to \mathbb{R}$. On dit que $f$ est convexe si epi$(f)$ est convexe.}
+
+\Prop{}{$f:H\to \mathbb{R}$ est convexe si et seulement si $\forall x,y\in H$, $\forall \alpha\in[0,1]$, on a : \[f(\alpha x+(1-\alpha)y)\leq \alpha f(x)+(1-\alpha)f(y)\]}
+
+\begin{dem}
+On suppose que $f$ est convexe. Soient $x,y\in H$ et $\alpha\in[0,1]$. \\
+On a $(f(x),x)$ et $(f(y),y)\in\text{epi}(f)$. Donc $\alpha(f(x),x)+(1-\alpha)(f(y),y)\in\text{epi}(f)$. 
+\[\Rightarrow f(\alpha x+(1-\alpha)y)\leq \alpha f(x)+(1-\alpha)f(y)\]
+
+\bigskip
+Réciproquement, on suppose $\forall x,y\in H$, $\forall \alpha\in[0,1]$, \[f(\alpha x+(1-\alpha)y)\leq \alpha f(x) + (1-\alpha)f(y)\]
+Soient $(\alpha,x)$ et $(\beta,y)\in\text{epi}(f)$ et $\lambda\in[0,1]$. \[\alpha\geq f(x) \text{ et } \beta\geq f(y)\]
+On a $f(\lambda x + (1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y) \leq \lambda \alpha + (1-\lambda)\beta$\\
+\[\Rightarrow (\lambda\alpha+(1-\lambda)\beta, \lambda x+(1-\lambda)y)\in\text{epi}(f)\]
+Donc epi$(f)$ est convexe.
+\end{dem}
+
+\Def{}{Soit $f:H\to \mathbb{R}$. On dit que $f$ est strictement convexe si $\forall x,y\in H$, tel que $x\neq y$, $\forall \alpha\in[0,1]$, on a :
+\[f(\alpha x+(1-\alpha)y)<\alpha f(x)+(1-\alpha)f(y)\]}
+
+\Def{}{Soit $f:H\to\mathbb{R}$. On dit que $f$ est $\alpha$-convexe si $\forall x,y\in H,\ \forall \lambda\in[0,1]$, on a :
+\[\frac{\alpha}{2}\lambda(1-\lambda)\|x-y\|^2+f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y)\]}
+
+\Prop{Convexité et dérivée première}{Soit $f:H\to \mathbb{R}$ différentiable. On a équivalence entre les propositions suivantes :
+\begin{enumerate}
+\item $f$ est convexe
+\item $f(y)\geq f(x)+f'(x,y-x)$
+\item $(f'(y)-f'(x))(y-x)\geq 0$
+\end{enumerate}}
+
+\Prop{$\alpha$-convexité  et dérivée première}{Soit $f:H\to \mathbb{R}$ différentiable. On a équivalence entre les propositions suivantes :
+\begin{enumerate}
+	\item $f$ est $\alpha$-convexe
+	\item $f(y)\geq f(x)+f'(x).(y-x)+\frac{\alpha}{2}\|x-y\|^2$
+	\item $(f'(y)-f'(x)).(y-x)\geq \alpha\|x-y\|^2$
+\end{enumerate}}
+
+\begin{dem}
+$(1)\to(2)$\\
+On suppose que $f$ est $\alpha$-convexe. Par définition, on a, pour $\lambda=\frac{1}{2^k}$ : 
+\[f\left(\left(1-\frac{1}{2^k}\right)x+\frac{1}{2^k}y\right)\leq \left(1-\frac{1}{2^k}\right) f(x)+\frac{1}{2^k}f(y)-\frac{\alpha}{2^{k+1}}\left(1-\frac{1}{2^k}\right)\|x-y\|^2\]
+On a alors :
+\[2^k\left[f\left(\left(1-\frac{1}{2^k}\right)x+\frac{1}{2^k}y\right)-f(x)\right]\leq f(y)-f(x)-\frac{\alpha}{2}\left(1-\frac{1}{2^k}\right)\|x-y\|^2\]
+Lorsque $k\to +\infty$ : 
+\[f'(x).(y-x)\leq f(y)-f(x)-\frac{\alpha}{2}\|x-y\|^2\]
+
+\bigskip
+$(2)\to (3)$\\
+\[f(y)\geq f(x)+f'(x)(y-x)-\frac{\alpha}{2}\|x-y\|^2\]
+\[f(x)\geq f(y)+f'(y)(x-y)-\frac{\alpha}{2}\|x-y\|^2\]
+On fait la somme :
+\[0\geq (f'(x)+f'(y)).(x-y)+\alpha\|x-y\|^2\]
+
+\bigskip
+$(3)\to(1)$\\
+Soient $x,y\in H$ et $\lambda\in[0,1]$. On introduit :
+\begin{eqnarray*}
+\phi : \mathbb{R}&\to&\mathbb{R}\\
+	t&\mapsto&f(x+t(y-x))
+\end{eqnarray*}
+
+$\phi$ est dérivable et \[\phi'(t)=f'(x+t(y-x)).(y-x)\]
+Soit $t>s$. 
+\begin{eqnarray*}
+\phi'(t)-\phi'(s)&=&[f'(x+t(y-x))-f'(x+s(y-x))].(y-x) \\
+	&\geq& \frac{1}{t-s}\alpha\|(t-s)(x-y)\|^2\\
+	&\geq& \alpha(t-s)\|x-y\|^2
+\end{eqnarray*}
+On intègre de $t=\lambda$ à $t=1$ et de $s=0$ à $s=\lambda$ :
+\[\begin{array}{c c c c}
+ & \lambda(\phi(1)-\phi(\lambda))-(1-\lambda)(\phi(\lambda)-\phi(0)) &\geq& \alpha\|y-x\|^2\left[ \frac{\lambda}{2} (1-\lambda^2) - \frac{\lambda^2}{2}(1-\lambda)\right]\\
+\Leftrightarrow & \lambda\phi(1)+(1-\lambda)\phi(0)-\phi(\lambda) &\geq& \alpha\|x-y\|^2\frac{\lambda}{2}(1-\lambda^2-\lambda+\lambda^2)\\
+\Leftrightarrow & \lambda f(y) + (1-\lambda)f(x)&\geq& \frac{\alpha}{2}\|x-y\|^2\lambda(1-\lambda)+f((1-\lambda)x+\lambda y)
+\end{array}\]
+Donc f $\alpha$-convexe.
+\end{dem}
+
+

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kvtml PUBLIC "kvtml2.dtd" "http://edu.kde.org/kvtml/kvtml2.dtd">
+<kvtml version="2.0">
+  <information>
+    <generator>kwordquiz 0.9.2</generator>
+    <title>liste1.kvtml</title>
+    <date>2013-10-12</date>
+  </information>
+  <identifiers>
+    <identifier id="0">
+      <name>Colonne 1</name>
+      <locale>en</locale>
+    </identifier>
+    <identifier id="1">
+      <name>Colonne 2</name>
+      <locale>en</locale>
+    </identifier>
+  </identifiers>
+  <entries>
+    <entry id="0">
+      <translation id="0">
+        <text>Il y a</text>
+      </translation>
+      <translation id="1">
+        <text>vor</text>
+      </translation>
+    </entry>
+    <entry id="1">
+      <translation id="0">
+        <text>Chercheur</text>
+      </translation>
+      <translation id="1">
+        <text>der Forscher</text>
+      </translation>
+    </entry>
+    <entry id="2">
+      <translation id="0">
+        <text>En même temps</text>
+      </translation>
+      <translation id="1">
+        <text>zugleich</text>
+      </translation>
+    </entry>
+    <entry id="3">
+      <translation id="0">
+        <text>combinatoire</text>
+      </translation>
+      <translation id="1">
+        <text>das Kombinatorik</text>
+      </translation>
+    </entry>
+    <entry id="4">
+      <translation id="0">
+        <text>d'où ?</text>
+      </translation>
+      <translation id="1">
+        <text>Woher</text>
+      </translation>
+    </entry>
+    <entry id="5">
+      <translation id="0">
+        <text>Quel est votre travail ?</text>
+      </translation>
+      <translation id="1">
+        <text>Was sind Sie von Beruf ?</text>
+      </translation>
+    </entry>
+    <entry id="6">
+      <translation id="0">
+        <text>Autour</text>
+      </translation>
+      <translation id="1">
+        <text>um</text>
+      </translation>
+    </entry>
+    <entry id="7">
+      <translation id="0">
+        <text>arriver</text>
+      </translation>
+      <translation id="1">
+        <text>ankommen</text>
+      </translation>
+    </entry>
+    <entry id="8">
+      <translation id="0">
+        <text>doué</text>
+      </translation>
+      <translation id="1">
+        <text>begabt</text>
+      </translation>
+    </entry>
+    <entry id="9">
+      <translation id="0">
+        <text>Plante</text>
+      </translation>
+      <translation id="1">
+        <text>Pflanz</text>
+      </translation>
+    </entry>
+    <entry id="10">
+      <translation id="0">
+        <text>Plaire + cas</text>
+      </translation>
+      <translation id="1">
+        <text>gefallen+D</text>
+      </translation>
+    </entry>
+    <entry id="11">
+      <translation id="0">
+        <text>être originaire de</text>
+      </translation>
+      <translation id="1">
+        <text>Stammen aus</text>
+      </translation>
+    </entry>
+    <entry id="12">
+      <translation id="0">
+        <text>s'installer</text>
+      </translation>
+      <translation id="1">
+        <text>Nierderlassen</text>
+      </translation>
+    </entry>
+    <entry id="13">
+      <translation id="0">
+        <text>Immigrant</text>
+      </translation>
+      <translation id="1">
+        <text>Einwanderer / Immigrant</text>
+      </translation>
+    </entry>
+    <entry id="14">
+      <translation id="0">
+        <text>A supposer que</text>
+      </translation>
+      <translation id="1">
+        <text>Angenommen</text>
+      </translation>
+    </entry>
+    <entry id="15">
+      <translation id="0">
+        <text>Renfermé</text>
+      </translation>
+      <translation id="1">
+        <text>Verschlossen</text>
+      </translation>
+    </entry>
+    <entry id="16">
+      <translation id="0">
+        <text>Reservé</text>
+      </translation>
+      <translation id="1">
+        <text>Zurückhaltend</text>
+      </translation>
+    </entry>
+    <entry id="17">
+      <translation id="0">
+        <text>Sérieux</text>
+      </translation>
+      <translation id="1">
+        <text>Ernst</text>
+      </translation>
+    </entry>
+    <entry id="18">
+      <translation id="0">
+        <text>Couper</text>
+      </translation>
+      <translation id="1">
+        <text>schneiden (-itt, geschnitten)</text>
+      </translation>
+    </entry>
+    <entry id="19">
+      <translation id="0">
+        <text>Couramment</text>
+      </translation>
+      <translation id="1">
+        <text>fließend</text>
+      </translation>
+    </entry>
+    <entry id="20">
+      <translation id="0">
+        <text>occasion</text>
+      </translation>
+      <translation id="1">
+        <text>der Anlass</text>
+      </translation>
+    </entry>
+    <entry id="21">
+      <translation id="0">
+        <text>le titre est</text>
+      </translation>
+      <translation id="1">
+        <text>das Titel lautet</text>
+      </translation>
+    </entry>
+    <entry id="22">
+      <translation id="0">
+        <text>mettre sous pression</text>
+      </translation>
+      <translation id="1">
+        <text>unter Druck setzen</text>
+      </translation>
+    </entry>
+    <entry id="23">
+      <translation id="0">
+        <text>Invention</text>
+      </translation>
+      <translation id="1">
+        <text>die Erfindung</text>
+      </translation>
+    </entry>
+    <entry id="24">
+      <translation id="0">
+        <text>bruyant</text>
+      </translation>
+      <translation id="1">
+        <text>laut</text>
+      </translation>
+    </entry>
+    <entry id="25">
+      <translation id="0">
+        <text>paralysé</text>
+      </translation>
+      <translation id="1">
+        <text>lahm</text>
+      </translation>
+    </entry>
+    <entry id="26">
+      <translation id="0">
+        <text>Propulsion</text>
+      </translation>
+      <translation id="1">
+        <text>Antrieb</text>
+      </translation>
+    </entry>
+    <entry id="27">
+      <translation id="0">
+        <text>disparaître</text>
+      </translation>
+      <translation id="1">
+        <text>verschwinden</text>
+      </translation>
+    </entry>
+    <entry id="28">
+      <translation id="0">
+        <text>la Manche</text>
+      </translation>
+      <translation id="1">
+        <text>der Ärmelkanal</text>
+      </translation>
+    </entry>
+    <entry id="29">
+      <translation id="0">
+        <text>cadavre</text>
+      </translation>
+      <translation id="1">
+        <text>Leiche</text>
+      </translation>
+    </entry>
+    <entry id="30">
+      <translation id="0">
+        <text>Circonstances</text>
+      </translation>
+      <translation id="1">
+        <text>Umständen</text>
+      </translation>
+    </entry>
+    <entry id="31">
+      <translation id="0">
+        <text>Distinctions</text>
+      </translation>
+      <translation id="1">
+        <text>Auszeichnung</text>
+      </translation>
+    </entry>
+    <entry id="32">
+      <translation id="0">
+        <text>Ambitieux</text>
+      </translation>
+      <translation id="1">
+        <text>Strebsam</text>
+      </translation>
+    </entry>
+    <entry id="33">
+      <translation id="0">
+        <text>École technique</text>
+      </translation>
+      <translation id="1">
+        <text>die Gewerbeschule</text>
+      </translation>
+    </entry>
+    <entry id="34">
+      <translation id="0">
+        <text>Bricoler</text>
+      </translation>
+      <translation id="1">
+        <text>tüftelen</text>
+      </translation>
+    </entry>
+    <entry id="35">
+      <translation id="0">
+        <text>Compétence</text>
+      </translation>
+      <translation id="1">
+        <text>Sachverstand</text>
+      </translation>
+    </entry>
+    <entry id="36">
+      <translation id="0">
+        <text>Apprendre (infos)</text>
+      </translation>
+      <translation id="1">
+        <text>erfarhen (ä - u - a)</text>
+      </translation>
+    </entry>
+    <entry id="37">
+      <translation id="0">
+        <text>fabriquer</text>
+      </translation>
+      <translation id="1">
+        <text>herstellen</text>
+      </translation>
+    </entry>
+    <entry id="38">
+      <translation id="0">
+        <text>s'imaginer</text>
+      </translation>
+      <translation id="1">
+        <text>sich vorstllen (ich kann mir vorstellen, dass...)</text>
+      </translation>
+    </entry>
+    <entry id="39">
+      <translation id="0">
+        <text>Précisément</text>
+      </translation>
+      <translation id="1">
+        <text>Genau</text>
+      </translation>
+    </entry>
+    <entry id="40">
+      <translation id="0">
+        <text>Domaine (activité)</text>
+      </translation>
+      <translation id="1">
+        <text>das Gebiet</text>
+      </translation>
+    </entry>
+    <entry id="41">
+      <translation id="0">
+        <text>déterminé</text>
+      </translation>
+      <translation id="1">
+        <text>beschlossen</text>
+      </translation>
+    </entry>
+    <entry id="42">
+      <translation id="0">
+        <text>décidé</text>
+      </translation>
+      <translation id="1">
+        <text>entschieden</text>
+      </translation>
+    </entry>
+    <entry id="43">
+      <translation id="0">
+        <text>Soumettre un brevet</text>
+      </translation>
+      <translation id="1">
+        <text>Ein Patent anmelden</text>
+      </translation>
+    </entry>
+    <entry id="44">
+      <translation id="0">
+        <text>Monotone</text>
+      </translation>
+      <translation id="1">
+        <text>eintönig</text>
+      </translation>
+    </entry>
+    <entry id="45">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+  </entries>
+  <lessons>
+    <container>
+      <name>Default Lesson</name>
+      <inpractice>true</inpractice>
+      <entry id="0"/>
+      <entry id="1"/>
+      <entry id="2"/>
+      <entry id="3"/>
+      <entry id="4"/>
+      <entry id="5"/>
+      <entry id="6"/>
+      <entry id="7"/>
+      <entry id="8"/>
+      <entry id="9"/>
+      <entry id="10"/>
+      <entry id="11"/>
+      <entry id="12"/>
+      <entry id="13"/>
+      <entry id="14"/>
+      <entry id="15"/>
+      <entry id="16"/>
+      <entry id="17"/>
+      <entry id="18"/>
+      <entry id="19"/>
+      <entry id="20"/>
+      <entry id="21"/>
+      <entry id="22"/>
+      <entry id="23"/>
+      <entry id="24"/>
+      <entry id="25"/>
+      <entry id="26"/>
+      <entry id="27"/>
+      <entry id="28"/>
+      <entry id="29"/>
+      <entry id="30"/>
+      <entry id="31"/>
+      <entry id="32"/>
+      <entry id="33"/>
+      <entry id="34"/>
+      <entry id="35"/>
+      <entry id="36"/>
+      <entry id="37"/>
+      <entry id="38"/>
+      <entry id="39"/>
+      <entry id="40"/>
+      <entry id="41"/>
+      <entry id="42"/>
+      <entry id="43"/>
+      <entry id="44"/>
+      <entry id="45"/>
+    </container>
+  </lessons>
+</kvtml>

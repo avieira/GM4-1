@@ -1,0 +1,286 @@
+\part{\'El\'ements finis}
+\textit{Problème modèle :} On va considérer une EDP elliptique (basée sur le laplacien $\Delta$, somme des dérivées secondes)
+\[(P)\left\{\begin{array}{c c c}
+-u''(x) &=& f(x) \\
+u(0)&=&u(1)=0
+\end{array}\right.\ \forall x\in\Omega=]0,1[  \]
+
+\section{Formulation variationnelle}
+Cette formulation permet de "baisser" l'ordre de dérivation (via la formule de Stroke ou une IPP).
+\subsection{Choix de l'espace}
+On va définir l'espace V :
+\[V=\{u\in L^2(\Omega),\ u'\in L^2(\Omega),\ \underbrace{u(0)=u(1)=0}_{\text{Conditions de Dirichlet}}\}\]
+
+\underline{Remarque :} On a intégré les conditions de Dirichlet homogènes dans la définition de V.
+
+\bigskip
+On notera $V=H_0^1(\Omega)$ un espace de Sobolev, qui est un espace de Hilbert.\\
+On définit :
+\[\langle u,v\rangle=\int_{\Omega}uv dX + \int_{\Omega} u'v'dX\]
+\[\|v\|^2=\langle v,v\rangle = \|v\|^2_{L^2(\Omega)} + \|v'\|^2_{L^2(\Omega)}\]
+
+\subsection{Recherche de solution}
+On cherche la solution $u(x)$ dans V. $\forall v\in V$ (appelée fonction test) :
+\begin{eqnarray*}
+	-u''=f \\
+	-vu''=vf \\
+	-\int_{\Omega} u''v dx = \int_{\Omega} fv dx
+\end{eqnarray*}
+
+On a de plus :
+\[-\underbrace{[u'v]_0^1}_{=0 \text{ car } v\in V} + \int_0^1 u'v' dx = \int_{\Omega} fv dx\]
+
+On se ramène donc au problème suivant ; trouver $u\in V$; $\forall v\in V$ :
+\[(P.V.) \left\{ \begin{array}{c c}
+a(u,v)=L(v)\\
+\text{avec } & a(u,v)=\int_0^1 u'v' x \\
+	     & 	L(v)=\int_0^1 fv dx
+\end{array}\right.\]
+
+La solution de PV est appelée solution faible \\
+La solution de P est appelée solution forte.
+
+\subsection{Existence-unicité d'une solution de (PV)}
+
+\Theo{de Lax-Milgram}{$a(\bullet,\bullet)$ est :
+\begin{itemize}
+	\item une forme bilinéaire (symétrique ?)
+	\item V-elliptique : $a(u,u)\geq \alpha \|u\|_v^2,\ \alpha\geq 0$
+	\item continue : $|a(u,v)| \leq C\|u\|_V\|v\|_V,\ C\geq 0$
+\end{itemize}
+$L(\bullet)$ est linéaire continue.\\
+Sous ces conditions, (PV) admet une solution unique $u\in V$.}
+
+\section{Approximation numérique du problème variationnel}
+C'est dans cette partie que l'on va utiliser la méthode des élements finis en exprimant la solution discrétisée $u_h$ dans une base d'un espace $V_h$ de dimension finie.
+
+\subsection{Choix de $V_h$}
+Choix le plus simple :
+\[V_h=\{v_n\in V; v_h\in\mathcal{C}^0(\bar\Omega), \forall i=0,...,n-1;\ {v_h}_{[\tau_i,\tau_{i+1}]}\in\mathbb{R}_1[X]\}\]
+
+$V_h$ est un espace vectoriel de dimension $n-1$. 
+
+\bigskip
+\underline{Remarque :} Cela correspond à des $\beta$-splines.
+\[\tau=(\tau_i)_{i=0..n},\ \dim \mathbb{P}_{k,\tau,r}=(k+1)n-\sum_{i=1}^{n-1} r_i\]
+$\mathbb{P}_{k,\tau,r}$ est l'espace des fonctions polynomiales par morceaux de degré inférieur ou égal à k avec un raccord $\mathcal{C}^{r_i-1}$ en $\tau_i$.
+
+\bigskip
+En particulier, $\dim V_h=n-1$.
+
+\subsection{Fonctions de base}
+Ce sont les $(\phi_i)_{i=1,...,n-1}$, ils vérifient une condition lagrangienne :
+\[\left\{\begin{array}{c c c c}
+\phi_i(z_i)&=&1 & \\
+\phi_i(z_j)&=&0\ & \forall j\neq i
+\end{array}\right.\]
+
+\subsection{Problème discrétisé}
+Le problème discrétisé $(PV_h)$ est maintenant la recherche de $u_h(x)=\sum_{j=1}^{n-1} \xi_i \phi_i(x)\in V_h$ tel que $\forall v_h\in V_h, a(u_n,v_n)=L(v_n)$.
+
+\subsection{Détermination des inconnues $(\xi_j)_{j=1,...,n-1}$}
+On a :
+\[u_h(\tau_i)=\sum_{j=1}^{n-1} \xi_j \phi_j(\tau_i)=\xi_i\]
+$(PV_h)$ est équivalent à : \\
+Trouver $u_h(x)=\sum_{j=1}^{n-1}\xi_j \phi_j(x)\in V_h$ tel que $\forall i=1,...,n-1$, $a(u_h,\phi_i)=L(\phi_i)$. 
+
+On a fonc:
+\[\sum_{j=1}^{n-1} \xi_j \underbrace{a(\phi_j,\phi_i)}_{\text{Matrices de rigidité}}=L(\phi_i),\ \forall i=1,...,n-1\]
+
+On se ramène donc à un système linéaire :
+\[R\xi=F\]
+
+\Prop{}{R est définie positive.}
+
+\begin{dem}
+On l'obtient grâce à la V-ellipticité de $a(\bullet,\bullet)$. \\
+Soit $v\in\mathbb{R}^{n+1}$. On cherche à voir si $v^TRv>0$.
+
+\[(v^TR)_j=\sum_{i=1}^{n-1} v_iR_{ij}=\sum_{i=1}^{n-1} v_ia(\phi_j,\phi_i)=a(\phi_j,\sum_{i=1}^{n-1} v_i\phi_i)\]
+\[(v^TR)v=\sum_{j=1}^n v_j(v^TR)_j = a\left( \sum_j v_j\phi_j, \sum_i v_i\phi_i\right)\]
+
+Posons $w=\sum_i v_i\phi_i$, $a(w,w)\geq 0$ car $a(\bullet,\bullet)$ V elliptique. 
+\end{dem}
+
+\part{Petits rappels d'analyse fonctionnelle}
+\section{Rappels sur les distributions}
+\underline{Notation :} $\alpha=(\alpha_1,...,\alpha_n)\in\mathbb{N}^*$, on définit :
+\[\partial^\alpha=\frac{\partial^{|\alpha|}}{\partial^{\alpha_1}x_1...\partial^{\alpha_n}x_n}\]
+avec $|\alpha|=\sum_{i=1}^n \alpha_i$
+
+\Prop{}{\begin{itemize}
+\item $\mathcal{D}(\Omega)$ est dense dans $L^2(\Omega)$ (toute fonction de $L^2(\Omega)$ est limite d'une suite de fonctions incluse dans $\mathcal{D}(\Omega))$.
+\item L'application identité de $L^2(\Omega)$ dans $\mathcal{D}'(\Omega)$ est appelée injection canonique. Elle est continue.
+\item $f_n\xrightarrow{L^2(\Omega)} f \Rightarrow T_{f_n} \xrightarrow{\mathcal{D}'(\Omega)} T_f$
+\end{itemize}}
+
+\section{Espaces de Sobolev}
+Ces espaces nous permettent de résoudre les problèmes variationnels. Les espaces de Sobolev se construisent à partir des espaces $L^p$ (on va d'abord s'intéresser aux espaces $H^m(\Omega)$ construits sur $L^2(\Omega)$).
+
+\subsection{Liens entre $\mathcal{D}(\omega)$, $L^2(\Omega)$ et $H^1(\Omega)$}
+On rappelle la notion de dérivation faible :
+	\[u\in L^2(\Omega),\ \frac{\partial u}{\partial x_i} \to \omega_i \in \mathcal{D}'(\Omega)\]
+\Def{Espaces des Sobolev}{Les dérivées qui vont intervenir dans les espaces de Sobolev sont prises au sens des distributions. 
+	\[H^1(\Omega)=\left\{v\in L^2(\Omega),\ \frac{\partial v}{\partial x_i}\in L^2(\Omega),\ \forall i=1,...,n\right\}\]
+où $\Omega\subset\mathbb{R}^n$. \\
+On définit un produit scalaire :
+\begin{eqnarray*}
+	((u,v))_{1,\Omega}&=&\int_{\Omega} \left(uv+\sum_{i=1}^n \frac{\partial u}{\partial x_i} \frac{\partial v}{\partial x_i}\right) dx\\
+			&=&\int_{\Omega} \left( uv + \left(\nabla u\right)^t \nabla v\right) dx
+\end{eqnarray*}
+
+et on note $\|\bullet\|_{1,\Omega}$ sa norme associée.}
+
+\Prop{}{\begin{itemize}
+\item $H^1(\Omega)$ est un espace de Hilbert
+\item $H^1(\Omega)$ est séparable (il existe une partie dénombrable et dense dans $H^1(\Omega)$).
+\end{itemize}}
+
+\begin{dem}
+On va montrer que $H^1(\Omega)$ est complet.\\
+Soit $(v_p)_p$ une suite de Cauchy dans $H^1(\Omega)$. On a : $\forall p,\ v_p\in H^1(\Omega)$ et :
+\[\forall \varepsilon>0, \exists N\in\mathbb{N}; \forall n,p\geq N, \|v_n-v_p\|<\varepsilon\]
+Par définition de $H^1(\Omega)$, $(v_p)_p$ est une suite de Cauchy dans $L^2(\Omega)$ et $\forall i=1,...,n$, $\left(\frac{\partial v_p}{\partial x_i} \right)_p$ est également une suite de Cauchy dans $L^2(\Omega)$.\\
+\[\exists v\in L^2(\Omega); v_p\xrightarrow{L^2} v\]
+\[\exists w_i\in L^2(\Omega); \frac{\partial v_p}{\partial x_i}\xrightarrow{L^2} w_i\]
+car $L^2(\Omega)$ est complet.
+
+\bigskip
+On rappelle que la convergence dans $L^2(\Omega)$ implique la convergence dans $\mathcal{D}(\Omega)$ (car les fonctions de classe $\mathcal{C}^\infty$ à support compact sont $L^2$ et le produit scalaire de $L^2$ coincide avec le crochet de dualité au sens des distributions).
+
+\bigskip
+La convergence se fait donc au sens des distributions. Or, les opérations de dérivation sont continues dans $\mathcal{D}'(\Omega)$. Par conséquent :
+\[\frac{\partial v_p}{\partial x_i} \to \frac{\partial v}{\partial x_i}\]
+et de plus, il y a unicité de la limite dans $\mathcal{D}'(\Omega)$ et donc $\omega_i=\frac{\partial v}{\partial x_i}$.
+\end{dem}
+
+\Prop{Rellich}{Soit $\Omega$ un ouvert borné de $\mathbb{R}^n$ à frontière "suffisament régulière", alors de toute suite bornée dans $H^1(\Omega)$, on peut extraire une sous-suite qui converge dans $L^2(\Omega)$.\\
+(L'injection canonique de $H^1$ dans $L^2$ est compacte)}
+
+\Def{}{On désigne par $H_0^1(\Omega)$ l'adhérence de $\mathcal{D}(\Omega)$ dans $(H^1(\Omega), \|\bullet\|_{1,\Omega})$
+\begin{eqnarray*}
+	H_0^1(\Omega)&=&\{f\in H^1(\Omega) ; \exists \phi_n\in\mathcal{D}(\Omega); \phi_n\to f\}\\
+		&=&\left\{u\in L^2(\Omega); \frac{\partial u}{\partial x_i}\in L^2(\Omega); u\left(\Gamma\right)=\{0\}\right\}
+\end{eqnarray*}}
+
+\Prop{}{\begin{itemize}
+\item $\mathcal{D}(\Omega)$ est dense dans $H_0^1(\Omega)$
+\item $(H^1_0(\Omega), \|\bullet\|_{1,\Omega})$ est un Hilbert.
+\end{itemize}}
+
+\Formu{de Poincaré}{Si $\Omega$ est borné au moins dans une direction, alors $\exists C(\Omega)>0; \forall v\in H_0^1(\Omega)$;
+\[\|v\|_{L^2(\Omega)}=\|v\|_{0,\Omega}\leq C(\Omega)\sum_{i=1}^n \left\| \frac{\partial v}{\partial x_i}\right\|_{L^2(\Omega)}\]}
+
+\begin{dem}
+A reprendre
+\end{dem}
+
+Il existe d'autres formules de ce type, comme la formule de Poincaré-Wirtinger.
+
+\bigskip
+\underline{Remarque :} On munit $H_0^1(\Omega)$ de la norme induite par $H^1(\Omega)$.\\
+$H_0^1(\Omega)$ est fermé dans $H^1(\Omega)$ $\Rightarrow$ $H_0^1(\Omega)$ est de Hilbert.
+
+\Prop{}{Si $\Omega$ est borné, alors sur $H_0^1(\Omega)$, la semi-norme \[\left( \int_\Omega (\nabla u)^2 du\right)^{\frac{1}{2}}\] définit une norme équivalente à $\|\bullet\|_{H^1(\Omega)}$}
+
+\begin{dem}
+D'après l'inégalité de Poincaré : $\Omega$ borné, $v\in H_0^1(\Omega)$ :
+\begin{eqnarray*}
+	\int_{\Omega} (\nabla v)^2 dx &\geq& C(\Omega) \int_\Omega v^2 dx \\
+	2\int_\Omega (\nabla v)^2 dx &\geq& C(\Omega) \int_\Omega v^2 dx + \int_\Omega (\nabla v)^2 dx \\
+	\|v\|_{1,\Omega}^2 = \int_\Omega (\nabla v)^2 dx &\geq& \frac{1}{2} \min (1,C(\Omega)) \|v\|^2_{1,\Omega}
+\end{eqnarray*}
+\end{dem}
+
+\section{Théorèmes de trace}
+On suppose $\Omega$ "régulier", alors $\mathcal{D}(\overline{\Omega})$ est denste dans $H^1(\Omega)$ et l'application 
+\[\begin{array}{c c c}\gamma_0 : \mathcal{D}(\overline{\Omega}) &\to& L^2(\Gamma) \\
+					v			&\mapsto& \gamma_0 v = v_{|\Gamma} 
+\end{array}\]
+se prolonge par continuité en une application linéaire continue de $H^1(\Omega)$ dans $L^2(\Gamma)$.
+
+\bigskip
+$L^2(\Gamma)$ : classe de fonctions de carré sommable avec la mesure $d\sigma$ (qui est la mesure superficielle sur $\partial \Omega = \Gamma$, associé à la mesure classique de Lebesgue).
+
+\bigskip
+\underline{Remarque :} $\gamma_0$ n'est pas surjective (preuve dans la littérature : Allaire, Brégis...)
+
+\section{Généralisation de Sobolev}
+$\Omega$ : ouvert non vide e $\mathbb{R}^n$.
+
+\Def{}{On note $W^{m,p}(\Omega)$ $(1\leq p\leq \infty)$ l'espace des fonctions $v\in L^p(\Omega)$ telles que pour tout $\alpha\in \mathbb{N}^n$ tel que $|\alpha|\leq m$, les dérivées partielles $\partial ^\alpha v$ de longueur $|\alpha|$ soient $\mathcal{C}^p(\Omega)$.}
+
+\[\|v\|^2_{m,p,\Omega} = \sum_{|\alpha|\leq m} \int_\Omega (\partial^\alpha v)^2 dx \text{ si } 1\leq p < \infty\]
+On a aussi une semi norme :
+\[|v|^2_{m,p,\Omega} = \sum_{|\alpha|=m} \int_\Omega (\partial^\alpha v)^2 dx \]
+
+\bigskip
+\underline{Remarque :} Lorsque $p=2$, on retombe sur $H^m(\Omega)$
+
+\Def{Fonction $\mu$-holderiennes}{On note $C^{m,\mu}(\overline{\Omega})$ l'espace des fonctions $v$ de $\mathcal{C}^m(\overline{\Omega})$ qui sont $\mu$-holderiennes sur $\overline{\Omega}$, ainsi que toutes leurs dérivées partielles d'ordre $|\alpha|\leq m$, ie :
+\[\exists C>0;\ \forall x,y\in \overline{\Omega}, \forall |\alpha|\leq m, |\partial^\alpha v(x) - \partial^\alpha v(y)|\leq C \langle x-y\rangle^\mu_{\mathbb{R}^n}\]
+avec $\langle \bullet \rangle$ la norme euclidienne sur $\mathbb{R}^n$. }
+
+Nous allons maintenant donner quelques résultats de compacité dans les espaces de Sobolev :
+\[H^m(\Omega) \hookrightarrow \mathcal{C}^s(\Omega) \text{ si } m> s+\frac{n}{2}\]
+où $\Omega\subset \mathbb{R}^n$ à frontière lipschitzienne.\\
+$\hookrightarrow$ : injection canonique.
+
+\section{Quelques résultats essentiels en analyse hilbertienne}
+Soit $H$ un espace de Hilbert muni du produit scalaire $(\bullet, \bullet)_H$. On note $H'$ le dual de $H$.
+	\[\|l\|_{H'} = \sup_{v\in H} \frac{|l(v)|}{\|v\|_H}\]
+
+\Theo{de projection}{Soit $K$ un espace convexe, fermé et non vide de $H$. Alors pour tout $f\in H$, il existe un unique élément de $K$, noté $P_K f$ tel que :
+	\[\|f-p_kf\|_H = \min_{v\in K} \|f-v\|_H\]}
+
+\underline{Remarque :} $P_k$ est une contraction
+
+\Theo{de représentation de Riesz-Fréchet}{Soit $l\in H'$, il existe un unique élément $f\in H$ tel que 
+	\[\forall v\in H,\ l(v)=(l,v)_{H',H} = (f,v)_{H'}\]
+
+et on a $\|f\|_H = \|l\|_{H'}$.}
+
+\section{Théorème de Lax-Milgram et problème variationnel abstrait}
+On considère un espace de Hilbert $V$ et $V'$ son dual. Soit $a(\bullet,\bullet)$ une fonctionnelle :
+\begin{itemize}
+	\item bilinéaire de $V\times V$ dans $\mathbb{R}$
+	\item continue ($\exists M; \forall u,v\in V, |a(u,v)|\leq M\|u\|\|v\|$)
+	\item V-elliptique ($\exists \alpha>0; a(v,v)\geq \alpha\|v\|^2$)
+\end{itemize}
+
+Soit $L\in V'$. Le problème variationnel est alors défini comme suit :
+\[(PV)\left\{\begin{array}{c} \text{Chercher } u\in V \text{ tel que } \forall v\in V \\
+a(u,v)=L(v) \end{array}\right. \]
+
+\Lem{de Lax-Milgram}{Sous les hypothèses précédentes sur $a(\bullet,\bullet)$, et $L(\bullet)$, on a :
+\begin{enumerate}
+	\item (PV) admet une unique solution
+	\item On étudie l'existence et l'unicité d'une solution du problème transformé
+\end{enumerate}}
+
+\begin{dem}
+Distribuée sur feuille.
+\end{dem}
+
+\Rem{}{Si $a(\bullet,\bullet)$ est de plus symétrique, alors combiné avec la V-ellpticité, on a $a(\bullet,\bullet)$ défini positif. Donc $a(\bullet,\bullet)$ définit un produit scalaire sur V.\\
+On peut donc lui associer une norme $(a(v,v))^{\frac{1}{2}}$ qui est équivalente à $\|\bullet\|_V$ (grâce à l'ellpticité et à la continuité)}
+
+\subsection{Ecriture sous forme d'un problème de minimisation d'une fonctionnelle d'énergie}
+On définit \[J:\begin{array}{c c c} V &\to& \mathbb{R} \\ v&\mapsto& J(v)=\frac{1}{2}a(v,v)-L(v) \end{array}\]
+On cherche $v$ minimisant $J$
+
+\Theo{de Stanpacchia}{Il existe un unique élément $v$ minimisant $J$, et cet élément est aussi l'unique solution de (PV)}
+
+\begin{dem}
+Soient $u,w\in V$
+\begin{eqnarray*}
+	J(u+w)&=&\frac{1}{2}a(u+w,u+w)-L(u+w)\\
+		&=&J(u)+J(w)+a(u,w)\\
+		&=&J(u)+\frac{1}{2}a(w,w)\underbrace{-L(w)+a(u,w)}_{(*)}
+\end{eqnarray*}
+Si $v$ solution de (PV), alors $(*)=0$.\\
+De plus, si $w\in V\textbackslash\{0\}$, $a(w,w)\geq \alpha\|w\|^2_V >0$. Donc $J(u+w)\geq J(u)$.\\
+$\forall t\in V$, $\exists u,w\in V$, $u+w=t$\\
+	\[J(t)\geq J(u)\]
+D'où \[J(u)=\min_{u\in V} J(t)\]
+\end{dem}

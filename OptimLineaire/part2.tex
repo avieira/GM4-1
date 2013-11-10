@@ -1,0 +1,363 @@
+\subsection{Conditions d'optimalité dans un ouvert}
+\Theo{}{Soit $J:\mathbb{R}^n\to\mathbb{R}$ une fonction de classe $\mathcal{C}^1$. Soit $\mathcal{U}_{ad}$ un ouvert de $\mathbb{R}^n$.\\
+Si $J$ atteint un minimum local en $\bar{u}\in\mathcal{U}_{ad}$, alors \[\nabla J(\bar{u})=0\]}
+
+\underline{Remarque :} Il existe également une condition du second ordre (si $J$ est $\mathcal{C}^2$) : la matrice Hessienne est positive.
+
+\begin{dem}
+Soit $d\in\mathbb{R}^n$. Comme $\mathcal{U}_{ad}$ est ouvert et $\bar{u}\in\mathcal{U}_{ad}$, il existe $h_0>0;\ \forall h\in]0,h_0],\ \bar{u}+hd\in\mathcal{U}_{ad}$. Donc $J(\bar{u}+hd)\geq J(\bar{u})$.
+
+Or :
+\begin{eqnarray*}
+& & J(\bar{u})\leq J(\bar{u}+hd)=J(\bar{u})+\langle \nabla J(\bar{u}),hd\rangle + o(h) \\
+&\Rightarrow& \langle\nabla J(\bar{u}), hd\rangle +o(h)\geq 0 \\
+&\Rightarrow& \langle \nabla J(\bar{u}),h\rangle + o(1)\geq 0 \\
+&\Rightarrow& \langle J(\bar{u}),d\rangle \geq 0\ \forall d\in\mathbb{R}^n\ (h\to 0)
+\end{eqnarray*}
+
+En remplaçant $d$ par $-d$ :
+\[\langle\nabla J(\bar{u}),d\rangle\leq 0\ \forall d\in\mathbb{R}^n\]
+
+D'où :
+\[\langle \nabla J(\bar{u}),d\rangle =0\ \forall d\in\mathbb{R}^n\]
+\[\Rightarrow \nabla J(\bar{u})=0\] 
+\end{dem}
+
+\Theo{}{Soit $\mathcal{U}_{ad}$ un ensemble convexe de $\mathbb{R}^n$ et $J$ une application différentiable de $\mathbb{R}^n$ dans $\mathbb{R}$. Si $\bar{u}$ est un point de minimum de $J$ sur $\mathcal{U}_{ad}$, alors :
+\begin{equation} \tag{$*$} J'(\bar{u})(u-\bar{u})\geq 0\ \forall u\in\mathcal{U} \end{equation}
+Réciproquement, si $\bar{u}$ vérifie $(*)$, et si $J$ convexe, alors $\bar{u}$ est un point de minimum de $J$.} 
+
+\begin{dem}
+Soit $u\in\mathcal{U}_{ad}$. On a $\forall h\in[0,1]$, $\bar{u}+h(u-\bar{u})=(1-h)\bar{u}+hu\in\mathcal{U}_{ad}$ (par convexité de $\mathcal{U}_{ad}$). \\
+Donc \[J(\bar{u}+h(u-\bar{u}))\geq J(\bar{u})\]
+\[\Rightarrow \forall u\in\mathcal{U}_{ad},\ \forall h\in[0,1],\ \frac{J(\bar{u}+h(u-\bar{u}))-J(\bar{u})}{h}\geq 0\]
+\[\Rightarrow J'(\bar{u})(u-\bar{u})\geq 0\ (h\to 0^+)\]
+
+\bigskip
+Réciproquement, si $J$ est convexe, et si $\bar{u}$ vérifie $(*)$, alors $\forall u\in\mathcal{U}_{ad}$ :
+\[0\leq J'(\bar{u})(u-\bar{u})\leq J(u)_J(\bar{u})\]
+car J convexe, d'où :
+\[J(u)\geq J(\bar{u})\ \forall u\in\mathcal{U}_{ad}\]
+\end{dem}
+
+\Rem{}{On considère le cas où $\mathcal{U}_{ad}$ est un sous-espace affine de $\mathbb{R}^n$. En particulier, :
+\[\mathcal{U}_{ad}=\mathcal{P}+\bar{u}\]
+où $\mathcal{P}$ est un espace vectoriel.\\
+La condition $(*)$ se réécrit :
+\[J'(u)v\geq 0\ \forall v\in\mathcal{P}\]
+Si $v\in\mathcal{P}$ alors $-v\in\mathcal{P}$, donc :
+\[J'(u).v=0,\ \forall v\in\mathcal{P}\]
+ie $\nabla J(\bar{u})\in\mathcal{P}^\perp$
+
+\bigskip
+En particulier, si $\mathcal{P}$ est défini comme une intersection (finie) d'hyperplan ($a_i\in\mathbb{R}^n$) :
+\[\mathcal{P}=\{x,\ \langle a_i,x\rangle =0\ \forall i=1,...,d\}\]
+alors $\mathcal{P}^\perp$ est engendré par la famille $(a_i)_{i=1...d}$
+La condition d'optimalité s'écrit :
+\[\exists (\lambda_i)_{i=1,...,d};\ \nabla J(\bar{u})+\sum_{i=1}^d \lambda_ia_i=0\]
+Les $\lambda_i$ sont appelés multiplicateurs de Lagrange.}
+
+\subsection{Théorème de Kuhn et Tucker}
+On suppose que la contrainte $\mathcal{U}_{ad}$ s'écrit :
+\[\mathcal{U}_{ad}=\left\{u\in\mathbb{R}^n;\ \begin{array}{c c c c} 
+g_i(u)&\leq&0 & \forall i\in I \\
+h_j(u)&=& 0 & \forall j\in J
+\end{array}\right\}\]
+om $I=\{1,...,l\}$ et $J=\{1,...,m\}$. \\
+On suppose que les fonctions $g_i$ et $h_j$ sont $\mathcal{C}^1$ et pour $u\in\mathcal{U}_{ad}$, on note $I(u)$ l'ensemble des contraintes saturées, ie :
+\[I(u)=\{i\in I;\ g_i(u)=0\}\]
+
+\Theo{}{Si $\bar{u}$ est un point de minimum local de $J$ sur $\mathcal{U}_{ad}$ alors il exsite $p_0\in\mathbb{R}^+$, $p\in\mathbb{R}_+^l$, $q\in\mathbb{R}^m$, tel que :
+\[\left\{\begin{array}{c c c c}
+\sum_{i\in I} p_ig_i(\bar{u})&=&0 & \text{ (condition d'exclusion)} \\
+(p_0,p,q)&\neq& 0 \\
+p_0\nabla J(\bar{u})+\sum_{i\in I} p_0 \nabla g_i(\bar{u}) + \sum_{j\in J} q_j \nabla h_j(\bar{u})&=&0 & \text{ (condition nécessaire)}
+\end{array}\right.\]}
+
+\begin{dem}
+Soit $r>0$ tel que $J$ atteigne un minimum sur $\overline{B(\bar{u},r)}$ en $\bar{u}$.
+
+\[\min_{u\in\overline{B(\bar{u},r)}} \left\{J(u)+\|u-\bar{u}\|^2+\frac{N}{2}\left(\sum_{i\in I} \max (g_i(u),0)^2 + \sum_{j\in J} \max(h_j(u),0)^2 \right) \right\}\]
+Le minimum est atteint en $\bar{u}_N$.
+
+\bigskip
+Comme $J$ est continue sur $\overline{B(\bar{u},r)}$, elle est bornée. On note $M=\|J\|_{L^\infty(\overline{B(\bar{u},r)})}$. 
+
+\bigskip
+Donc :
+\[\sum_{i\in I} \max (g_i(u),0)^2 + \sum_{j\in J} \max(h_j(u),0)^2 \leq \frac{2}{N} \left(J(\bar{u})-J(\bar{u}_n)-\|\bar{u}-\bar{u}_N\|^2\right)\]
+\begin{equation}\tag{$*$}
+\sum_{i\in I} \max (g_i(\bar{u}_N),0)^2 + \sum_{j\in J} \max(h_j(\bar{u}_N),0)^2 \leq \frac{2}{N}(2M+r)
+\end{equation}
+
+On a aussi :
+\begin{equation}\tag{$**$}
+J(\bar{u}_N)+\|\bar{u}-\bar{u}_N\|^2 \leq J(\bar{u})
+\end{equation}
+
+Comme $\overline{B(\bar{u},r)}$ est compacte, quitte à extraire une sous-suite, on peut supposer que $\bar{u}_N\to u^*\in\overline{B(\bar{u},r)}$.\\
+En prenant la limite dans $(*)$ et dans $(**)$.
+\[\sum_{i\in I} \max (g_i(u^*),0)^2 + \sum_{j\in J} \max(h_j(u^*),0)^2 =0\]
+et
+\[J(u^*)+\|\bar{u}-u^*\|^2 \leq J(\bar{u})\]
+
+Donc $\forall i$, $g_i(u^*)\leq 0$ et $\forall j$, $h_j(u^*)\leq 0$.
+\[\Rightarrow u^*\in\mathcal{U}_{ad}\]
+\[\Rightarrow u^*=\bar{u}\]
+
+Pour N assez grand, $\bar{u}_N\in B(\bar{u},r)$. On en déduit donc que :
+\begin{equation}
+\tag{$*$}
+\nabla J(\bar{u}_N)+2\|\bar{u}_N-\bar{u}\|+N\left(\sum_{i\in I} \max(g_i(\bar{u}_N),0)\nabla g_i(\bar{u}_N)+\sum_{j\in J} h_j(\bar{u}_N)\nabla h_j(\bar{u}_N)\right)=0
+\end{equation}
+
+On pose \[\rho_N=\left[ 1+N^2\sum_{i\in I} \max(0,g_i(\bar{u}_N))^2 + N^2\sum_{j\in J} h_j(\bar{u}_N)^2\right]^{\frac{1}{2}}\]
+
+On pose :
+\[p_0^N=\frac{1}{\rho_N}\]
+\[p_i^N=Np_0^N \max(0,g_i(\bar{u}_N))\]
+\[q_j^N=Np_0^N h_j(\bar{u}_N))\]
+
+Le vecteur $\left( p_0^N, p^N, q^N\right)\in\mathbb{R}^{p+m+1}$ est de norme 1.
+
+\bigskip
+Quitte à extraire une sous-suite, on peut supposer que $(p_0^N, p^N, q^N)\to (p_0,p,q)$ avec $\|(p_0,p,q)\|=1$. 
+
+\bigskip
+En utilisant le fait que $\bar{u}_N\to\bar{u}$ et en divisant $(*)$ par $\rho_N$ puis en passant à la limite, on a :
+\[p_0\nabla J(\bar{u})+\sum_{i\in I} p_i\nabla g_i(\bar{u})+\sum_{j\in J} q_j\nabla h_j(\bar{u})=0\]
+Il reste à montrer que :
+\[\sum_{i\in I} p_ig_i(\bar{u})=0\]
+
+Or, $\forall i,\ p_ig_i(\bar{u})<0$. Il faut donc montrer que :
+\[p_ig_i(\bar{u})=0 \forall i\]
+
+ie : 
+\[p_i=0 \forall i\not\in I(\bar{u})\]
+
+Si $i\not\in I(\bar{u})<0$ alors $g_i(\bar{u})<0$. Donc $g_i(\bar{u}_N)<0$ pour N assez grand. Donc $p_i=0$ pour N assez grand.
+\[\Rightarrow p_i=0\ \forall i\not\in I(\bar{u})\]
+\[\Rightarrow \sum_{i\in I} p_ig_i(\bar{u})=0\]
+\end{dem}
+
+\underline{Remarque :} \begin{enumerate}
+\item Le vecteur $(p_0,p,q)$ est appelé le multiplicateur de Lagrange généralisé associé à $\bar{u}$
+\item On appelle lagrangien généralisé :
+\[L(u,p_0,p,q)=p_0J(u)+\sum_{i\in I} p_ig_i(u)+\sum_{j\in J} q_jh_j(u)\]
+La condition nécessaire d'optimalité se réécrit :
+\[\nabla_u L(\bar{u},p_0,p,q)=0\]
+\end{enumerate}
+
+\subsection{Cas des contraintes qualifiées}
+\Def{Contraintes qualifiées}{On dit que les contraintes sont qualifiées en un point $\bar{u}$ de $\mathcal{U}_{ad}$ si les conditions suivantes sont vérifiées :
+\begin{enumerate}
+	\item $\left\{ \nabla h_1(\bar{u}),...,\nabla h_n(\bar{u})\right\}$
+	\item $\exists v\in \mathbb{R}^n$ tel que :
+		\[\langle \nabla h_j(\bar{u}),v\rangle=0\ \forall j=1,...,n\]
+	et	\[\langle \nabla g_i(\bar{u}),v\rangle<0\ \forall i\in I(\bar{u}) \]
+\end{enumerate}}
+
+\Theo{}{Si $\bar{u}$ est un point de minimum de $J$ sur $\mathcal{U}_{ad}$ et si les contraintes sont qualifiées en $\bar{u}$, alors $\exists \lambda\in\mathbb{R}^l_+$, $\mu\in\mathbb{R}^n$ tel que :
+\begin{enumerate}
+	\item \[\sum_{i\in I} \lambda_i g_i(\bar{u})=0 \text{ (condition d'exclusion)}\]
+	\item \[\nabla J(\bar{u})+\sum_{i\in I} \lambda_i \nabla g_i(\bar{u})+\sum_{j\in J} \mu_j \nabla h_j(\bar{u})=0 \text{ (condition d'optimalité)}\]
+\end{enumerate}}
+
+\begin{dem}
+D'après le théorème précédent, il existe $p_0\in\mathbb{R}_+$, $p\in\mathbb{R}^l_+$ et $q\in\mathbb{R}^m$ tel que :
+\[\left\{\begin{array}{c c c }
+\sum_{i\in I} p_ig_i(\bar{u})&=&0 \\
+(p_0,p,q)&\neq& 0 \\
+p_0\nabla J(\bar{u})+\sum_{i\in I} p_0 \nabla g_i(\bar{u}) + \sum_{j\in J} q_j \nabla h_j(\bar{u})&=&0 
+\end{array}\right.\]
+Montrons que $p_0\neq 0$.\\
+Par l'absurde, on suppose $p_0=0$.
+\begin{enumerate}
+	\item $p_i=0 \forall i\not\in I(\bar{u})$
+	\item $\sum_{i\in I(\bar{u})} p_i \nabla g_i(\bar{u}) + \sum_{j\in J} q_j \nabla h_j(\bar{u})=0$
+\end{enumerate}
+Soit $v\in\mathbb{R}^n$ tel que $\langle \nabla h_j(\bar{u}),v\rangle=0\ \forall j\in J$ et $\langle \nabla h_i(\bar{u}),v\rangle<0\ \forall i\in I(\bar{u})$.\\
+On a :
+\begin{eqnarray*}
+0&=&\left\langle \sum_{i\in I(\bar{u})} p_i \nabla g_i(\bar{u}) + \sum_{j\in J} q_j \nabla h_j(\bar{u}),v\right\rangle \\
+ &=&\sum_{i\in I(\bar{u})} \underbrace{p_i}_{\geq 0} \underbrace{\langle \nabla g_i(\bar{u}), v\rangle}_{<0} + \underbrace{\sum_{j\in J} q_j\langle \nabla h_j(\bar{u}),v\rangle}_{=0}
+\end{eqnarray*}
+\[\Rightarrow p_i=0\ \forall i\in I(\bar{u})\]
+\[\Rightarrow p=0\]
+Donc :
+\[\sum_{j\in J} q_j \nabla h_j(\bar{u})=0\]
+Or, $\{\nabla h_1(\bar{u}),...,\nabla h_m(\bar{u})\}$ forment une famille libre, donc on a forcément $\forall j\in J,\ q_j=0$, ie : \[q=0\]
+
+On en déduit donc que \[(p_0,p,q)=0\] ce qui est absurde.\\
+Donc $p_0\neq 0$.
+
+\bigskip
+On pose $\lambda_i=\frac{p_i}{p_0}>0$ et $\mu_i=\frac{q_i}{p_0}$. On retrouve ainsi les deux égalités.
+\end{dem}
+
+\Rem{}{\begin{enumerate}
+	\item Le résultat reste vrai sans les hypothèses de qualification si les contraintes sont affines (ie, $\forall i, \forall j$, $g_i$ et $h_j$ sont convexes ou concaves)
+	\item Un peu de vocabulaire :
+	\begin{itemize}
+		\item $(\lambda,\mu)$ est le multiplicateur de Lagrange associé à $\bar{u}$
+		\item Le lagrangien est défini par :
+			\[L(u,\lambda,\mu)=J(u)+\sum_{i\in I}\lambda_i g_i(u) + \sum_{j\in J} \mu_j h_j(u)\]
+			et la condition d'optimalité s'écrit :
+			\[\nabla_u L(\bar{u},\lambda,\mu)=0\]
+	\end{itemize}
+\end{enumerate}}
+
+\section{Problèmes convexes et dualité}
+On considère le problème :
+	\[\min_{u\in \mathcal{U}_{ad}} J(u)\]
+où $\mathcal{U}_{ad}=\{u\in\mathbb{R}^n;\ g_i(u)\leq 0 \forall i\in I\}$
+
+\bigskip
+On suppose que les applications $J,g_1,...,g_l$ sont convexes et de classe $\mathcal{C}^1$.
+
+\Prop{}{On suppose qu'il existe $u_0\in\mathcal{U}_{ad}$ tel que \[g_i(u_0)<0\ \forall i\in I\]
+Alors la contrainte est qualifiée (en $\bar{u}$, $\forall\bar{u}\in\mathcal{U}_{ad}$).}
+
+\begin{dem}
+Soit $u\in\mathcal{U}_{ad}$. On pose $v=u_0-u$. Soit $j\in I(\bar{u})$. Comme $g_i$ est convexe et de classe $\mathcal{C}^1$, on a :
+	\[\langle \nabla g_i, v\rangle \leq \underbrace{g_i(u_0)}_{<0}-\underbrace{g_i(\bar{u})}_{=0}<0\]
+La contrainte est donc qualifiée en $\bar{u}$.
+\end{dem}
+
+\Theo{}{$L(u,\lambda)=J(u)+\lambda^Tg(u)$\\
+Si $\bar{u}$ est un minimum de $J$ sur $\mathcal{U}_{ad}$ et si les contraintes sont qualifiées en $\bar{u}$, alors $\exists \lambda\in\mathbb{R}^l_+$ tel que :
+	\[\left\{ \begin{array}{c c c}
+		\nabla_u L(\bar{u},\lambda)&=&0\\
+		\lambda^Tg(\bar{u})=0
+	\end{array}\right.\]}
+
+\Lem{}{Soit $F$ une application de $\mathbb{R}^n$ dans $\mathbb{R}$ convexe et de classe $\mathcal{C}^1$. $u\in\mathbb{R}^n$ est un point de minimum de $F$ sur $\mathbb{R}^n$ si et seulement si $\nabla F(u)=0$.}
+
+\begin{dem}
+Une première implication a déjà été montrée.\\
+On suppose que $\nabla F(u)=0$. Comme F est convexe, on a \[F(v)-F(u)\geq \langle \underbrace{\nabla F(u)}_{=0},v-u\rangle \forall\ v\in\mathbb{R}^n\]
+D'où $F(v)\geq F(u)$ $\forall v\in\mathbb{R}^n$, donc $u$ est un minimum de F sur $\mathbb{R}^n$.
+\end{dem}
+
+\Theo{}{Soit $\bar{u}$ un point de $\mathcal{U}_{ad}$ tel que les contraintes soient qualifiées en $\bar{u}$. Alors $\bar{u}$ est un point de minimum de $J$ sur $\mathcal{U}_{ad}$ si et seulement si $\exists \lambda\in\mathbb{R}^l_+$ tel que : 
+	\[\left\{ \begin{array}{c c c}
+		\nabla_u L(\bar{u},\lambda)&=&0\\
+		\lambda^Tg(\bar{u})=0
+	\end{array}\right.\]}
+
+\begin{dem}
+L'application $u\mapsto L(u,\lambda)$ est une fonction convexe (en tant que sommes de fonctions convexes), donc elle admet un minimum en $\bar{u}$.
+\[\Rightarrow L(u,\lambda)\geq L(\bar{u},\lambda)\ \forall u\in\mathbb{R}^n\]
+Or, \begin{eqnarray*}
+L(\bar{u},\lambda)&=&J(\bar{u})+\underbrace{\lambda^t g(\bar{u})}_{=0} \\
+		&=&J(\bar{u})
+\end{eqnarray*}
+soit $u\in\mathcal{U}_{ad}$. alors :
+\begin{eqnarray*}
+L(u,\lambda)&=&J(u)+\underbrace{\sum_{i\in I} \underbrace{\lambda_i}_{\geq 0} \underbrace{g_i(u)}_{\leq 0}}_{\leq 0}\\
+	&=&J(u)
+\end{eqnarray*}
+\[J(u)\geq L(u,\lambda)\geq L(\bar{u},\lambda)=J(\bar{u})\]
+Donc $\bar{u}$ est un minimum de $J$ sur $\mathcal{U}_{ad}$.
+\end{dem}
+
+\subsection{Dualité}
+\Def{Point selle}{On dit que $(u,\lambda)\in\mathcal{U}_{ad}\times\mathbb{R}^l_+$ est un point selle de $J$ sur $\mathcal{U}_{ad}\times\mathbb{R}^l_+$ si :
+\[\forall \mu\in\mathbb{R}^l_+,\ \forall v\in\mathcal{U}_{ad},\ L(u,\mu)\leq L(u,\lambda)\leq L(v,\lambda)\]}
+
+\Prop{}{Soit $U$ un ouvert contenant $\mathcal{U}_{ad}$ et $(u,\lambda)$ un point selle de $J$ sur $U\times \mathbb{R}_+^l$.Alors $u\in\mathcal{U}_{ad}$ et :
+\[\left\{ \begin{array}{c c c}
+\nabla_u L(u,\lambda)&=&0\\
+\lambda^t g(u)=0
+\end{array}\right.\]}
+
+\begin{dem}
+Comme $(u,\lambda)$ est un point selle, on a 
+\[\forall \mu\in\mathbb{R}^l_+,\ \forall v\in U,\ L(u,\mu)\leq L(u,\lambda)\leq L(v,\lambda)\]
+ie :
+\[J(u)+\mu^tg(u)\underset{(1)}{\leq} J(u)+\lambda^tg(u) \underset{(2)}{\leq} J(v)+\lambda^tg(v)\]
+
+\[(1)\ :\ \mu^Tg(u)\leq \lambda^Tg(u),\ \forall \mu\in\mathbb{R}^l_+\]
+Si on prend $\mu=\frac{1}{2}\lambda$ et $\mu=2\lambda$, on voit bien que $\lambda^tg(u)=0$.\\
+Ainsi, $\mu^tg(u)\leq 0$ $\forall\mu\in\mathbb{R}^l_+$.\\
+Prenons \[\mu=\begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}\]. Ainsi, $g_i(u)\leq 0$ $\forall i\in I$.
+\[\Rightarrow u\in\mathcal{U}_{ad}\]
+
+(2) : $u$ est un point de minimum de :
+\[u\mapsto J(u)+\lambda^tg(u)=L(u,\lambda)\]
+sur U. Donc :
+\[\nabla_u L5u,\lambda)=0\]
+\end{dem}
+
+\Lem{}{Soit L une fonction de deux variables $u$ et $\lambda$.
+	\[\inf_u \sup_\lambda L(u,\lambda)\geq \sup_{\lambda} \inf_u L(u,\lambda)\]}
+
+\begin{dem}
+\[\forall u, \sup_{\lambda} L(u,\lambda)\geq \sup_{\lambda} \inf_u L(u,\lambda)\]
+Ceci étant vrai pour tout $u$, c'est également vrai pour celui qui minimise le terme de gauche.
+\[\Rightarrow \inf_u \sup_{\lambda} L(u,\lambda)\geq \sup_\lambda \inf_u L(u,\lambda)\]
+\end{dem}
+
+\Theo{}{On suppose que la contrainte est qualifiée et que $(\mathcal{P}_{\mathcal{U}_{ad}})$ admet une solution.\\
+Alors \[\min_{u\in\mathcal{U}_{ad}} J(u)=\sup_{\lambda\in\mathbb{R}^n} \inf_{u\in\mathbb{R}^n} L(u,\lambda)= \inf_{u\in\mathbb{R}^n}\sup_{\lambda\in\mathbb{R}^n} L(u,\lambda)\]
+De plus, le problème $\sup_{\lambda\in\mathbb{R}^n} \inf_{u\in\mathbb{R}^n} L(u,\lambda)$ admet une solution $\lambda^*$ et $\inf_{u\in\mathbb{R}^n} \sup_{u\in\mathbb{R}^n} L(u,\lambda)$ admet une solution $u^*$ qui est solution de ($\mathcal{P}_{\mathcal{U}_{ad}}$)}
+
+\Def{}{On note \[d(\lambda)=\inf_{u\in\mathbb{R}^n}\]
+Le problème \[\sup_{\lambda\in\mathbb{R}^n} d(\lambda)\]
+est le problème dual.}
+
+\begin{dem}
+Comme les contraintes sont qualifiées et que le problème admet au moins une solution $u^*$, on a :
+\[\left\{ \begin{array}{c c c} 
+	\nabla J(u^*) + \sum_{i\in I} \lambda_i^* \nabla g_i(u^*) &=& 0 \\
+	\sum_{i\in I} \lambda_i^* g_i(u^*) &=& 0
+\end{array}\right. \Leftrightarrow 
+\left\{ \begin{array}{c c c}
+	\nabla_u L(u^*,\lambda^*)&=&0 \\
+	\lambda^{*^t} g(u^*)&=&0
+\end{array} \right. \]
+Comme $J$, $g_1$, ..., $g_l$ sonr convexes et $\lambda_i^*\geq 0$, on a $u\mapsto L(u,\lambda^*)$ convexe.\\
+Donc $u^*$ est un point de maximum de $u\mapsto L(u,\lambda^*)$.
+\[\sup_{\lambda\in \mathbb{R}^l_+} \inf_{u\in \mathbb{R}^n} L(u,\lambda) \geq \inf_{u\in \mathbb{R}^n} L(u,\lambda^*)=L(u^*,\lambda^*)\]
+De plus,
+\begin{eqnarray*}
+	L(u^*,\lambda^*)&=&J(u^*)+\underbrace{\sum_{i\in I} \lambda_i^* g_i(u^*)}_{=0} \\
+			&=&J(u^*)
+\end{eqnarray*}
+\[\Rightarrow L(u^*,\lambda^*)=\min_{u\in\mathcal{U}_{ad}} J(u)\leq \sup_{\lambda\in\mathbb{R}^l_+} \inf_{u\in\mathbb{R}^n} L(u,\lambda)\]
+
+\bigskip
+Montrons à présent que :
+\[\sup_{\lambda\in\mathbb{R}^l_+} L(u,\lambda)=\left\{ \begin{array}{c c c}
+	J(u) &\text{ si }& u\in\mathcal{U}_{ad}\\
+	+\infty &\text{ sinon}&
+\end{array} \right.\]
+
+\begin{itemize}
+	\item Si $u\in \mathcal{U}_{ad}$,
+	\begin{eqnarray*}
+		J(u)=L(u,0)&\leq& \sup_{\lambda\in \mathbb{R}^l_+} L(u,\lambda)\\
+				&\leq& J(u)+\sup_{\lambda\in\mathbb{R}^l_+} \sum_{i\in I} \underbrace{\lambda_i}_{\geq 0} \underbrace{g_i(u)}_{\leq 0}\\
+				&\leq& J(u)
+	\end{eqnarray*}
+	\[\Rightarrow \sup_{\lambda\in\mathbb{R}^l_+} L(u,\lambda) = J(u)\]
+
+	\item Si $u\not\in \mathcal{U}_{ad}$, $\exists i$ tel que $g_i(u)>0$. On pose 
+	\[\lambda_j^k=\left\{ \begin{array}{c c c} k &\text{ si } i=j \\ 0 &\text{ sinon}& \end{array} \right.\]
+	\begin{eqnarray*}
+		\sup_{\lambda\in\mathbb{R}^l_+} L(u,\lambda) &\geq& \sup_{k\in \mathbb{N}} L(u,\lambda^k) \\
+							&\geq& \sup_{k\in\mathbb{N}} \{J(u)+kg_i(u)\} \\
+							&\geq& J(u)+\underbrace{g_i(u)}_{\geq 0} \underbrace{\sup_{k\in\mathbb{N}} \{k\}}_{+\infty}
+	\end{eqnarray*}
+	\[\Rightarrow \sup_{\lambda\in\mathbb{R}^l_+} L(u,\lambda)=+\infty\]
+\end{itemize}
+
+On en déduit que :
+\begin{eqnarray*}
+	\inf_{u\in\mathbb{R}^n} \sup_{\lambda\in\mathbb{R}^l_+} L(u,\lambda)&=&\inf_{u\in\mathcal{U}_{ad}} J(u) \\
+									&=& L(u^*,\lambda^*)\\
+									&\leq& \sup_{\lambda\in\mathbb{R}^l_+} \inf_{u\in\mathbb{R}^n} L(u,\lambda)
+\end{eqnarray*}
+Avec le lemme précédent, on en déduit que :
+	\[\sup_{\lambda\in\mathbb{R}^n} \inf_{u\in\mathbb{R}^n} L(u,\lambda)= \inf_{u\in\mathbb{R}^n}\sup_{\lambda\in\mathbb{R}^n} L(u,\lambda)\]
+\end{dem}
