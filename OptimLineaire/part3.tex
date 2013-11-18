@@ -58,3 +58,48 @@ On définit :
 	\[A_{\gamma}=(A_{\gamma(1)} \cdots A_{\gamma(m)})\]
 et :
 	\[\mathcal{B}=\{\gamma\in\Gamma,\ rg(A_{\gamma})=m\}\]
+
+Pour $\gamma\in\Gamma$, on définit $\hat{\gamma}$ comme l'unique application strictement croissante de $\{1,...,n-m\}$ dans $\{1,...,n\}$ tel que :
+	\[\gamma(\{1,...,m\})\cup\gamma(\{1,...,n-m\})=\{1,...,n\}\]
+
+\Def{}{Pour $\gamma\in\mathcal{B}$, la matrice $A_{\gamma}$ est appelée base associée à $\gamma$.\\
+Les composantes $(x_{\gamma(1)},...,x_{\gamma(m)})$ sont appelées les composantes de base, et les composantes $(x_{\hat{\gamma}(1)},...,x_{\hat{\gamma}(n-m)})$ sont appelées les composantes hors base.}
+
+Pour $\gamma\in\mathcal{B}$, on note
+	\[x_{\mathcal{B}}=(x_{\gamma(1)},...,x_{\gamma(m)})\]
+	\[x_{N}=(x_{\hat{\gamma(1)}},...,x_{\hat{\gamma(m)}})\]
+	\[B=A_{\gamma}\]
+	\[N=A_{\hat{\gamma}}\]
+\[Ax=Bx_{\mathcal{B}}+Nx_N\]
+
+Comme $rg(B)=rg(A_{\gamma})=m$, B est inversible. Donc les contraintes $Ax=b$ peuvent se réécrire :
+	\[Bx_{\mathcal{B}}=b-Nx_N\]
+	\[\Rightarrow B^{-1}(b-Nx_N)\]
+
+\Def{}{Soit $\gamma\in\mathcal{B}$, on appelle solution de base du système $Ax=b$ associé à la base $\gamma$ la solution $x^*$ définie par :
+	\[\begin{array}{c c c}
+	x_{\mathcal{B}}^*&=&B^{-1}b\\
+	x_N^$&=&0
+	\end{array}\]}
+
+\Def{}{Une solution de base réalisable est une solution de base tel que $x_{\mathcal{B}}\geq0$ ($\rightarrow x^*\in X_{ad}$).\\
+Dans ce cas, $\gamma$ est appelée base réalisable. On note $\mathcal{R}$ l'ensemble des bases réallisables.\\
+Enfin on dit que $x^*$ est non dégénéré si $x_{\mathcal{B}}^*>0$ (ie $B^{-1}b>0$).}
+
+\Lem{}{Les sommets de $X_{ad}$ sont exactement les solutions de base réalisable.}
+
+\begin{dem}
+Soit $x^*$ une solution de base réalisable associée à la base $\gamma\in\mathcal{R}$.\\
+Par l'absurde, on va supposer que $x^*$ n'est pas un sommet de $X_{ad}$/ 
+	\[\forall \theta\in]0,1[, \exists y,z\in X_{ad}, y\neq z; x^*=\theta y+(1-\theta)z\]
+$\forall i\in\{0,...,n-m\}$, on a :
+	\[x_{\hat{\gamma}(i)}=0=\underbrace{\theta}_{>0} \underbrace{y_{\hat{\gamma}(i)}}_{\geq 0} + \underbrace{(1-\theta)}_{>0}\underbrace{z_{\hat{\gamma}(i)}}_{\geq 0}\]
+
+	\[\Rightarrow y_{\hat{\gamma}(i)}=z_{\hat{\gamma}(i)}=0\]
+	\[\Rightarrow y_N=z_N=0\]
+
+Or, $Y_B=B^{-1}(b-Ny_N)=B^{-1}b=z_B=x^*_B$. Donc $y=z=x^*$, ce qui est absurde.\\
+Donc $x^*$ est un sommet de $X_{ad}$.
+
+\bigskip
+\end{dem}
