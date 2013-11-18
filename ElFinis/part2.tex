@@ -1,0 +1,27 @@
+\part{Interpolation de Lagrange}
+
+\section*{Introduction}
+Qu'est-ce qu'un élément fini ? On introduit les éléments suivants :
+\begin{description}
+	\item[$K$] : polyèdre connexe de $\mathbb{R}^n$ d'intérieur non vide.
+	\item[$\Sigma$] : ensemble de degré de liberté
+	\item[$\mathbb{P}$] : espace vectoriel de fonctions $K\to\mathbb{R}$.
+\end{description}
+
+\Def{Unisolvance}{On dit que $\Sigma$ est $\mathbb{P}$-unisolvant si pour tout ensemble $(\alpha_j)_{j=1...N}$, il existe une unique fonction $p\in\mathbb{P}$ tel que, pour $a_i\in\Sigma$, $\forall i\in\{1,...,N\}$, $p(a_k)=\alpha_k$, $\forall k\in \{1,...,N\}$.}
+
+\underline{Pour démontrer l'unisolvance :}
+\begin{itemize}
+	\item Condition nécessaire : on vérifie que card$\Sigma=\dim \mathbb{P}$
+	\item Si $\forall p\in \mathbb{P}$, $\forall j\in\{1,...,N\}$, $p(a_j)=0$, alors $p\equiv 0$\\
+		ou : On détermine les fonctions de base de $\mathbb{P}$.
+\end{itemize}
+
+Si $\Sigma$ est $\mathbb{P}$-unisolvant, n dit que $(K,\Sigma,\mathbb{P})$ est un élément fini de Lagrange.
+
+\bigskip
+\underline{Remarque :} Pour chaque degré de liberté $a_i$, on associe une fonction de base $p_i$. On a :
+	\[\left\{ \begin{array}{c c c c}
+		p_i(a_i)&=&1\\
+		p_i(a_j)&=&0 & \forall i\neq j
+	\end{array}\right.\]
