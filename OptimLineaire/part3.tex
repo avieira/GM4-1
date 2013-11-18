@@ -79,8 +79,9 @@ Comme $rg(B)=rg(A_{\gamma})=m$, B est inversible. Donc les contraintes $Ax=b$ pe
 \Def{}{Soit $\gamma\in\mathcal{B}$, on appelle solution de base du système $Ax=b$ associé à la base $\gamma$ la solution $x^*$ définie par :
 	\[\begin{array}{c c c}
 	x_{\mathcal{B}}^*&=&B^{-1}b\\
-	x_N^$&=&0
+	x_N^*&=&0
 	\end{array}\]}
+
 
 \Def{}{Une solution de base réalisable est une solution de base tel que $x_{\mathcal{B}}\geq0$ ($\rightarrow x^*\in X_{ad}$).\\
 Dans ce cas, $\gamma$ est appelée base réalisable. On note $\mathcal{R}$ l'ensemble des bases réallisables.\\
@@ -98,8 +99,46 @@ $\forall i\in\{0,...,n-m\}$, on a :
 	\[\Rightarrow y_{\hat{\gamma}(i)}=z_{\hat{\gamma}(i)}=0\]
 	\[\Rightarrow y_N=z_N=0\]
 
-Or, $Y_B=B^{-1}(b-Ny_N)=B^{-1}b=z_B=x^*_B$. Donc $y=z=x^*$, ce qui est absurde.\\
+Or, $y_B=B^{-1}(b-Ny_N)=B^{-1}b=z_B=x^*_B$. Donc $y=z=x^*$, ce qui est absurde.\\
 Donc $x^*$ est un sommet de $X_{ad}$.
 
 \bigskip
+Réciproquement, on suppose que $x^*$ est un sommet de $X_{ad}$. On note $k$ le nombre de composantes non nulles de $x^*$. 
+\[\exists \gamma_1 : \{1,...,k\}\to\{1,...,n\} \text{ strictement croissante telle que } x^*_{\gamma_1(i)}>0,\ \forall i=1,...,k\]
+On veut montrer que les vecteurs $A_{\gamma_1(1)},...,A_{\gamma_1(k)}$ sont libres. Si c'est le cas, on pourra compléter cette famille de vecteurs afin d'obtenir une base.\\
+($\Rightarrow$ On définit $\gamma\in\Gamma$ telle que :\begin{itemize}
+\item $\gamma_1(\{1,...,k\}\subset\gamma(\{1,...,m\})$
+\item $\gamma\in\mathcal{B}$
+\end{itemize})
+
+Par l'absurde, on suppose que $A_{\gamma_1(1)},...,A_{\gamma_1(k)}$ sont liés. Alors $\exists y\in\mathbb{R}^n$, $y\neq 0$, 
+\[\sum_{i=1}^k y_{\gamma_1(i)}A_{\gamma_1(i)}=0\]
+et \[y_{\hat{\gamma}_1(i)}=0\]
+$\forall \varepsilon>0$, on a \[A(x+\varepsilon y)=Ax+\varepsilon \underbrace{Ay}_{=0}=b\]
+\[A(x-\varepsilon y)=Ax-\varepsilon Ay = b\]
+On a $x^*_{\gamma_1(i)}\pm \varepsilon y_{\gamma_1(i)}>0$, $\forall i=1,...,k$ pour $\varepsilon$ assez petit.\\
+De plus, $x^*_{\hat{\gamma}_1(i)}\pm \varepsilon y_{\hat{\gamma}_1(i)}=x^*_{\hat{\gamma}_1(i)}=0$
+	\[\Rightarrow x^*+\varepsilon y\in X_{ad},\ \forall0\leq \varepsilon \leq \varepsilon_0\]
+Or, $x^*=\frac{1}{2}(x^*+\varepsilon y) + \frac{1}{2}(x^*-\varepsilon y)$. Donc $x^*$ n'est pas un sommet de $X_{ad}$. Contradiction.
+\end{dem}
+
+\Lem{}{S'il existe une solution optimale de $(P_L)$ alors il existe une solution optimale de base réalisable.}
+
+\begin{dem}
+Soit $x\in X_{ad}$ une solution optimale. On note $k$ le nombre de composantes non nulles de $x$. Soit $\gamma_1:\{1,...,k\}\to \{1,...,n\}$ strictement croissante telle que $x_{\gamma_1(i)}>0$ $\forall i=1,...,k$.\\
+Si la famille $A_{\gamma_1(1)},...,A_{\gamma_1(k)}$ est libre alors $x$ est une solution optimale de base réalisable.\\
+Si la famille $A_{\gamma_1(1)},...,A_{\gamma_1(k)}$ est liée, alors $\exists y\in\mathbb{R}^n$ tel que :
+	\[\sum_{i=1}^k y_{\gamma_1(i)} A_{\gamma_1(i)}=0\]
+	\[y_{\hat{\gamma}_1(i)}=0\ \forall i 1\leq i\leq n-k\]
+$x+\varepsilon y\in X_{ad}$ pour $\varepsilon$ assez petit (cf démo précédente). \\
+Comme $c$ est un point de minimum, on a :
+	\[\langle c,x\rangle \leq \langle c, x\pm \varepsilon y\rangle\]
+	\[\Rightarrow \pm\langle c, y\rangle \geq 0\]
+	\[\langle c,y\rangle=0\]
+On pose $\varepsilon_1=\sup\{\varepsilon>0;\ x\pm\varepsilon y\in X_{ad}\}$. 
+	\[\exists i\in \{1,...,k\} \text{ tel que } (x+\varepsilon y)_{\gamma_1(i)}=0 \text{ ou } (x-\varepsilon y)_{\gamma_1(i)}=0\]
+On pose $z=x+\varepsilon y$ ou $z=x-\varepsilon$. tel que $z_{\gamma_1(i)}=0$. z est donc une solution otpimale 
+\[(\langle c,z\rangle=\langle c,x\pm\varepsilon y\rangle = \langle c,x\rangle)\]
+qui a au plus $k-1$ composantes non nulles.\\
+On peut refaire la preuve en remplaçant $x$ par $z$ (et en diminuant $k$) jusqu'à obtenir une famille libre.
 \end{dem}
