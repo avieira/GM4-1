@@ -1,0 +1,47 @@
+\part{Processus de Markov \`a temps continu}
+
+\section{Générateur infinitésimal}
+\subsection{Générateur et équations backward - forward}
+$X_t$ : l'état du système à t.\\
+On admettra que $\Pi_t$ est dérivable en 0, ie
+	\[\forall i,j,\ p_j^i(t) \text{ dérivale en } t=0\]
+
+\Def{}{On notera $A=\Pi_0'=[(p_j^i)'(0)]$. On appelle $A$ le générateur infinitésimal de la chaîne.\\
+On notera $a_j^i=(p_j^i)'(0)$, $A=[a_j^i]$ et $a_i=-a_i^i$.}
+
+\underline{Remarque :} \begin{itemize}
+	\item $A$ n'est pas une matrice à termes positifs (elle n'est pas stochastique)
+	\item L'analogue en temps discret est
+		\[\frac{\Pi_1-\Pi_0}{1-0}=\Pi-I\]
+\end{itemize}
+
+\Prop{des $a_j^i$}{$\forall i\neq j$, $a_j^i\geq 0$, $a_i^i\leq 0$, et 
+\[\sum_j a_j^i=0\]
+\[\Rightarrow a_i=\sum_{j\neq i} a_j^i\]}
+
+\begin{dem}
+	\[i\neq j,\ \frac{p_j^i(t)-p_j^i(0)}{t}=p_j^i(t)\geq 0 \to a_j^i\geq 0\]
+	\[\forall t,\ \sum_j p_j^i(t)=1\Rightarrow \sum_j (p_j^i)'(0)=0=\sum_j a_j^i\]
+donc $a_i=-a_i^i=\sum_{j\neq i} a_j^i$.
+\end{dem}
+
+\Theo{Backward et Forward}{$\Pi_t$ est dérivable pour tout $t$ et on a :
+	\begin{equation} \tag{forward} \Pi_t'=\Pi_tA \end{equation}
+	\begin{equation} \tag{backward} \Pi_t'=A\Pi_t \end{equation}
+et comme $\Pi_0=I$, on a $\Pi_t=e^{tA}$ (donc la connaissance de $A$ entraine la connaissance des $p_j^i(t)$, $\forall i,j,t$, et inversement).}
+
+\begin{dem}
+\[\frac{1}{h}(\Pi_{t+h}-\Pi_t)=\frac{1}{h}(\Pi_t\Pi_h-\Pi_tI)=\Pi_t \left( \frac{\Pi_h-\Pi_0}{h}\right) \xrightarrow[h\to 0]{} \Pi_t A\]
+Donc $\Pi_t$ dérivable en $t$ et $\Pi_t'=\Pi_t A$. De même :
+\[\frac{1}{h}(\Pi_{t+h}-\Pi_t)=\left(\frac{\Pi_h-\Pi_0}{h}\right)\Pi_t\xrightarrow[h\to0]{}A\Pi_t\]
+
+\bigskip
+$e^{tA}$ est inversible.
+	\[\left(e^{tA}\right)'=Ae^{tA}=e^{tA}A\]
+donc solution de Backwar et Forward, avec $\Pi_0=I$, donc par unicité des solutions, $e^{tA}=\Pi_t$. 
+\end{dem}
+
+\underline{Backward :} $(p_j^i)'(t)=\sum_k a_k^ip_j^k(t)$ : c'est le point d'arrivée qui est fixe pour $p_j^k$\\
+\underline{Forward :} $(p_j^i)'(t)=\sum_k p_k^i(t)a_j^k$ : c'est le point de départ qui est fixe dans les $p_k^i$.
+
+\subsection{Significations probabilistes des coefficients $a_j^i$ du générateur infinitésimal}
