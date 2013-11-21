@@ -283,4 +283,46 @@ De plus, si $w\in V\textbackslash\{0\}$, $a(w,w)\geq \alpha\|w\|^2_V >0$. Donc $
 $\forall t\in V$, $\exists u,w\in V$, $u+w=t$\\
 	\[J(t)\geq J(u)\]
 D'où \[J(u)=\min_{u\in V} J(t)\]
+(Manque la réciproque)
 \end{dem}
+
+\section{Résultat d'erreur}
+\begin{minipage}{0.4\linewidth}
+\[(PV)\left\{\begin{array}{c}
+\text{Chercher } u\in V, \forall v\in V\\
+a(u,v)=L(v)
+\end{array}\right.\]
+\end{minipage}\hspace{0.1\linewidth}
+\begin{minipage}{0.4\linewidth}
+\[(PV_h)\left\{\begin{array}{c}
+\text{Chercher } u_h\in V_h, \forall v_h\in V_h\\
+	a(u_hv_h)=L(v_h)
+\end{array}\right.\]
+\end{minipage}
+
+On cherche à déterminer l'erreur commise en passant de $V$ à $V_h$. On herche à quantifier $\|u-u_h\|$.\\
+\Lem{de Céa}{Soit $u$ la solution de $(PV)$ et $u_h$ la solution de $(PV_h)$. Alors :
+	\[\|u-u_h\|\leq \frac{M}{\alpha}\inf_{v_h\in V_h} \|u-v_h\|\]}
+
+\begin{dem}
+Grâce à la $V$-ellipticité :
+\begin{eqnarray*}
+\alpha\|u-u_h\|_V^2\leq &a&(u-u_h,u-u_h)\\
+			&=&a(u-u_h, u-v_h)+\underbrace{a(u-u_h, v_h-u_h)}_{=0}
+\end{eqnarray*}
+car $\forall v_h\in V_h$, $v_h-u_h\in V_h$ et :
+	\[\forall v_h\in V_h,\ \left\{\begin{array}{c c c}
+		a(u,v_h)&=&L(v_h)\\
+		a(u_h,v_h)&=&L(v_h)
+	\end{array}\right. \Rightarrow a(u-u_h,v_h)=0\]
+Grâce à la continuité :
+	\[\alpha\|u-u_h\|_V^2\leq M\|u-u_h\|\|u-v_h\|_V\]
+	\[\|u-u_h\|_V\leq \frac{M}{\alpha} \|u-v_h\|\]
+Et ce pour tout $v_h\in V_h$, d'où le résultat.
+\end{dem}
+
+On suppose qu'il existe un sous espace $\mathcal{V}$ inclu et dense dans V, et une application $r_h:\mathcal{V}\to V$. (Par exemple, l'interpolé de Lagrange $\Pi_h$ vu en TD) tels que 
+	\[\forall v\in \mathcal{V},\ \lim_{h\to 0} \|v-v_h\|=0\]
+Alors la méthode d'approximation variationnelle converge :
+	\[\lim_{h\to 0} \|u-u_h\| =0\]
+(Dans la preuve, on utilise le lemme de Céa)

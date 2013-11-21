@@ -23,7 +23,7 @@ Par commodité, on pose $\tau_0=a$ et $\tau_l=b$.\\
 Sur tout intervale $[\tau_i, \tau_{i+1}]$, on a une représentation polynomiale.\\
 On définit une suite $r=\{r_i\}_{i=1}^{l-1}$ telle que \[0\leq r_i\leq k\]
 Chaque $r_i$ est associé à $\tau_i$. Par convention, on prendra $r_0=0$.\\
-On veut qu'en $\tau_i$, la courbe représentative admette un raccord de classe $\mathcal{C}^{r_i-1}$. On prend comme notation le fait que $\mathcal{C}^{r_i-1}$ n'implique qucune condition.\\
+On veut qu'en $\tau_i$, la courbe représentative admette un raccord de classe $\mathcal{C}^{r_i-1}$. On prend comme notation le fait que $\mathcal{C}^{-1}$ n'implique aucune condition.\\
 \Def{}{On définit désormais $\mathcal{P}^{k,\tau,r}$ comme l'ensemble des fonctions polynomiales par morceaux de degré inférieur ou égal à $k$ ayant des raccords de classe $\mathcal{C}^{r_i-1}$ en $\tau_i$.}
 
 \Theo{}{\[\text{dim }\mathcal{P}^{k,\tau,r}=(k+1)l-\sum_{i=1}^{l-1} r_i\]
@@ -33,7 +33,7 @@ avec $(X-\tau_i)_+=(X-\tau_i)\mathds{1}_{\{X\geq \tau_i\}}$}
 
 \begin{dem}
 Sur $[\tau_i,\tau_{i+1}]$, on a un polynôme $P_i$ de degré $k$. Posons $f_{ij}=(X-\tau_i)^j\mathds{1}_{\{X\in[\tau_i, \tau_{i+1}]\}}$, $j\in\{0,...,k\}$.\\
-Sur $[\tau_i, \tau_{i+1}]$, nous avons un espace de dimension $k+1$. Si on on n'a pas de confitions en $\tau_i$, n a un espace de dimension $(k+1)l$.\\
+Sur $[\tau_i, \tau_{i+1}]$, nous avons un espace de dimension $k+1$. Si on on n'a pas de conditions en $\tau_i$, on a un espace de dimension $(k+1)l$.\\
 On a :
 \[P_j=\sum_{j=0}^k a_{ij} f_{ij}\]
 On doit calculer les $a_{ij}$ pour $i\in \{0,...,l\}$ et pour $j\in \{0,...,k\}$.\\
@@ -155,29 +155,29 @@ Par convention, à chaque fois que nous écrivons une fraction dont le dénomina
 
 \subsubsection[Définition des beta-splines]{Définition des $\beta$-splines}
 Posons $t=(t_0,...,t_m)$.\\
-Pour $x\in \mathbb{R}$, $0\leq i\leq m-k-1$, les fonctions $§B_{i,k,t}$ notées aussi $B_{i,k}$ lorsque la suite $t$ est dixée, sont définies via la relation de récurrence sur $k$ suivante :
-\[B_i,0(x)=\mathds{1}_{[t_i,t_{i+1}[}(x)\]
+Pour $x\in \mathbb{R}$, $0\leq i\leq m-k-1$, les fonctions $B_{i,k,t}$ notées aussi $B_{i,k}$ lorsque la suite $t$ est fixée, sont définies via la relation de récurrence sur $k$ suivante :
+\[B_{i,0}(x)=\mathds{1}_{[t_i,t_{i+1}[}(x)\]
 Pour $k\geq 1$ :
 \[B_{i,k}(x)=w_{i,k}(x)B_{i,k-1}(x) + (1-w_{i+1,k}(x))B_{i+1,k-1}(x)\]
 
 \bigskip
 \underline{Remarque :} Si pour un indice $i$, $t_i=t_{i+1}=...=t_{i+k+1}$ (donc $t_i$ est un n\oe ud de multiplicité $\geq k+2$), alors on a $B_{i,k}\equiv 0$.
 
-\Prop{}{Si $t_i$ est de multiplicité $k+1$, alors $B_{i,k}(x)=0$}
+\Prop{}{Si $t_i$ est de multiplicité $k+2$, alors $B_{i,k}(x)=0$}
 
 \begin{dem}
 \[B_{i,k}(x)=w_{i,k}(x)B_{i,k-1}(x) + (1-w_{i+1,k}(x))B_{i+1,k-1}(x)\]
 Or, $t_i=t_{i+1}=...=t_{i+k+1}$, donc on a $w_{i,k}(x)=0$ et $w_{i+1,k}(x)=0$. Par conséquent :
 	\[B_{i,k}(x)=B_{i+1,k-1}(x)\]
 et par une récurrence simple, on montre finalement que :
-\[B_{i,k}(x)=....=B_{i+k,0}(x) = \mathds{1}_{[t_{i+k},t_{i+k+1}}(x)\]
+\[B_{i,k}(x)=....=B_{i+k,0}(x) = \mathds{1}_{[t_{i+k},t_{i+k+1}[}(x)\]
 \end{dem}
 
 On écarte dans toute la suite la possibilité d'avoir un n\oe ud de multiplicité $k+2$.
 
 \Theo{}{\begin{enumerate}
 \item $B_{i,k}$ est polynomiale par morceaux de degré $k$ (par récurrence)
-\item $B_{i,k}(x)=0$ si $x\not\in [t_i, t_{i+k+1}[$. On appelle $[t_i,t_[i+k+1[$ le support de $B_{i,k}$ (récurrence)
+\item $B_{i,k}(x)=0$ si $x\not\in [t_i, t_{i+k+1}[$. On appelle $[t_i,t_{i+k+1}[$ le support de $B_{i,k}$ (récurrence)
 \item $B_{i,k}(x)>0$ si $x\in]t_i, t_{i+k+1}[$ (récurrence)\\
 	$B_{i,k}(t_i)=0$ sauf si $t_i$ de multiplicité $k+1$, car alors $B_{i,k}(t_i)=1$
 \item Soit $[a,b]\subset \mathbb{R}$ tel que $t_0,...,t_k<a$ et $t_{m-k},...,t_m\geq b$. 
@@ -210,5 +210,152 @@ car $t_i\not\in[t_{i+1},t_{i+k+1}[$.
 d'après l'hypothèse de récurrence puisque $t_{i+1}$ est de multiplicité au plus $k-1$.
 \end{itemize}
 
+\item On procède par récurrence sur k. On sait que :
+	\[B_{i,0}(x)=\mathds{1}_{[t_i,t_{i+1}[}(x)\]
+On en déduit donc que 
+	\[\sum_{i=0}^{m-1}B_{i,0}(x)=1 \text{ si } x\in[t_0,t_m[\]
+Or, par hypothèse, $t_0\leq a$ et $t_m\geq b$. En conclusion, $\forall x\in [a,b[$ :
+	\[\sum_{i=0}^{m-1} B_{i,0}(x)=1\]
+Supposons la propriété vraie jusqu'au rang $k-1$ et démontrons alors que la propriété reste vraie au rang $k$.\\
+Soit $x\in[a,b]$. Il existe donc $j$, $k\leq j\leq m-k-1$ tel que $x\in[t_j,t_{j+1}[$.\\
+Le support de $B_{i,k}$ est $[t_i, t_{i+k+1}[$. Comment avoir $[t_i,t_{i+k+1}[\cap[t_j,t_{j+1}[\neq \emptyset$ ?
+\[\left\{\begin{array}{c c c}
+	j&<&i+k+1\\
+	i&<&j+1
+ \end{array}\right. \Rightarrow
+ \left\{\begin{array}{c c c}
+	j&\leq& i+k\\
+	i&\leq& j
+ \end{array}\right.\]
+
+D'où \[\sum_{i=0}^{m-k-1}B_{i,k}(x)=\sum_{i=j-k}^j B_{i,k}(x)\]
+En utilisant la relation de récurrence définissante $B_{i,k}$, on a :
+\begin{eqnarray*}
+	\sum_{i=j-k}^j B_{i,k}(x)&=&\sum_{i=j-k}^j w_{i,k}(x) B_{i,k-1}(x)+\sum_{i=j-k}^j (1-w_{i+1,k}(x))B_{i+1,k-1}(x)\\
+				&=&\sum_{i=j-k}^j w_{i,k}(x)B_{i,k-1}(x)+\sum_{I=j-k+1}^{j+1} (1-w_{I,k}(x))B_{I,k-1}(x)\\
+				&=&\sum_{I=j-k+1}^{j+1} B_{i,k-1}(x)+w_{j-k,k}(x)B_{j-k,k-1}(x)+w_{j+1,k}(x)B_{j+1,k-1}(x)
+\end{eqnarray*}
+Or, $B_{j-k,k-1}(x)=0$ car son support est $[t_{j-k},t_j[$ et $x\in[t_j,t_{j+1}[$. Pour la même raison, $B_{j+1,k-1}(x)=0$. Ainsi :
+\begin{eqnarray*}
+	\sum_{i=j-k}^j B_{i,k}(x)&=&\sum_{I=j-k+1}^j B_{I,k-1}(x) + \underbrace{B_{j+1,k-1}(x)}_{=0}\\
+				&=& 1
+\end{eqnarray*}
+d'après l'hypothèse de récurrence.\\
+D'après l'axiome de récurrence, on a pour tout $k$ :
+	\[\sum_{i=0}^{m-k-1} B_{i,k}(x)=1\]
 \end{enumerate}
 \end{dem}
+
+\Rem{}{Dans le cas où $t_{m-k}=...=t_m=b$, la formule 4 n'est valable que sur $[a,b[$. En effet, pour tout $i\in\{0,...,m-k-1\}$, on a $B_{i,k}(b)=0$. Pour avoir une formule valable sur $[a,b]$, on est amené par abus de langage à poser $B_{m-k-1,k}(b)=1$, ce qui rend la B-spline $B_{m-k-1,k}$ continue à gauche en b. On fera systématiquement cet abus.}
+
+\Propo{}{Pour tout $k\geq 0$ et tout $x\in\mathbb{R}$, $B_{i,k}$ est dérivable à droite et l'on a :
+	\[B_{i,k}'(x)=k\left[\frac{B_{i,k-1}(x)}{t_{i+k}-t_i}-\frac{B_{i+1,k-1}(x)}{t_{i+k+1}-t_{i+1}} \right]\]
+avec la convention que l'on remplace par 0 un expression dont le dénominateur est nul.}
+
+\subsection{Les B-Splines comme base de $\mathcal{P}^{k,\tau,r}$}
+Voir papier distribué.
+\Def{}{Soit $t_i$, $0\leq i\leq m$ une suite de points de $\mathbb{R}$ telle que $t_i\leq t_{i+1}$, k un entier positif ou nul, $[a,b]$ un intervalle tel que $t_k\leq a$ et $t_{m-k}\geq b$. On note $\mathcal{P}^{k,t}([a,b])$ ou simplement $\mathcal{P}^{k,t}$ l'espace vectoriel des fonctions polynômiales par morceaux sur $[a,b]$ de degré $\leq k$, avec raccords de classe $\mathcal{C}^{k-p_j}$ en $t_j$, si $t_j$ est n\oe ud de multiplicité $p_j$.\\
+Par convention, un racord de classe $\mathcal{C}^{k-p_j}$ avec $k-p_j<0$ n'impose aucune condition en $t_j$.}
+
+\Theo{}{Supposons que tous les n\oe uds soient de multiplicité $\leq k+1$, alors $\{B_{i,k,t}\}_{i=0}^{m-k-1=n-1}$ est une base de $\mathcal{P}^{k,\tau,r}=\mathcal{P}^{k,t}$.}
+
+\subsection{Algorithmes de base pour les B-splines}
+Soit \[S(x)=\sum_{i=0}^{n-1} a_i B_{i,k}(x)\]
+un élément de $\mathcal{P}^{k,t}$. \\
+On dira que $S$ est une fonction spline.\\
+Les B-splines sont calculées à l'aide d'une suite de n\oe uds $t_0,...,t_m$ et définies sur $\mathbb{R}$.
+
+\bigskip
+Nous allons étudier 3 algorithmes :
+\begin{itemize}
+	\item L'algorithme dit "De Boor-Cox" ou de "De Casteljan" permettant d'évaluer $S$ en un point donné $\hat{x}$ de $[a,b]$
+	\item L'algorithme permettant de calculer les coefficients de la déviée $S'$ par rapport aux $B_{i,k-1}$
+	\item L'algorithme d'insertion d'un n\oe ud.
+\end{itemize}
+
+\subsubsection{Algorithme d'évaluation}
+\Propo{}{Soit $\hat{x}\in[a,b]$ (donc $\hat{x}\geq t_k$). On a :
+\begin{eqnarray*}
+S(\hat{x})&=&\sum_{i=0}^{n-1} a_i^{(0)} B_{i,k}(\hat{x}) \\
+	&=& \sum_{i=0}^{n-1} a_i^{(1)} B_{i,k-1}(\hat{x}) \\
+	&\vdots& \\
+	&=&\sum_{i=0}^{n-1} a_i^{(k)} B_{i,0}(\hat{x})
+\end{eqnarray*}
+avec \[\begin{array}{c c l c}
+a_i^{(0)}&=& a_i, & \forall i\in\{0,...,n-1\} \\
+a_i^{(r+1)}(\hat{x})= &=& w_{i,k-r}(\hat{x})a_i^{(r)}(\hat{x}) + (1-w_{i,k-r}(\hat{x}))a_{i-1}^{(r)}(\hat{x})
+\end{array}\]}
+
+\begin{dem}
+\[S(\hat{x})=\sum_{i=0}^{n-1} a_i^{(0)} B_{i,k}(\hat{x})\]
+\[B_{i,k}(\hat{x})=w_{i,k}(\hat{x}) B_{i,k-1}(\hat{x})+(1-w_{i+1,k}(\hat{x}) B_{i+1,k}(\hat{x})\]
+Par conséquent :
+\begin{eqnarray*}
+S(\hat{x})&=&\sum_{i=0}^{n-1} a_i^{(0)} w_{i,k}(\hat{x})B_{i,k-1}(\hat{x})+\sum_{i=0}^{n-1} a_i^{(0)} (1-w_{i+1,k}(\hat{x})B_{i+1,k-1}(\hat{x})\\
+	&=&\sum_{i=0}^{n-1} a_i^{(0)} w_{i,k}(\hat{x})B_{i,k-1}(\hat{x})+\sum_{I=0}^{n} a_{I-1}^{(0)} (1-w_{I,k}(\hat{x})B_{I,k-1}(\hat{x})\\
+	&=&\sum_{i=1}^{n-1} \underbrace{(a_i^{(0)} w_{i,k}(\hat{x})+a_{i-1}^{(0)}(1-w_{i,k}(\hat{x})))}_{=a_i^{(1)}}B_{i,k-1}(\hat{x}) + a_0^{(0)}w_{0,k}(\hat{x})\underbrace{B_{0,k-1}(\hat{x})}_{=0 \text{ à cause du support}}+a_{n-1}^{(0)}(1-w_{n,k}(\hat{x}))\underbrace{B_{n,k}(\hat{x})}_{=0} \\
+	&=&\sum_{i=1}^{n-1} a_i^{(1)} B_{i,k-1}(\hat{x})
+\end{eqnarray*}
+La démonstration se termine par une récurrence immédiate, analogue à ce calcul.
+\end{dem}
+
+Si on veut évaluer $S(\hat{x})$ pour $x\in[t_j,t_{j+1}[$, on a donc :
+	\[S(\hat{x})=a_j^{(k)}(\hat{x})\]
+puis $B_{j,0}$ est la fonction indicatrice de l'intervalle $[t_j,t_{j+1}[$. \\
+Pour calculer $a_j^{(k)}(\hat{x})$, il suffit d'évaluer les $a_i^{(k)}$ pour $i\in\{j-k+r+1,...,j\}$, les autres $B_{i,k-r}(\hat{x})$ étant nuls puisque :
+\begin{eqnarray*}
+	S(\hat{x})&=&\sum_{i=j-k}^{j} a_i^{(0)} B_{i,k}(\hat{x})\\
+		&=& \sum_{i=j-k-1}^{j} a_i^{(1)} B_{i,k}(\hat{x})\\
+		&\vdots& \\
+		&=&a_j^{(k)}(\hat{x})
+\end{eqnarray*}
+L'algorithme se présente donc sous forme triangulaire, chaque élément s'obtenant par combinaire sonvexe des deux éléments de la lign supérieure qui sont au-dessus de lui.\\
+(FAIRE DESSIN)\\
+
+\bigskip
+\underline{Remarque :} \begin{enumerate}
+	\item Cet algorithme est couteux en nombre d'opérations : il nécesite le calcul de $\frac{k(k+1)}{2}$ combinaisons convexes, et pour chaque combinaison, il faut :
+	\begin{itemize}
+		\item 2 multiplications
+		\item 1 division
+		\item 4 soustractions
+	\end{itemize}
+	soit un algorithme en $\sim3k^2$ opérations.
+	\item Il a néanmoins plusieurs avantages : \begin{enumerate}
+		\item Il est stable numériquement
+		\item Le calcul des $w_{i,k-r}(\hat{x})$ est souvent très simple en pratique en particulier lorsque $\hat{x}$ et les n\oe uds $t_i$ sont entiers.
+	\end{enumerate}
+\end{enumerate}
+
+Si on veut calculer la fonction $S$ en plusieurs points de $[t_j, t_{j+1}[$, on procède, en général, différemment.\\
+On calcule une fois pour toute l'expression polynômiale de $S$ entre $t_j$ et $t_{j+1}$ :
+	\[S(x)=\sum_{i=0}^k \frac{D^iS(t_j)}{i!} (x-t_j)^i\]
+Avec $D^iS(t_j)$ les dérivées à droite évaluées formellement avec l'algorithme des dérivées ci-dessous. On évale $S(x)$ par la règle de Hörner ($\sim2k$ opérations).
+
+\subsubsection{Algorithme des dérivées}
+\Propo{}{Soit $S(x)$ défini précédemment. Alors la dérivée à droite $DS(x)$ est donnée par :
+	\[DS(x)=\sum_{i=1}^{n-1} b_iB_{i,k-1}(x)\]
+avec \[b_i=\left| \begin{array}{c c c} 
+k\frac{a_i-a_{i-1}}{t_{i+k}-t_i} &\text{ si }& t_i<t_{i+k}\\
+0 &\text{ sinon}
+\end{array}\right.\]}
+
+\begin{dem}
+\begin{eqnarray*}
+DS(x)&=&\sum_{i=0}^{n-1} a_i k \left[\frac{B_{i,k-1}(x)}{t_{i-k}-t_i} - \frac{B_{i+1,k+1}(x)}{t_{i+1+k}-t_{i+1}} \right] \\
+	&=&\sum_{i=0}^{n-1} a_i k \frac{B_{i,k-1}(x)}{t_{i-k}-t_i} - \sum_{I=1}^{n}a_{I-1} k \frac{B_{I,k+1}(x)}{t_{I+k}-t_{I}}\\
+	&=&\sum_{i=0}^{n-1} \underbrace{k \frac{a_i-a_{i-1}}{t_{i+k}-t_i}}^{=b} B_{i,k-1}(x) + ka_0\underbrace{\frac{B_{0,k-1}(x)}{t_k-t_0}}_{=0} - ka_{n-1}\underbrace{\frac{B_{n,k-1}(x)}{t_{n-k}-t_n}}_{=0}
+\end{eqnarray*}
+\end{dem}
+
+\subsubsection{Algorithme d'insertion d'un n\oe ud}
+Considérons $\{t_i\}$, $i\in\{0,...,m=n+k\}$. On obtient ainsi $B_{i,k,t}$, avec $i\in\{0,...,n-1\}$.\\
+On ajoute $\hat{t}\leq t_{n-1}$ à cette suite. On considère donc une nouvelle suite $t'$ avec $t'=t\cup\{\hat t\}$ et $\{t_i'\},\ u\in\{0,...,n\}$.
+\[\Rightarrow \hat{B}_{i,k,t'}, i\in\{0,...,n\}\]
+
+\Propo{}{\[S(x)=\sum_{i=0}^{n-1} a_iB_{i,k,t}(x) = \sum_{i=0}^n \hat{a}_i B_{i,k,t'}(x) \]
+avec \[\hat{a}_i=\left| \begin{array}{c c c} 
+a_i&\text{ si }& t_{i+k}<\hat t\\
+w_{i,k}(\hat t)a_i+(1-w_{i,k}(\hat t))a_{i-1} &\text{ si }& t_i<\hat t<t_{i+k}\\
+a_{i-1} &\text{ si }& \hat t\leq t_i
+\end{array}\right.\]}

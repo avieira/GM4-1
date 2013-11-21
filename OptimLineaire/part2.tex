@@ -224,13 +224,6 @@ Soit $u\in\mathcal{U}_{ad}$. On pose $v=u_0-u$. Soit $j\in I(\bar{u})$. Comme $g
 La contrainte est donc qualifiée en $\bar{u}$.
 \end{dem}
 
-\Theo{}{$L(u,\lambda)=J(u)+\lambda^Tg(u)$\\
-Si $\bar{u}$ est un minimum de $J$ sur $\mathcal{U}_{ad}$ et si les contraintes sont qualifiées en $\bar{u}$, alors $\exists \lambda\in\mathbb{R}^l_+$ tel que :
-	\[\left\{ \begin{array}{c c c}
-		\nabla_u L(\bar{u},\lambda)&=&0\\
-		\lambda^Tg(\bar{u})=0
-	\end{array}\right.\]}
-
 \Lem{}{Soit $F$ une application de $\mathbb{R}^n$ dans $\mathbb{R}$ convexe et de classe $\mathcal{C}^1$. $u\in\mathbb{R}^n$ est un point de minimum de $F$ sur $\mathbb{R}^n$ si et seulement si $\nabla F(u)=0$.}
 
 \begin{dem}
@@ -242,7 +235,7 @@ D'où $F(v)\geq F(u)$ $\forall v\in\mathbb{R}^n$, donc $u$ est un minimum de F s
 \Theo{}{Soit $\bar{u}$ un point de $\mathcal{U}_{ad}$ tel que les contraintes soient qualifiées en $\bar{u}$. Alors $\bar{u}$ est un point de minimum de $J$ sur $\mathcal{U}_{ad}$ si et seulement si $\exists \lambda\in\mathbb{R}^l_+$ tel que : 
 	\[\left\{ \begin{array}{c c c}
 		\nabla_u L(\bar{u},\lambda)&=&0\\
-		\lambda^Tg(\bar{u})=0
+		\lambda^Tg(\bar{u})&=&0
 	\end{array}\right.\]}
 
 \begin{dem}
@@ -262,13 +255,13 @@ Donc $\bar{u}$ est un minimum de $J$ sur $\mathcal{U}_{ad}$.
 \end{dem}
 
 \subsection{Dualité}
-\Def{Point selle}{On dit que $(u,\lambda)\in\mathcal{U}_{ad}\times\mathbb{R}^l_+$ est un point selle de $J$ sur $\mathcal{U}_{ad}\times\mathbb{R}^l_+$ si :
+\Def{Point selle}{On dit que $(u,\lambda)\in\mathcal{U}_{ad}\times\mathbb{R}^l_+$ est un point selle de $L$ sur $\mathcal{U}_{ad}\times\mathbb{R}^l_+$ si :
 \[\forall \mu\in\mathbb{R}^l_+,\ \forall v\in\mathcal{U}_{ad},\ L(u,\mu)\leq L(u,\lambda)\leq L(v,\lambda)\]}
 
 \Prop{}{Soit $U$ un ouvert contenant $\mathcal{U}_{ad}$ et $(u,\lambda)$ un point selle de $J$ sur $U\times \mathbb{R}_+^l$.Alors $u\in\mathcal{U}_{ad}$ et :
 \[\left\{ \begin{array}{c c c}
 \nabla_u L(u,\lambda)&=&0\\
-\lambda^t g(u)=0
+\lambda^t g(u)&=&0
 \end{array}\right.\]}
 
 \begin{dem}
@@ -285,8 +278,8 @@ Prenons \[\mu=\begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{
 
 (2) : $u$ est un point de minimum de :
 \[u\mapsto J(u)+\lambda^tg(u)=L(u,\lambda)\]
-sur U. Donc :
-\[\nabla_u L5u,\lambda)=0\]
+sur $U$. Donc :
+\[\nabla_u L(u,\lambda)=0\]
 \end{dem}
 
 \Lem{}{Soit L une fonction de deux variables $u$ et $\lambda$.
@@ -302,7 +295,7 @@ Ceci étant vrai pour tout $u$, c'est également vrai pour celui qui minimise le
 Alors \[\min_{u\in\mathcal{U}_{ad}} J(u)=\sup_{\lambda\in\mathbb{R}^n} \inf_{u\in\mathbb{R}^n} L(u,\lambda)= \inf_{u\in\mathbb{R}^n}\sup_{\lambda\in\mathbb{R}^n} L(u,\lambda)\]
 De plus, le problème $\sup_{\lambda\in\mathbb{R}^n} \inf_{u\in\mathbb{R}^n} L(u,\lambda)$ admet une solution $\lambda^*$ et $\inf_{u\in\mathbb{R}^n} \sup_{u\in\mathbb{R}^n} L(u,\lambda)$ admet une solution $u^*$ qui est solution de ($\mathcal{P}_{\mathcal{U}_{ad}}$)}
 
-\Def{}{On note \[d(\lambda)=\inf_{u\in\mathbb{R}^n}\]
+\Def{}{On note \[d(\lambda)=\inf_{u\in\mathbb{R}^n} L(u,\lambda)\]
 Le problème \[\sup_{\lambda\in\mathbb{R}^n} d(\lambda)\]
 est le problème dual.}
 
