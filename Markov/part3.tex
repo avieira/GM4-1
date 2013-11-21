@@ -45,3 +45,229 @@ donc solution de Backwar et Forward, avec $\Pi_0=I$, donc par unicité des solut
 \underline{Forward :} $(p_j^i)'(t)=\sum_k p_k^i(t)a_j^k$ : c'est le point de départ qui est fixe dans les $p_k^i$.
 
 \subsection{Significations probabilistes des coefficients $a_j^i$ du générateur infinitésimal}
+\Def{}{$i\in E$ est absorbant si : \[\forall t,\ p_j^i(t)=1\]}
+\Theo{}{i est absorbant si et seulement si : \[\forall j, a_j^i=0 \Leftrightarrow a_i=0\]}
+
+\begin{dem}
+Si i est absorbant, alors $p_i^i(t)=1\ \forall t$.\\
+Donc $(p_i^i)'(0)=0=-a_i$. Or :
+\begin{eqnarray*}
+	a_i=0 &\Leftrightarrow& \sum_{i\neq j} a_j^i=0 \text{ et } a_j^i\geq 0\\
+		&\Leftrightarrow& \forall j, a^i_j=0
+\end{eqnarray*}
+Réciproquement, si $a_i=0$, $\forall j$, $a_j^i=0$.
+\[(p_i^i)'(t)=\sum_j a_k^ip_i^k = 0\]
+Donc $p_i^i(t)=cste=p^i_i(0)=1$ $\forall t$.
+\end{dem}
+
+\Def{Instants de transitions}{On dit qu'il y a transition s'il y a changement d'état.
+\begin{eqnarray*}
+	T_1&=&\inf\{t>0,\ X_t\neq X_0\}\\
+	T_2&=&\inf\{t>0,\ X_t\neq X_{T_1}\}\\
+	&\vdots&\\
+	T_n&=&\inf\{t>0,\ X_t\neq X_{T_{n-1}}\}\\
+	&\vdots&
+\end{eqnarray*}
+Les $T_i$ sont appelés instants de transition. (On pose $T_0=0$)}
+
+\Prop{admise}{\[\forall i, \mathbb{P}(T_n\leq h|X_0=i)=o(h)\]}
+
+\Theo{fondamental}{Si i non abosrbant, alors : \begin{enumerate}
+	\item $\mathcal{L}(T_1|X_0=i)=\mathcal{E}(a_i)$
+	\item $\forall j\neq i$, $\mathbb{P}(X_{T_1}=j|X_0=i)=\frac{a^i_j}{a_i}=\hat{p}^i_j$
+	\item $T_1$ et $X_{T_1}$ sont indépendants sachant que $X_0=i$.
+\end{enumerate}}
+
+\begin{dem}
+i non absorbant.\\
+On va modifir la chaîne de la façon suivante : on rend tous les états $i\neq j$ absorbants. On ne touche pas à la façon d'être en i ni d'en ressortir.\\
+On note $X_t^*$ la nouvelle chaîne, et $\Pi_t^*$ et $A^*$ les matrices correspondantes.\\
+$(a^*)_j^k=0,\ \forall k\neq i,\ \forall j$ car ils sont absorbants.\\
+
+\bigskip
+Prouvons que $(a^*)_j^i=a^i_j\ \forall j$.\\
+On a, si on part de i $X_t(\omega)=X^*_t(\omega)$ $\forall t\leq T_2(\omega)$. 
+\[\mathbb{P}(X_t=j|X_0=i)=\underbrace{\mathbb{P}(X_t=j,t<T_2|X_0=i)}_{(1)}+\underbrace{\mathbb{P}(X_t=j,t\geq T_2|X_0=i)}_{(2)}\]
+$(1)=\mathbb{P}(X^*_t=j|X_0=i)$\\
+$0\leq (2)\leq \mathbb{P}(T_2\leq t|X_0=i)=o(t)$\\
+Donc $p_j^i(t)=(p^*)_j^i(t)+o(t)$, donc :
+	\[a_j^i=(p^i_j)'(0)=({p^*}^i_j)'(0)=(a^*)_j^i,\ \forall j\neq i\]
+	\[a_i=a^*_i=\sum_{j\neq i} a_j^i\]
+Ainsi :
+\[(p^*)_i^i(t)=\mathbb{P}(X_t^*=i|X_0^*=i)=\mathbb{P}(T_1>t|X_0=i)\]
+\[\left\{\begin{array}{c c c}
+({p^*}^i_i)'(t)&=&\sum_k {p^*}_k^i(t)a_i^k = -a_i{p^*}^i_i(t)\\
+{p^*}^i_i(0)=1
+\end{array}\right.\]
+\[\Rightarrow {p^*}^i_i(t)=\mathbb{P}(T_1>t|X_0=i)=e^{-a_1t}\]
+ie $\mathcal{L}(T|X_0=i)=\mathcal{E}(a_i)$.
+
+\bigskip
+$j\neq i$. \begin{eqnarray*}
+	({p^*}^i_j)'(t)&=&\sum_k {p^*}^i_k(t)a_j^k \\
+			&=&{p^*}i^i(t)a_j^i\\
+			&=&a_j^ie^{-a_it}
+\end{eqnarray*}
+${p^*}^i_j(0)=0$\\
+Donc : \begin{eqnarray*}
+{p^*}^i_j(t)&=&\int_0^t a_j^i e^{-a_it}dt\\
+	&=&\frac{a_j^i}{a_i}(1-e^{-a_it})
+\end{eqnarray*}
+
+Or,
+\begin{eqnarray*}
+	{p^*}_i^j(t)&=&\mathbb{P}(X_t^*=j|X_0=i)\\
+		&\leq& \mathbb{P}(T_1\leq t, X_T=j | X_0=i)\\
+		&\leq& \frac{a_j^i}{a_i}(1-e^{-a_it})
+\end{eqnarray*}
+Si on prend $t\to +\infty$ :
+	\[\mathbb{P}(X_{t_1}=j|X_0=i)=\frac{a_j^i}{a_i}\]
+\[\mathbb{P}(T_1\leq t, X_{T_1}=j|X_0=i)=\mathbb{P}(T_1\leq t|X_0=i)\mathbb{P}(X_{T_1}=j|X_0=i)\]
+d'où l'indépendance de $X_{T_1}$ et $T_1$ sachant $X_0=i$.
+\end{dem}
+
+\subsection{Chaîne discrète de transition associée}
+$\hat{X}_n=X_{T_n}$.\\
+Elle a pour matrice de transition \[\hat{\Pi}_1=\hat{\Pi}=(\hat{p}_j^i)\] où si i est absorbant :
+	\[\hat{p}_i^i=1, \hat{p}_j^i=0,\ \forall j\neq i\]
+Si i n'est pas absorbant :
+	\[\hat{p}_j^i=\frac{a_j^i}{a_i},\ j\neq i,\ \hat{p}_i^i=0\]
+On représnte le diagramme de la chaîne initiale par celui de la chaîne discrète associée.\\
+\[j\neq i,\ i\to j \text{ si } \hat{p}_j^i>0 \text{ ie } a_j^i>0\]
+Il n'y a pas de boucles (sauf pour les états absorbants, mais ceux-ci sont indiqués par $\Delta$). \\
+Ceci donne la classification habitulle des états : Erg, Tr, etc.
+\[A=\bordermatrix{&C_1 & C_2 & C_3 & C_4 & C_5\cr
+C_1 & A_1 &  0  & |0 & 0 & 0\cr
+C_2 &  0  & A_2 & |0 & 0 & 0\cr 
+C_3 & \hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} & \hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} & |\hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} &\hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} &\hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} \cr
+C_4 &     &  \rho  & |  & \chi &  \cr
+C_5 &     &     &  | &  \cr}\]
+\[\hat{\Pi}=\bordermatrix{&C_1 & C_2 & C_3 & C_4 & C_5\cr
+C_1 & \hat{\Pi}_1 &  0  & |0 & 0 & 0\cr
+C_2 &  0  & \hat{\Pi}_2 & |0 & 0 & 0\cr 
+C_3 & \hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} & \hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} & |\hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} &\hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} &\hbox{\raisebox{0.4em}{\vrule depth 0pt height 0.4pt width 1em}} \cr
+C_4 &     &  \hat{R}  & |  & \hat{Q} &  \cr
+C_5 &     &     &  | &  \cr}\]
+
+\[t^nA^n=\begin{pmatrix} \begin{matrix} t^nA^n & & 0 \\ & \ddots & \\ 0 & & t^n A_k^n \end{matrix} & & 0 \\ \\ \rho_n & & t^n\chi^n\end{pmatrix}\]
+
+$e^{tA}=\sum_{n\geq 0} \frac{t^nA^n}{n!}=\Pi_t$
+\[\Pi_t=\begin{pmatrix} \begin{matrix} e^{tA_1} & & 0 \\ & \ddots & \\ 0 & & e^{tA_k} \end{matrix} & & 0 \\ \\ R_t & & e^{t\chi}\end{pmatrix}\]
+
+\Theo{}{\[Q=e^{t\chi}\xrightarrow[t\to+\infty]{} 0\]}
+\begin{dem}
+On prend i transitoire.
+\[\mathbb{P}(X_t\in Tr|X_0=i)=\sum_{j\in Tr} \mathbb{P}(X_t=j|X_0=i)\]
+C'est décroissant en t.\\
+Or on sait que, par exemple, $Q_n=(Q_1)^n\to 0$ (en considérant la chaîne discrète $X_n$).\\
+Donc $\mathbb{P}(X_t\in Tr|X_0=i)\to 0$. Donc
+	\[Q_t=e^{t\chi}\xrightarrow[t\to+\infty]{}0\]
+\end{dem}
+
+\subsection{Temps moyen passé dans les états transitoires}
+Soit $s^i_j$ le temps moyen passé par j sachant qu'on est parti de i, i et j transitoire, et $D=[d_j^i]_{i,j\in Tr}$. 
+\Theo{}{$\chi$ est inversible et $D=-\chi^{-1}$.}
+
+\begin{dem}
+Soit $D_j$ le temps passé en j.
+\[D_j=\int_0^{+\infty} \mathds{1}_{\{X_t=j\}}dt\]
+\begin{eqnarray*}
+d_i^j&=&\mathbb{E}(D_j|X_0=i)\\
+	&=&\mathbb{E}(\int_0^{+\infty} \mathds{1}_{\{X_t=j\}}dt|X_0=i)\\
+	&=&\int_0^{+\infty} \mathbb{E}(\mathds{1}_{\{X_t=j\}}|X_0=i)dt \text{ (Fubini)}\\
+	&=&\int_0^{+\infty} \mathbb{p}(X_t=j|X_0=i)dt\\
+	&=&\int_0^{+\infty} p_j^i(t)dt
+\end{eqnarray*}
+\begin{eqnarray*}
+D&=&\int_0^{+\infty} e^{t\chi} dt\\
+\chi D&=&\int_0^{+\infty} \chi e^{t\chi} dt\\
+	&=&[e^{t\chi}]_0^{+\infty}\\
+	&=& -I
+\end{eqnarray*}
+Donc $\chi$ est inversible et $-\chi^{-1}=D$.
+\end{dem}
+
+\Theo{}{\[\forall i,j\in Tr,\ d_j^i=\hat{N}^i_j\times\frac{1}{a_j}\]
+où $\hat{N}=(I-\hat{Q})^{-1}$. }
+
+$\hat{N}_j^i$ : nombre de fois où l'on est passé par j sachant que l'on est parti de i.\\
+$\frac{1}{a_j}$ : le temps moyen passé en j à chaque séjour (espérance de la loi exponentielle).
+
+\subsection{Probabilité de finir dans une classe finale donnée}
+iSoit $b_j^i$ la probabilité que le premier état ergodique atteint soit j sachant que $X_0=i$, et $B=[b_j^i]_{i,j}$ ($i\in Tr$, $j\in Erg$). \\
+On sait déjà que (considérant la chaîne associée $\hat{X}_n$) :
+	\[B=NR\]
+donc
+\begin{eqnarray*}
+	b_j^i&=&\sum_{k\in Tr} \hat{N}_k^i p_j^k\\
+	&=&\sum_{k\in Tr} \hat{N}_k^i \frac{a_j^k}{a_k}\\
+	&=&\sum_{k\in Tr} d_k^i a_j^k \\
+	&=&(D\rho)^i_j
+\end{eqnarray*}
+
+\Theo{}{\[B=\hat{N}\hat{R}=D\rho=-\chi^{-1}\rho\]}
+
+\Theo{}{Soit $C$ une classe finale.\\
+La probabilité de finir en $C$ sachant $X_0=i$ est :
+	\[b^i_C=\sum_{j\in C} b^i_j\]}
+
+\subsection{Classification de la chaîne}
+\[i\to j \Rightarrow \hat{p}_j^i>0\Leftrightarrow \frac{a_j^i}{a_i}>0 \Leftrightarrow a_j^i>0\]
+i peut conduire à j s'il existe un chemin orienté allant de i ) j :
+	\[\exists n;\ \mathbb{P}(X_{T_n}=j|X_0=i)>0\]
+
+\Theo{}{Soient $i,j\in E$. On a équivalence entre les trois points suivants :
+\begin{enumerate}
+	\item $i\rightsquigarrow j$
+	\item $\exists t>0;\ p_j^i(t)>0$
+	\item $\forall t>0;\ p_j^i(t)>0$
+\end{enumerate}}
+
+\begin{dem}
+Il est évident que $3\Rightarrow 2\Rightarrow 1$. Prouvons que $1\Rightarrow 3$.\\
+Supposons d'abord que $i\to j$ ($a_j^i>0$). Montrons que $\forall t>0$, $p_j^i(t)>0$.
+\begin{eqnarray*}
+	(p_i^i)'(t)&=&\sum_k p_k^i(t)a_i^k\\
+		&=& p_i^i(t)a_i^i + \underbrace{\sum_{k\neq i} p_k^i(t)a_i^k}_{R_i(t)\geq 0}
+\end{eqnarray*}
+\[\left\{\begin{array}{c c c}
+(p_i^i)'(t)&=&-a_ip_i^i(t)+R_i(t)\\
+p_i^i(0)=1
+\end{array}\right.\]
+\[\Rightarrow p^i_i(t)=\underbrace{e^{-a_i t}}_{>0} + \underbrace{\int_0^t e^{-a_i(t-s}R_i(s) ds}_{\geq 0}\]
+Donc $\forall i,\ \forall t\geq 0, p_i^i(t)>0$. 
+
+\bigskip
+Maintenant, $\forall j\neq i$,
+\begin{eqnarray*}
+	(p_j^i)'(t)&=&\sum_k p_k^i(t)a_j^k\\
+		&=& p_j^i(t)a_j^j +\underbrace{a_i^j p_i^i(t)}_{>0} + \underbrace{\sum_{k\neq i,j} p_k^i(t)a_j^k}_{R_i(t)\geq 0}
+\end{eqnarray*}
+\[\left\{\begin{array}{c c c}
+(p_i^j)'(t)&=&-a_jp_j^i(t)+R_i(t)\\
+p_i^i(0)=1
+\end{array}\right.\]
+\[\Rightarrow p^j_i(t)=\int_0^t e^{-a_i(t-s}\underbrace{R_i(s)}_{\geq 0} ds\]
+Donc $\forall i,\ \forall t\geq 0, p_j^i(t)>0$. 
+
+\bigskip
+Si $i\rightsquigarrow j$ en n transitions :
+	\[i_0\to ... \to i_{n-1}\to i_n=j\]
+un tel chemin permet d'aller de i à j.
+\begin{eqnarray*}
+p_j^i(t)&=&\mathbb{P}(X_t=j|X_0=i)\\
+	&\geq&\mathbb{P}(X_t=i_n,X_{\frac{(n-1)t}{n}}=i_{n-1},...,X_{\frac{t}{n}}=i_1|X=i_0=i)\\
+	&\geq&\mathbb{P}(X_t=i_n|X_{\frac{(n-1)t}{n}}=i_{n-1})\times...\times\mathbb{P}(X_{\frac{t}{n}}=i_1|X=i_0=i) \text{ d'après la propriété de Markov homogène}\\
+	&\geq&\mathbb{P}(X_\frac{t}{n}=i_n|X_0=i_{n-1})\times...\times\mathbb{P}(X_{\frac{t}{n}}=i_1|X=i_0=i)\\
+	&>& 0
+\end{eqnarray*}
+D'où $p_j^i(t)>0$
+\end{dem}
+Donc $i\rightsquigarrow j\Leftrightarrow \forall t>0,\ p_j^i(t)>0$ (car encore vrai si i absorbant ou si i=j).
+
+\underline{Remarque :} Il n'y a donc pas de phénomène cycliques en temps continu.
+
+\section{Chaîne régulière}
+\Def{}{En temps continu, une chaîne est dite régulière si elle n'a qu'une seule classe (donc finale), ie $\forall i,j\in E, i\rightsquigarrow j$}
+
+\Theo{}{La chaîne est régulière si et seulement si : \[\forall t>0,\ \forall i,j,\ p_j^i(t)>0\]}
