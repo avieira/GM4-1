@@ -4,7 +4,7 @@
   <information>
     <generator>kwordquiz 0.9.2</generator>
     <title>liste1.kvtml</title>
-    <date>2013-10-12</date>
+    <date>2013-11-14</date>
   </information>
   <identifiers>
     <identifier id="0">
@@ -378,6 +378,302 @@
       </translation>
     </entry>
     <entry id="45">
+      <translation id="0">
+        <text>Selon...</text>
+      </translation>
+      <translation id="1">
+        <text>Laut...</text>
+      </translation>
+    </entry>
+    <entry id="46">
+      <translation id="0">
+        <text>Avantage</text>
+      </translation>
+      <translation id="1">
+        <text>Vorteil</text>
+      </translation>
+    </entry>
+    <entry id="47">
+      <translation id="0">
+        <text>Économique</text>
+      </translation>
+      <translation id="1">
+        <text>sparsamer</text>
+      </translation>
+    </entry>
+    <entry id="48">
+      <translation id="0">
+        <text>Rendement</text>
+      </translation>
+      <translation id="1">
+        <text>der Wirkungsgrad</text>
+      </translation>
+    </entry>
+    <entry id="49">
+      <translation id="0">
+        <text>Mettre en pratique</text>
+      </translation>
+      <translation id="1">
+        <text>in die Praxis umsetzen</text>
+      </translation>
+    </entry>
+    <entry id="50">
+      <translation id="0">
+        <text>soutenir qqn financiellement</text>
+      </translation>
+      <translation id="1">
+        <text>jdn finanziell unterstützen</text>
+      </translation>
+    </entry>
+    <entry id="51">
+      <translation id="0">
+        <text>aider</text>
+      </translation>
+      <translation id="1">
+        <text>helfen (i,a,o)</text>
+      </translation>
+    </entry>
+    <entry id="52">
+      <translation id="0">
+        <text>poids</text>
+      </translation>
+      <translation id="1">
+        <text>das Gewicht</text>
+      </translation>
+    </entry>
+    <entry id="53">
+      <translation id="0">
+        <text>puissance</text>
+      </translation>
+      <translation id="1">
+        <text>die Leistung</text>
+      </translation>
+    </entry>
+    <entry id="54">
+      <translation id="0">
+        <text>réussir (x3)</text>
+      </translation>
+      <translation id="1">
+        <text>erfolg haben - schaffen - gelingen (a,u*)</text>
+      </translation>
+    </entry>
+    <entry id="55">
+      <translation id="0">
+        <text>Il a réussi</text>
+      </translation>
+      <translation id="1">
+        <text>Es is ihm gelungen</text>
+      </translation>
+    </entry>
+    <entry id="56">
+      <translation id="0">
+        <text>Immense</text>
+      </translation>
+      <translation id="1">
+        <text>riesig</text>
+      </translation>
+    </entry>
+    <entry id="57">
+      <translation id="0">
+        <text>Relayer</text>
+      </translation>
+      <translation id="1">
+        <text>ablösen</text>
+      </translation>
+    </entry>
+    <entry id="58">
+      <translation id="0">
+        <text>Participer</text>
+      </translation>
+      <translation id="1">
+        <text>Teilnehmen an +D</text>
+      </translation>
+    </entry>
+    <entry id="59">
+      <translation id="0">
+        <text>Exposition</text>
+      </translation>
+      <translation id="1">
+        <text>die Ausstellung</text>
+      </translation>
+    </entry>
+    <entry id="60">
+      <translation id="0">
+        <text>Dispute</text>
+      </translation>
+      <translation id="1">
+        <text>der Streit</text>
+      </translation>
+    </entry>
+    <entry id="61">
+      <translation id="0">
+        <text>se méfier</text>
+      </translation>
+      <translation id="1">
+        <text>misstrauen</text>
+      </translation>
+    </entry>
+    <entry id="62">
+      <translation id="0">
+        <text>Sein ou haben ?</text>
+      </translation>
+      <translation id="1">
+        <text>Cod => Haben ; sein + intransitif ou changement d'état ou de lieu</text>
+      </translation>
+    </entry>
+    <entry id="63">
+      <translation id="0">
+        <text>puant</text>
+      </translation>
+      <translation id="1">
+        <text>stinkig</text>
+      </translation>
+    </entry>
+    <entry id="64">
+      <translation id="0">
+        <text>Économie</text>
+      </translation>
+      <translation id="1">
+        <text>die Wirtschaft</text>
+      </translation>
+    </entry>
+    <entry id="65">
+      <translation id="0">
+        <text>un de ces</text>
+      </translation>
+      <translation id="1">
+        <text>einer jener</text>
+      </translation>
+    </entry>
+    <entry id="66">
+      <translation id="0">
+        <text>Passion</text>
+      </translation>
+      <translation id="1">
+        <text>die Leidenschaft</text>
+      </translation>
+    </entry>
+    <entry id="67">
+      <translation id="0">
+        <text>s'apercevoir de</text>
+      </translation>
+      <translation id="1">
+        <text>etw entdecken</text>
+      </translation>
+    </entry>
+    <entry id="68">
+      <translation id="0">
+        <text>développer</text>
+      </translation>
+      <translation id="1">
+        <text>entwickeln</text>
+      </translation>
+    </entry>
+    <entry id="69">
+      <translation id="0">
+        <text>Irruption, survenu, explosion</text>
+      </translation>
+      <translation id="1">
+        <text>Ausbruch</text>
+      </translation>
+    </entry>
+    <entry id="70">
+      <translation id="0">
+        <text>Ardent</text>
+      </translation>
+      <translation id="1">
+        <text>sehnlich</text>
+      </translation>
+    </entry>
+    <entry id="71">
+      <translation id="0">
+        <text>Ambitieux</text>
+      </translation>
+      <translation id="1">
+        <text>Strebsam</text>
+      </translation>
+    </entry>
+    <entry id="72">
+      <translation id="0">
+        <text>Cycle</text>
+      </translation>
+      <translation id="1">
+        <text>der Kreisprozess</text>
+      </translation>
+    </entry>
+    <entry id="73">
+      <translation id="0">
+        <text>Accomplir</text>
+      </translation>
+      <translation id="1">
+        <text>etw ausführen</text>
+      </translation>
+    </entry>
+    <entry id="74">
+      <translation id="0">
+        <text>Exalter qqn</text>
+      </translation>
+      <translation id="1">
+        <text>jdn begeistern</text>
+      </translation>
+    </entry>
+    <entry id="75">
+      <translation id="0">
+        <text>Essuyer un refus</text>
+      </translation>
+      <translation id="1">
+        <text>ein Abfuhr bekommen</text>
+      </translation>
+    </entry>
+    <entry id="76">
+      <translation id="0">
+        <text>livrer</text>
+      </translation>
+      <translation id="1">
+        <text>liefern</text>
+      </translation>
+    </entry>
+    <entry id="77">
+      <translation id="0">
+        <text>Reconnaissance</text>
+      </translation>
+      <translation id="1">
+        <text>die Anerkennung</text>
+      </translation>
+    </entry>
+    <entry id="78">
+      <translation id="0">
+        <text>tendu, déprimé</text>
+      </translation>
+      <translation id="1">
+        <text>mürbe</text>
+      </translation>
+    </entry>
+    <entry id="79">
+      <translation id="0">
+        <text>Malhabile</text>
+      </translation>
+      <translation id="1">
+        <text>ungeschikt</text>
+      </translation>
+    </entry>
+    <entry id="80">
+      <translation id="0">
+        <text>luxueusement</text>
+      </translation>
+      <translation id="1">
+        <text>herrshaftlich</text>
+      </translation>
+    </entry>
+    <entry id="81">
+      <translation id="0">
+        <text>Preuve</text>
+      </translation>
+      <translation id="1">
+        <text>Beweise</text>
+      </translation>
+    </entry>
+    <entry id="82">
       <translation id="0"/>
       <translation id="1"/>
     </entry>
@@ -432,6 +728,43 @@
       <entry id="43"/>
       <entry id="44"/>
       <entry id="45"/>
+      <entry id="46"/>
+      <entry id="47"/>
+      <entry id="48"/>
+      <entry id="49"/>
+      <entry id="50"/>
+      <entry id="51"/>
+      <entry id="52"/>
+      <entry id="53"/>
+      <entry id="54"/>
+      <entry id="55"/>
+      <entry id="56"/>
+      <entry id="57"/>
+      <entry id="58"/>
+      <entry id="59"/>
+      <entry id="60"/>
+      <entry id="61"/>
+      <entry id="62"/>
+      <entry id="63"/>
+      <entry id="64"/>
+      <entry id="65"/>
+      <entry id="66"/>
+      <entry id="67"/>
+      <entry id="68"/>
+      <entry id="69"/>
+      <entry id="70"/>
+      <entry id="71"/>
+      <entry id="72"/>
+      <entry id="73"/>
+      <entry id="74"/>
+      <entry id="75"/>
+      <entry id="76"/>
+      <entry id="77"/>
+      <entry id="78"/>
+      <entry id="79"/>
+      <entry id="80"/>
+      <entry id="81"/>
+      <entry id="82"/>
     </container>
   </lessons>
 </kvtml>

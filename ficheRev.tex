@@ -38,6 +38,45 @@
 \item \textbf{R est définie positive}
 \end{enumerate}
 
+\part{Béziers-Splines}
+\begin{enumerate}
+\section{Courbes paramétrées}
+\item Régularité, p-régulier
+\item Arc admet un veteur limite tangeant
+\item Suivant p et q pairs et impairs
+\item Branches infinies dans le cas des courbes planes
+\item Revoir réduction d'intervalle
+\item Longueur de l'arc
+\item Arcs équivlents
+\item Courbes gauche : tangente, plan normal, plan osculateur, normale principale
+\item Paramétrisation normale, abscisse curviligne
+\item Exemple de paramètre admissible
+\item Courbure algébrique, rayon de courbure, centre de courbure, cercle osculateur, développée
+\item Formules de Frénet
+\item Trouver un plan tangeant
+\section{Splines}
+\item Définition de la suite $\tau$, $r$, $\mathcal{P}^{k,\tau,r}$
+\item Dimension et base de $\mathcal{P}^{k,\tau,r}$
+\item Particularité des fonctions splines, dimension de l'espace des fonctions splines
+\item Conditions (C) pour splines cubiques
+\item Unicité ?
+\item Problème de minimisation vérifié par une fonction spline cubique
+\section{B-Splines}
+\item Définition de n\oe uds, multiplicité k
+\item Définition de $w_{ij}(x)$
+\item Relation de récurrence pour les $B_{i,k}$
+\item Quelle multiplicité pour avoir $B_{i,k}$ nul ?
+\item 6 propriétés des $B_{i,k}$
+\item Formule de dérivée à droite
+\item Définition de $\mathcal{P}^{k,\tau}$
+\item Lien entre n, m et k. Condition pour une base.
+\section{Algorithme}
+\item Définition de $S$
+\item Algorithme de De Casteljan dévaluation en un point
+\item Algorithme des dérivées
+\item Algorithme d'insertion d'un n\oe ud
+\end{enumerate}
+
 \part{Optimisation linéaire}
 \begin{enumerate}
 \item Définition infimum, minimum
@@ -54,6 +93,21 @@
 \item Définition strictement convexe, $\alpha$-convexe.
 \item Équivalence à $f$ convexe
 \item \textbf{Équivalence à $\alpha$-convexe}
+\item \textbf{Condition d'optimalité dans un ouvert}
+\item \textbf{Condition nécessaire puis condition suffisante pour un minimum}
+\item \textbf{Théorème de Kuhn et Tucker}
+\item Contraintes qualifiées
+\item \textbf{Théorème dans le cas des contraintes qualifiées}
+\item \textbf{Condition nécessaire de qualification}
+\item \textbf{Lemme : équivalence à un minimum}
+\item \textbf{Équivalent à minimum avec $\lambda$}
+\item Point selle
+\item \textbf{Propriété des points selles : système vérifié}
+\item \textbf{Lemme : inégalité sup et inf}
+\item \textbf{Problème dual}
+\item Problème d'optimisation linéaire, passage du problème sous forme canonique à la forme standard
+\item Ensemble des solutions réalisables, sommets
+\item Définition de $\Gamma$, $A_{\gamma}$ et $\mathcal{B}$. 
 \end{enumerate}
 
 \part{Processus de Markov}
@@ -92,5 +146,28 @@
 \item Mise en place de la méthode des deux points
 \item Expression de $r$
 \item Moindre carré polynomial : expression de $\theta^{MC}$
+\item Formule des moyennes mobiles
+\item Définition MMC
+\item Étape dans la décomposition d'une série chronologique
+\item Loi du chi2 : espérance et variance
+\item Loi de Student, de Fisher, carré d'une Student
+\item Définition MLG
+\item Définition des estimateurs A, B et $\sigma^2$. Lois de chacun.
+\item $d_x^2$ ?
+\item Statistiques pour avoir les intervalles de confiance pour $\alpha$, $\beta$ et $\sigma^2$
+\item IC de chacun d'entre eux
+\item Test significatif du lien linéaire : Stat et zone de rejet
+\item Test d'un modèle linéaire spécifique
+\item IC pour $\mathbb{E}(Y_0)$ et pour une observation $Y_0$
+\item Test du caractère significatif de la liaison linéaire par comparaison de modèle
+\item ANOVA 1 : Gueule des données et du modèle
+\item Definition dimension
+\item Définition de $M_1$ et $M_p$
+\item Estimation des paramètres dans chacun des modèles
+\item Statistique de test
+\item Définition contraste
+\item Statistique de test pour les contrastes
+\item Estimateur des $\mu_i$ et des $\sigma_i^2$
+\item IC pour $\mu_i$
 \end{enumerate}
 \end{document}

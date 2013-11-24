@@ -93,6 +93,10 @@ f'(b)&=&\beta & \text{ donné}
 On note $E$ l'ensemble des fonctions $\phi\in\mathcal{C}^2([a,b])$ avec $\phi$ vérifiant les conditions $(C)$.
 \Theo{}{Il existe une unique fonction $\phi\in S^{3,\tau}$ vérifiant les conditions $(C)$.}
 
+\begin{dem}
+Voir polycopié
+\end{dem}
+
 \underline{Remarque :} Si $k_i=\tau_{i+1}-\tau_i=k=cste$, alors \[B=\begin{pmatrix} 4 & 1 & 0 & \cdots & \cdots & \cdots & 0 \\ 1 & \ddots & \ddots & \ddots & & & \vdots \\ 0 & \ddots & \ddots & \ddots & \ddots & & \vdots \\ \vdots & \ddots & \ddots & \ddots & \ddots & \ddots & \vdots \\ \vdots &  & \ddots & \ddots & \ddots & \ddots & 0 \\ \vdots & & & \ddots & \ddots & \ddots & 1 \\ 0 & \cdots & \cdots & \cdots & 0 & 1 & 4 \end{pmatrix}\]
 
 \Lem{}{On prend $\phi\in S^{3,\tau}$ vérifiant les conditions $(C)$. On prend $f\in E$. On pose $e=f-\phi$, erreur dans l'aproximation de $f$ par $\phi$. Alors :
@@ -132,12 +136,12 @@ Par conséquent :
 	\[\int_a^b f''(t)^2 dt \geq \int_a^b \phi''(t)^2 dt\]
 avec égalité si et seulement si :
 \[\int_a^b e''(t)^2 dt = 0\]
-Somme $e''$ est continue, on en conclut que $e''=0$\\
-Pr, $e'(a)=e'(b)=0$ et $\forall i\in \{1,...,l-1\}$, $e(\tau_i)=0$, donc $e$ est identiquement nulle.\\
+Comme $e''$ est continue, on en conclut que $e''=0$\\
+Or, $e'(a)=e'(b)=0$ et $\forall i\in \{1,...,l-1\}$, $e(\tau_i)=0$, donc $e$ est identiquement nulle.\\
 En conclusion, il existe donc une unique fonction $f$ de $E$ donnant le minimum : c'est $\phi \in S^{3,\tau}$.
 \end{dem}
 
-\subsection[Fonctions beta-splines]{Fonctions $\beta$-splines}
+\subsection{Fonctions B-splines}
 
 On considère l'espace vectoriel $\mathcal{P}^{k,\tau,r}$.
 \begin{itemize}
@@ -153,7 +157,7 @@ On considère dans $\mathbb{R}$ une suite de points $t_0,...,t_m$ tels que $t_i\
 D'autre part, on pose \[w_{ij}(x)=\frac{x-t_i}{t_{i+j}-t_i} \mathds{1}_{\{t_i<t_{i+1}\}}\]
 Par convention, à chaque fois que nous écrivons une fraction dont le dénominateur est nul, il faudra l'interpréter comme étant nulle.
 
-\subsubsection[Définition des beta-splines]{Définition des $\beta$-splines}
+\subsubsection{Définition des B-splines}
 Posons $t=(t_0,...,t_m)$.\\
 Pour $x\in \mathbb{R}$, $0\leq i\leq m-k-1$, les fonctions $B_{i,k,t}$ notées aussi $B_{i,k}$ lorsque la suite $t$ est fixée, sont définies via la relation de récurrence sur $k$ suivante :
 \[B_{i,0}(x)=\mathds{1}_{[t_i,t_{i+1}[}(x)\]
@@ -229,7 +233,7 @@ Le support de $B_{i,k}$ est $[t_i, t_{i+k+1}[$. Comment avoir $[t_i,t_{i+k+1}[\c
  \end{array}\right.\]
 
 D'où \[\sum_{i=0}^{m-k-1}B_{i,k}(x)=\sum_{i=j-k}^j B_{i,k}(x)\]
-En utilisant la relation de récurrence définissante $B_{i,k}$, on a :
+En utilisant la relation de récurrence définissant $B_{i,k}$, on a :
 \begin{eqnarray*}
 	\sum_{i=j-k}^j B_{i,k}(x)&=&\sum_{i=j-k}^j w_{i,k}(x) B_{i,k-1}(x)+\sum_{i=j-k}^j (1-w_{i+1,k}(x))B_{i+1,k-1}(x)\\
 				&=&\sum_{i=j-k}^j w_{i,k}(x)B_{i,k-1}(x)+\sum_{I=j-k+1}^{j+1} (1-w_{I,k}(x))B_{I,k-1}(x)\\
@@ -277,9 +281,9 @@ Nous allons étudier 3 algorithmes :
 \Propo{}{Soit $\hat{x}\in[a,b]$ (donc $\hat{x}\geq t_k$). On a :
 \begin{eqnarray*}
 S(\hat{x})&=&\sum_{i=0}^{n-1} a_i^{(0)} B_{i,k}(\hat{x}) \\
-	&=& \sum_{i=0}^{n-1} a_i^{(1)} B_{i,k-1}(\hat{x}) \\
+	&=& \sum_{i=0}^{n-1} a_i^{(1)}(\hat{x}) B_{i,k-1}(\hat{x}) \\
 	&\vdots& \\
-	&=&\sum_{i=0}^{n-1} a_i^{(k)} B_{i,0}(\hat{x})
+	&=&\sum_{i=0}^{n-1} a_i^{(k)}(\hat{x}) B_{i,0}(\hat{x})
 \end{eqnarray*}
 avec \[\begin{array}{c c l c}
 a_i^{(0)}&=& a_i, & \forall i\in\{0,...,n-1\} \\
@@ -309,7 +313,7 @@ Pour calculer $a_j^{(k)}(\hat{x})$, il suffit d'évaluer les $a_i^{(k)}$ pour $i
 		&\vdots& \\
 		&=&a_j^{(k)}(\hat{x})
 \end{eqnarray*}
-L'algorithme se présente donc sous forme triangulaire, chaque élément s'obtenant par combinaire sonvexe des deux éléments de la lign supérieure qui sont au-dessus de lui.\\
+L'algorithme se présente donc sous forme triangulaire, chaque élément s'obtenant par combinaire convexe des deux éléments de la ligne supérieure qui sont au-dessus de lui.\\
 (FAIRE DESSIN)\\
 
 \bigskip
