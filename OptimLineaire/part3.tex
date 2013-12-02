@@ -142,3 +142,129 @@ On pose $z=x+\varepsilon y$ ou $z=x-\varepsilon$. tel que $z_{\gamma_1(i)}=0$. z
 qui a au plus $k-1$ composantes non nulles.\\
 On peut refaire la preuve en remplaçant $x$ par $z$ (et en diminuant $k$) jusqu'à obtenir une famille libre.
 \end{dem}
+
+\underline{Remarque :} D'après les deux propositions précédentes, en prenant $c=0$ (toutes les solutions admissibles sont optimales), si $X_{ad}=\emptyset$, alors $X_{ad}$ possède au moins 1 sommet (ceci n'est pas le cas pour un polyèdre quelconque).
+
+\section{Algorithme du simplexe}
+\underline{Idée :} Parcourir les sommets du polyèdre en diminuant le coût en passant d'un sommet au suvant.
+
+\Lem{}{Soit $\gamma\in\mathbb{R}$ et $x^*$ la solution de base réalisable associée.\\
+Pour $x\in X_{ad}$ réalisable, on a :
+	\[X_B=X^*_B-B^{-1}Nx_N\]
+	\[c^Tx=X^Tx^*-d^Tx\]
+où $d^T_N=cN^T-C_B^TB^{-1}N$ et $d^T_B=0$.}
+
+\begin{dem}
+\begin{eqnarray*}
+	Ax&=&Bx_Nx_N=b\\
+\rightarrow x_B&=&B^{-1}b-B^{-1}Nx_N
+\end{eqnarray*}
+Or, $x^*_B=B^{-1}b$, donc \[x_B=x^*_B-B^{-1}Nx_N\]
+
+\begin{eqnarray*}
+	c^Tx&=&c_B^Tx_B+c^T_Nx_n\\
+	&=&c^T_B(x^*_B-B^{-1}Nx_N)+x^T_N x_N\\
+	&=&c^T_Bx_B^*+(c^T_N-c^T_BB^{-1}N)x_N\\
+	&=&c^Tx^*+d^Tx
+\end{eqnarray*}
+\end{dem}
+
+\Def{}{On dit que le vecteur $d$ est le veteur des prix marginaux associé à la base $\gamma$.}
+
+\Propo{}{Soit $\gamma$ une base réalisable et $x^*$ la solution de base associée.\\
+Si toutes les composantes de $d$ sont positives, alors $s^*$ est une solution otpimale.\\
+Si de plus, $x^*$ est non dégénérée ($B^{-1}b>0$) et est une solution optimale, alors les composantes de $d$ sont positives.}
+
+\begin{dem}
+Soit $x$ une solution réalisable. alors 
+\[c^Tx=x^Tx^*+\underbrace{d^T}_{\geq 0}\underbrace{x}_{\geq 0}\geq c^Tx^*\]
+$x^*$ est donc une solution optimale.
+
+\bigskip
+Réciproquement, on suppose que $x^*$ est une solution optimale non dégénérée.\\
+Raisonnons par l'absurde : supposons que la ième composante de $d$ est strictement négative.\\
+Pour $\varepsilon>0$, on définit :
+\begin{eqnarray*}
+	x_N(\varepsilon)&=&\varepsilon a_i\\
+	x_B(\varepsilon)&=&B^{-1}b-B^{-1}Nx_N(\varpesilon)
+\end{eqnarray*}
+
+On a :
+\begin{eqnarray*}
+	Ax(\varepsilon)&=&Bx_B(\varepsilon)+Nx_N(\varepsilon)\\
+			&=&b
+\end{eqnarray*}
+Comme $\varepsilon>0$ on a $x_N(\varepsilon)>0$.\\
+Comme $B^{-1}b>0$, pour $\varepsilon$ assez petit, on a $x_B(\varepsilon)\geq 0$.\\
+\[\Rightarrow x(\varepsilon)>0\]
+$\Rightarrow$ $x(\varepsilon)$ est une solution réalisable.
+
+\bigskip
+On a également :
+\begin{eqnarray*}
+	c^Tx(\varepsilon)&=&c^Tx^*+d^Tx(\varepsilon)\\
+		&=&c^Tx^*+d^T_Nx_N(\varepsilon)\\
+		&=&c^Tx^*+\varepsilon \underbrace{\d^T_{\hat{\gamma}(i)}}_{<0}\\
+		&<&c^Tx^*
+\end{eqnarray*}
+$\Rightarrow$ $x^*$ n'est pas otimal. Absurde.
+\end{dem}
+
+\subsection{Privot à partir d'une base réalisable : critère de Dantzig}
+Étant donné un choix de base $\gamma\in B$, tel que $x^*$ soit une solution de base réalisable mais pas otimale, le but est de trouver une nouvelle base $\delta\in B$ tel que la solution de base $y^*$ associée à $S$ soit réalisable et tel que 
+\[c^Ty^*\leq c^Tx^*\]
+Cette méthode opère au moyen d'un pivot dans le sens où $\gamma(\{1,...,m\})$ et $\delta(\{1,...,m\})$ ne diffèrent que par 1 seul élément.\\
+En pratique, on note 
+	\[E_{\gamma}=j\in\{1,...,n-m\};\ d_{\hat{\gamma}(j)}<0\}\]
+Si la solution de base $x^*$ associée à $\gamma$ n'est pas optimale, alors $E_{\gamma}\neq \emptyset$.\\
+Soit $j\in E_{\gamma}$ (plusieurs choix possibles, on verra ça plus tard). On définit l'ensemble 
+	\[S_{\gamma,j^*}=\left\{i\in\{1,...,m\};\ (B^{-1}N)_{i,j^*}>0 \right\}\]
+
+\Propo{}{Si $S_{\gamma,j^*}=\emptyset$, alors le problème $(P_L)$ n'admet pas de solution car la fonction coût n'est pas bornée inférieurement sur $X_{ad}$.}
+
+\begin{dem}
+	Soit $t>0$. On considère le vecteur $x$ définit par :
+\begin{eqnarray*}
+	x_{\hat{\gamma}(j)}&=&0 \text{ si } j\in\{1,...,n-m\}\textbackslash \{j^*\}\\
+	x_{\hat{\gamma}(j^*)}&=&t\\
+	x_{\gamma(i)}&=&B^{-1}b-t(B^{-1}N)_{ij^*} \text{ si } i\in\{1,...,m\}
+\end{eqnarray*}
+
+On a $Ax=b$ par construction.\\
+De plus, $x_N\geq 0$ et $x_B\geq 0$ car $(B^{-1}N)_{ij^*}\leq 0$ (car $S_{\gamma,j^*}=\emptyset$).\\
+$\Rightarrow$ $x$ est une solution admissible.
+
+\bigskip
+De plus :
+\begin{eqnarray*}
+	c^Tx&=&x^Tx^*+d^Tx\\
+		&=&c^Tx^*+d_N^Tx_N\\
+		&=&c^Tx^*+\underbrace{d_{\hat{\gamma}(j^*)}}_{<0}t
+\end{eqnarray*}
+
+Quant $t\to +\infty$, on a $c^Tx\to -\infty$, avec $x\in X^{ad}$. Ma fonction coût n'est donc pas bornée inférieurement.
+\end{dem}
+
+On suppose à partir de maintenant que la fonction coût est bornée inférieurement.
+	\[\Rightarrow S_{\gamma,j^*}\neq \emptyset\]
+On choisit $i^*\inS_{\gamma,j^*}$.
+
+\Lem{}{Soit $\delta\in\Gamma$ l'unique application telle que 
+	\[\delta(\{1,...,m\})=\hat{\gamma}(\{1,...,m\}\textbackslash\gamma(i^*)\cup\hat{\gamma}(j^*)\]
+Alors $\delta\in B$.}
+
+\begin{dem}
+Montrons que :
+	\[A_{\hat{\gamma}(j^*)}=\sum_{i=1}^m (B^{-1}N)_{ij^*}A_{\gamma(i)}\]
+\begin{eqnarray*}
+	\sum_{i=1}^m (B^{-1}N)_{ij^*}A_{\gamma(i)}&=&\sum_{i=1}^m \sum_{j=1}^m B^{-1}_{ij}N_{jj^*}A_{\gamma(i)}\\
+			&=&\sum_{j=1}^* N_{jj^*} \sum_{i=1}^m B^{-1}_{ij}\begin{pmatrix} B_{1i}\\ \vdots \\ B_{mi} \end{pmatrix} \\
+			&=&\sum_{j=1}^m N_{jj^*} \begin{pmatrix} \sum_{i=1}^m B_{1i}B^{-1}_{ij} \\ \vdots \\ \sum_{i=1}^m B_{mi}B^{-1}_{ij} \end{pmatrix} \\
+			&=&\sum_{i=1}^m N_{jj^*} \begin{pmatrix} (BB^{-1})_{1j} \\ \vdots \\ (BB^{-1})_{mj} \end{pmatrix}\\
+			&=&\sum_{j=1}^m N_{jj^*}e_j \\
+			&=&A_{\hat{\gamma}(j^*)}
+\end{eqnarray*}
+Comme $\{A_{\gamma(i)}\}_{i=1}^m$ forme une base et que $(B^{-1}N)_{i^*j^*}>0$, on ne peut pas exprimer $A_{\hat{gamma(j^*)}}$ comme une combinaison linéaire de $A_{\gamma(i)}$ pour $i=1,...,n$ avec $i\neq i^*$. \\
+Donc $((A_{\gamma(i)})_{i=1,...,m,\ i\neq i^*},A_{\hat{\gamma}(j^*)})$ forme une base.
+	\[\Rightarrow \delta \in B\]
+\end{dem}
