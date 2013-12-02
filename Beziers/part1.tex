@@ -309,12 +309,32 @@ puis $B_{j,0}$ est la fonction indicatrice de l'intervalle $[t_j,t_{j+1}[$. \\
 Pour calculer $a_j^{(k)}(\hat{x})$, il suffit d'évaluer les $a_i^{(k)}$ pour $i\in\{j-k+r+1,...,j\}$, les autres $B_{i,k-r}(\hat{x})$ étant nuls puisque :
 \begin{eqnarray*}
 	S(\hat{x})&=&\sum_{i=j-k}^{j} a_i^{(0)} B_{i,k}(\hat{x})\\
-		&=& \sum_{i=j-k-1}^{j} a_i^{(1)} B_{i,k}(\hat{x})\\
+		&=& \sum_{i=j-k+1}^{j} a_i^{(1)}(\hat{x}) B_{i,k-1}(\hat{x})\\
 		&\vdots& \\
 		&=&a_j^{(k)}(\hat{x})
 \end{eqnarray*}
 L'algorithme se présente donc sous forme triangulaire, chaque élément s'obtenant par combinaire convexe des deux éléments de la ligne supérieure qui sont au-dessus de lui.\\
-(FAIRE DESSIN)\\
+\begin{tikzpicture}
+	\draw (1,3) node{$a_{j-k}$};
+	\draw (3,3) node{$a_{j-k+1}$};
+	\draw (5,3) node{...};
+	\draw (7,3) node{$a_{j-1}$};
+	\draw (9,3) node{$a_j$};
+	\draw (2,2) node{$a_{j-k+1}^{(1)}$};
+	\draw [->] (1,2.9)--(2,2.3);
+	\draw [->] (3,2.9)--(2,2.3);
+	\draw (5,2) node{...};
+	\draw (8,2) node{$a_j^{(1)}$};
+	\draw [->] (9,2.9)--(8,2.3);
+	\draw [->] (7,2.9)--(8,2.3);
+	\draw (4,1) node{$a_{j-1}^{(k-1)}$};
+	\draw (6,1) node{$a_j^{(k-1)}$};
+	\draw [->] (2,1.7)--(4,1.3);
+	\draw [->] (8,1.7)--(6,1.3);
+	\draw (5,0) node{$a_j^{(k)}$};
+	\draw [->] (4,0.7)--(5,0.3);
+	\draw [->] (6,0.7)--(5,0.3);
+\end{tikzpicture}
 
 \bigskip
 \underline{Remarque :} \begin{enumerate}
@@ -348,7 +368,7 @@ k\frac{a_i-a_{i-1}}{t_{i+k}-t_i} &\text{ si }& t_i<t_{i+k}\\
 \begin{eqnarray*}
 DS(x)&=&\sum_{i=0}^{n-1} a_i k \left[\frac{B_{i,k-1}(x)}{t_{i-k}-t_i} - \frac{B_{i+1,k+1}(x)}{t_{i+1+k}-t_{i+1}} \right] \\
 	&=&\sum_{i=0}^{n-1} a_i k \frac{B_{i,k-1}(x)}{t_{i-k}-t_i} - \sum_{I=1}^{n}a_{I-1} k \frac{B_{I,k+1}(x)}{t_{I+k}-t_{I}}\\
-	&=&\sum_{i=0}^{n-1} \underbrace{k \frac{a_i-a_{i-1}}{t_{i+k}-t_i}}^{=b} B_{i,k-1}(x) + ka_0\underbrace{\frac{B_{0,k-1}(x)}{t_k-t_0}}_{=0} - ka_{n-1}\underbrace{\frac{B_{n,k-1}(x)}{t_{n-k}-t_n}}_{=0}
+	&=&\sum_{i=0}^{n-1} \underbrace{k \frac{a_i-a_{i-1}}{t_{i+k}-t_i}}_{=b} B_{i,k-1}(x) + ka_0\underbrace{\frac{B_{0,k-1}(x)}{t_k-t_0}}_{=0} - ka_{n-1}\underbrace{\frac{B_{n,k-1}(x)}{t_{n-k}-t_n}}_{=0}
 \end{eqnarray*}
 \end{dem}
 

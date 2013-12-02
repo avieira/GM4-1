@@ -172,7 +172,31 @@ et de plus, il y a unicité de la limite dans $\mathcal{D}'(\Omega)$ et donc $\o
 \[\|v\|_{L^2(\Omega)}=\|v\|_{0,\Omega}\leq C(\Omega)\sum_{i=1}^n \left\| \frac{\partial v}{\partial x_i}\right\|_{L^2(\Omega)}\]}
 
 \begin{dem}
-A reprendre
+Soit $v\in H_0^1(\Omega)$. \\
+On considère la base canonique de $\mathbb{R}^n$ : $(e_i)_{i\in\{0,..,n\}}$. On suppos que $\Omega$ est borné dans une direction de l'espace (par exemple $e_1$).\\
+Dans la direction $e_1$, les éléments de $\Omega$ sont compris entre $a$ et $b$.
+
+\bigskip
+On considère un couple $(t,\hat{x})$, avec $t\in \mathbb{R}$, $(\hat{x}\in\mathbb{R}^{n-1}$, on a :
+	\[v(x)-\underbrace{v(a)}_{=0 (a\in\Gamma)} = \int_a^x v'(t,\hat{x})dt\]
+On applique Cauchy-Schwarz :
+\begin{eqnarray*}
+	|v(x)^2|&\leq& (x-a)\int_a^x |v'(t,\hat{x})|^2dt\\
+		&\leq& (x-a)\int_{\mathbb{R}} |v'(t,\hat{x})|^2 dt
+\end{eqnarray*}
+On intègre sur $\mathbb{R}^{n-1}$ :
+\begin{eqnarray*}
+	\int_{\mathbb{R}^{n-1}} v(x)^2 d\hat{x} &\leq& \int_{\mathbb{R}^{n-1}} (x-a) \int_{\mathbb{R}} v'(t,\hat{x})^2 dt d\hat{x} \\
+					&\leq& (x-a) \int_{\mathbb{R}^n} v'(t,\hat{x})^2 dt d\hat{x}
+\end{eqnarray*}
+Or, \[\int_{\mathbb{R}^n} v'(t,\hat{x})^2 dtd\hat{x} = \|v'\|^2_{0,\Omega} \leq \|\nabla v\|^2_{0,\Omega}\]
+On intègre à nouveau entre a et b :
+\begin{eqnarray*}
+	\int_a^b \int_{\mathbb{R}^{n-1}} v(x)^2 d\hat{x}dt &\leq& \int_a^b (t-a) dt \|\nabla v\|^2_{0,\Omega}\\
+			\|v\|^2_{0,\Omega} &\leq& \frac{b-a}{2} \|\nabla v\|^2_{0,\Omega}
+\end{eqnarray*}
+Ainsi, $C(\Omega)=\frac{|b-a|}{\sqrt{2}}$.\\
+La densité de $\mathcal{D}(\Omega)$ dans $H_0^1(\Omega)$ nous permet d'obtenir la formule de Poincaré.
 \end{dem}
 
 Il existe d'autres formules de ce type, comme la formule de Poincaré-Wirtinger.
