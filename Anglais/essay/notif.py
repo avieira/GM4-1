@@ -13,8 +13,8 @@ def onSave(event):
 		pynotify.init("Mon appli python")
 		try:
 			subprocess.check_call(['mkdir', '-p', 'tmp'])
-			subprocess.check_call(['latexmk', '-pdf', '-output-directory=tmp', '-shell-escape' ,'-halt-on-error' ,'cours.tex'])
-			subprocess.check_call(['mv', 'tmp/cours.pdf', '.'])
+			subprocess.check_call(['latexmk', '-pdf', '-output-directory=tmp', '-shell-escape' ,'-halt-on-error' ,'essay.tex'])
+			subprocess.check_call(['mv', 'tmp/essay.pdf', '.'])
 		except subprocess.CalledProcessError:
 			message = pynotify.Notification("Build failed.")
 		else:
