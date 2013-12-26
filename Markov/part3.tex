@@ -271,3 +271,107 @@ Donc $i\rightsquigarrow j\Leftrightarrow \forall t>0,\ p_j^i(t)>0$ (car encore v
 \Def{}{En temps continu, une chaîne est dite régulière si elle n'a qu'une seule classe (donc finale), ie $\forall i,j\in E, i\rightsquigarrow j$}
 
 \Theo{}{La chaîne est régulière si et seulement si : \[\forall t>0,\ \forall i,j,\ p_j^i(t)>0\]}
+
+\subsection{Loi de probabilité invariante}
+$\mu$ est invariante $\Leftrightarrow$ $(\mathcal{L}(X_0)=\mu\Rightarrow \forall t>0,\ \mathcal{L}(X_t)=\mu)$, ie \[\forall t, \mu\Pi_t=\mu\]
+
+\Theo{}{Soit $\mu$ une loi de probabilité sur E. \[\mu \text{ est invariante } \Leftrightarrow \mu A=0\]}
+\begin{dem}
+\[\forall t,\ \mu \Pi_t=\mu\Rightarrow (\mu\Pi_t)'=\mu\Pi_t'=0\]
+En particulier, pour $t=0$, $\mu A=0$
+
+\bigskip
+Réciproquement, si $\mu A=0$, alors $\mu \Pi'_t=(\mu\Pi_t)'=\mu A\Pi_t=0$, ie
+	\[\forall t, \mu\Pi_t=\mu \Leftrightarrow \mu A=0\]
+\end{dem}
+
+Donc $\mu$ est une loi de probabilité invariante 
+	\[\Leftrightarrow \left\{ \begin{array}{r c c} 
+		\mu A&=&0\\
+		\forall i, \mu_i&\geq& 0\\
+		\sum_i \mu_i &=&1
+	\end{array} \right.\]
+
+\Theo{fondamental pour les chaînes régulières (E fini)}{Si la chaîne est régulière, alors elle possède une et une seule loi de probabilité invariante.\\
+Notons la $\mu$. Celle-ci vérifie : \begin{enumerate}
+	\item $\forall i, \mu_i>0$
+	\item $\forall \mathcal{L}(X_0)$, $\mathcal{L}(X_t)\to \mu$ exponentiellement vite
+	\item $\mu$ est l'unique solution de $\left\{ \begin{array}{c c c} \mu A&=&0 \\ \sum_i \mu_i &=& 1 \end{array}\right.$
+\end{enumerate}}
+
+\Rap{Lemme en temps discret}{$\Pi$ matrice stochastique, $p^*=\inf_{i,j} p^i_j$. \\
+X : vecteur colonne : $(X^i)_i$.\\
+\[Y=\Pi X\]
+$M_1 = \sup_i Y^i$, $M_0=\sup_i X^i$, \\
+$m_1=\inf Y^i$, $m_0=\inf X^i$.
+On a alors : 
+	\[(M_1-m_1)\leq (1-2p^*)(M_0-m_0)\]}
+
+\begin{dem}
+Considérons la colonne $j$ de $\Pi_t$ :
+	\[C_{t,j}=[p^i_j(t)]_i\]
+$j$ sera fixé, on omettra donc l'indice $j$ pour $C_{t,j}$.
+\[C_t=\Pi_tC_0,\ C_0=[\delta_j^i]_i\]
+\[C_{t+s}=\Pi_t\pi_sC_0=\Pi_tC_s\]
+$M_t=\sup_i p_j^i(t)$, $m_t=\inf_i p_j^i(t)$, $p^*(t)=\inf_{i,j} p^i_j(t)$.
+
+	\[\forall t>0, p^*(t)>0 \text{ (car la chaîne est régulière)}\]
+Choisissons un $t_0>0$.
+	\[t=kt_0+r,\ 0\leq r\leq t_0\]
+	\[\Pi_{kt_0+r}=\Pi_{kt_0}\Pi_r \Rightarrow C_{kt_0+r}=\Pi_{t_0}C_{(k-1)t_0+r}\]
+
+\begin{eqnarray*}
+M_{kt_0+r}-m_{kt_0+r}&\leq& (1-2p^*(t_0))(M_{(k-1)t_0+r}-m_{(k-1)t_0+r})\\
+			&\leq& (1-2p^*(t_0))^k\underbrace{(M_r-m_r)}_{\leq 1}\\
+			&\leq& \left[(1-2p^*(t_0))^\frac{1}{t_0}\right]^{kt_0}\\
+			&\leq& \left[(1-2p^*(t_0))^\frac{1}{t_0}\right]^{kt_0+r}\times \frac{1}{(1-2p^*(t_0))^\frac{r}{t_0}}
+\end{eqnarray*}
+
+Soit : \[a=\sup_{0\leq r<t_0} \frac{1}{(1-2p^*(t_0))^\frac{r}{t_0}}\]
+	\[e^{-b}=(1-2p^*(t_0))^\frac{1}{t_0}\]
+
+On a :
+	\[M_t-m_t=ae^{-bt}\]
+Cela valant pour toute colonne j (implicite depuis le début).
+
+\bigskip
+On a $m_t$ croissante et $M_t$ décroissante, avec $0<m_t\leq M_t$. Donc $m_t$ et $M_t$ convergent vers une même limite. Notons $\mu_j$ cette limite.
+	\[\forall t,\ °<m_t\leq \mu_j\leq M_t\]
+donc $\forall j,\ \mu_j>0$.\\
+De plus, $0<m_t\leq p^i_j(t)\leq M_t$
+	\[\Rightarrow \forall i,j, |\mu_j-p_j^i(t)|\leq M_{t,j}-m_{t,j}\leq ae^{-bt}\]
+donc $p^i_j(t)\to \mu_j$ exponentiellement vite.
+
+\bigskip
+Soit $\mu_0=(\mathbb{P}(X_0=j))_j$ la loi initiale, alors $\mu_t=(\mathbb{P}(X_t=j))_j$.
+	\[\mathbb{P}(X_t=j)=\sum_i \mu_0(i)p^i_j(t)\]
+\begin{eqnarray*}
+	|\mathbb{P}(X_t=j)-\mu_j|&\leq& \sum_i \mu_0(i)|p^i_j(t)-\mu_j| \\
+				&\leq& \underbrace{\sum_i \mu_0(i)}_{=1} ae^{-bt}
+\end{eqnarray*}
+$\forall \mathcal{L}(X_0)$, $\mathcal{L}(X_t)\to \mu$ exponenitellement vite.
+
+\bigskip
+Montrons pour finir que $\mu$ est une loi de probabilité invariante.
+	\[\mu=(\mu_j)_j \text{ vecteur ligne}\]
+$\forall j,\ \mu_j>0$.
+	\[1=\sum_j p^i_j(t) \to \sum_j \mu_j \Rightarrow \sum_j \mu_j=1\]
+	\[\mu\Pi_t \xrightarrow[t\to +\infty]{} \mu\]
+	\[\mu \Pi_{t+s} \to \mu\]
+	\[\mu\Pi_t\Pi_s \xrightarrow[t\to+\infty]{} \mu\Pi_s\]
+Donc $\forall s$, $\mu\Pi_s=\mu$.
+
+\bigskip
+Soit $\nu$ tel que $\begin{array}{c c c} \nu A&=&0 \\ \sum_i \nu_i&=&1 \end{array}$.
+	\[(\nu \Pi_t)'=\nu A\Pi_t=0\]
+	\[\nu\Pi_t=\nu\Pi_0=\nu\ \forall t\]
+	\[(\nu\Pi_t)_j=\sum_i \nu_ip^i_j(t)\to \sum_i \nu_i\mu_j = \mu_j\]
+donc :
+	\[\nu=\nu\Pi_t\to \mu\]
+donc $\nu=\mu$.\\
+Soit $\nu$ une loi de probabilité invariante. Alors $\nu A=0$ et $\sum_i \nu_i=1$ $\Rightarrow$ $\nu=\mu$.\\
+$\mu$ est donc l'unique loi de probabilité invariante sur E.
+\end{dem}
+
+\Theo{ergodique}{Si $E$ n'a qu'une classe finale qu'on notera X, et $\mu_C$ la loi de probabilité invariante associée à C, alors $\forall f:E\to \mathbb{C}$ :
+	\[\frac{1}{T}\int_0^T f(X_s)fs \xrightarrow[\forall \mathcal{L}(X_0)]{p.s.} \int_C fd\mu_C=\sum_{j\in C} f(j)\mu_C(j)\]}
