@@ -1,0 +1,192 @@
+\part{Processus d'entrée-sortie}
+On considère un système dans lequel des "objets" rentrent, y restent un certain temps aléatoire et en repartent.\\
+$X_t$ : le nombre d'objets présents à $t$ dans le système.
+
+\section{Cadre général}
+\subsection{Hypothèses et paramètres, générateur infinitésimal}
+On peut distinguer deux cas :
+\begin{itemize}
+	\item Capacité limité : $X_t\leq N$ : espace d'états fini
+	\item Capacité illimité : $X_t\in\mathbb{N}$
+\end{itemize}
+
+\bigskip
+$S$ : instant d'arrivée du premier objet après $t=0$\\
+$T$ : instant de départ du premier objet après $t=0$
+
+\bigskip
+Si $0<k<N$ (ou $k>0$ si illimité) : $S$ et $T$ sont indépendantes sachant que $X_0=k$.
+	\[\mathcal{L}(S|X_0=k)=\mathcal{E}(\alpha_k) \hspace{3em} \mathcal{L}(T|X_0=k)=\mathcal{E}(\beta_k)\]
+Les $\alpha_k$ et les $\beta_k$ sont les paramètres du modèle.
+	\[\mathbb{P}(S=T|X_0=k)=0\]
+$U=S\cap T$ : instant de première transition.
+	\[\mathcal{L}(Y|X_0=k)=\mathcal{E}(\alpha_k+\beta_k)\]
+donc $a_k=-a_k^k=\alpha_k+\beta_k$.
+	\[\hat{p}^k_{k+1}=\mathbb{P}(S<T|X_0=k)=\frac{\alpha_k}{\alpha_k+\beta_k}=\frac{a^k_{k+1}}{a_k}\]
+donc $a^k_{k+1}=\alpha_k$ et de même, $a^k_{k-1}=\beta_k$
+
+\bigskip
+Si $k=0$ : $S=U$
+	\[\mathcal{L}(S|X_0=0)=\mathcal{E}(\alpha_0)\]
+	\[a_0=\alpha_0\]
+	\[\hat{p}_1^0=1\Rightarrow a_1^0=\alpha_0\]
+Si $k=N$ (capacité limitée) : $T=U$
+	\[\mathcal{L}(T|X_0=0)=\mathcal{E}(\beta_N)\]
+	\[a_N=\beta_N\]
+	\[\hat{p}_{N-1}^N=1\Rightarrow a_{N-1}^N=\beta_N\]
+
+\[A=\begin{pmatrix}-\alpha_0 &      \alpha_0       &    0     & \cdots & \cdots & \cdots & 0 \\
+		    \beta_1  & -(\alpha_1+\beta_1) & \alpha_1 &    0   & \cdots & \cdots & 0 \\
+		     \vdots  &      \ddots         &  \ddots  & \ddots &        &        & \vdots \\
+                    \vdots   &                     &  \ddots  & \ddots & \ddots &        & \vdots \\
+		    \vdots   &                     &          & \ddots & \ddots & \ddots & \vdots \\
+                       0     &       \cdots        &  \cdots  & \cdots &   0    &\beta_N & -\beta_N \end{pmatrix}\]
+
+\subsection{Classification, recherche de lois de probabilité invariante}
+On constate que $\forall k,l$, $k\rightsquigarrow l$. On a donc une seule classe.\\
+On a une chaîne régulière (en temps continu). 
+\begin{itemize}
+	\item Si capacité limitée : chaîne régulière, espace d'état fini
+	\item Si capacité illimitée, on a une chaîne régulière dans un espace d'état inifini dénombrable.
+\end{itemize}
+
+La loi de probabilité invariante existe et est unique dans le cas fini.
+	\[\mu \text{ doit vérifier } \left\{ \begin{array}{c c c} \mu A&=&0 \\ \sum_i \mu_i &=& 1 \end{array} \right.\]
+
+$\mu=(x_0....x_N)$
+	\[-\alpha_0x_0+\beta_1x_1=0\]
+	\[\alpha_0x_0-(\alpha_1+\beta_1)x_1+\beta_2x_2=0\]
+	\[\alpha_1x_1-(\alpha_2+\beta_2)x_2+\beta_3x_3=0\]
+	\[...\]
+
+	\[x_1=\frac{\alpha_0}{\beta_1}x_0\]
+	\[x_2=\frac{\alpha_0\alpha_1}{\beta_1\beta_2}x_0\]
+	\[...\]
+	\[x_k=\frac{\alpha_0...\alpha_{k-1}}{\beta_1...\beta_k}x_0\]
+
+$E=\{0,...,N\}$ ou $E=\mathbb{N}$.\\
+Soit $C=1+\sum_{k\in E} \frac{\alpha_0...\alpha_{k-1}}{\beta_1...\beta_k}$. On doit avoir $x_0 C=1$.\\
+
+\begin{itemize}
+	\item Si $E$ fini, alors $C<+\infty$ et $x_0=\frac{1}{C}$.
+	\[x_k=\mu_k=\frac{1}{C}\frac{\alpha_0...\alpha_{k-1}}{\beta_1...\beta_k}\]
+et $\mathcal{L}(X_0)$, $\mathcal{L}(X_t)\to \mu$ exponentiellement vite.
+
+	\item Si $E=\mathbb{N}$, \begin{itemize}
+		\item Si $C=+\infty$, il n'existe pas de loi de probabilité invariante. Par contre, il existe une unique mesure ($\sigma$-finie) invariante (à une constante multiplicative près) $\mu$ donnée par $\mu_k=\frac{\alpha_0,...,\alpha_{k-1}}{\beta_1....\beta_k}$. On a ici un phénomène d'explosion.
+		\item Si $C<+\infty$,, alors il existe une et une seule loi de probabilité invariante $\mu$ donnée par $\mu_k=\frac{1}{C}\frac{\alpha_0...\alpha_{k-1}}{\beta_1...\beta_k}$. On montre qu'alors $\mathcal{L}(X_t)\to \mu$ et le théorème ergodique reste vrai dans ce cas.
+	\end{itemize}
+\end{itemize}
+
+\section{Processus de Poisson}
+On considère une suite de phénomènes survenant à des instants aléatoires $T_0=0<T_1<...<T_n<...$ avec $T_n\xrightarrow[n\to +\infty]{} +\infty$
+\Def{Processus de comptage associé}{$N_t$ : le nombre de phénomène survenus dans l'intervalle de temps $]0,t]$ $(N_0=0)$\\
+On suppose que $N_t$ ne croit que par sauts de 1 (ie 2 phénomènes ne peuvent être simultanés).}
+
+Les lois de $N_t$ et de $T_k$ sont liées. \[\mathbb{P}=(N_t\leq k)=\mathbb{P}(T_k\geq t)\]
+
+\subsection{Hypothèse des processus de Poisson}
+On suppose que $N_t$ (processus de comptage) : \begin{enumerate}
+	\item est à accroissements indépendants : $N_t-N_s\Inde (N_u,\ u\leq s)$ (ie le nombre d'évènements surevnus entre $s$ et $t$ est indépendant de ce qui s'est passé avant $s$)
+	\item est à avancement stationnaire : $\mathcal{L}(N_t-N_s)$ ne dépend que de la durée $t-s$.
+		\[\mathcal{L}(N_t-N_s)=\mathcal{L}(N_{t-s}-N_0)=\mathcal{L}(N_{t-s})\]
+\end{enumerate}
+
+\Theo{}{Sous les hypothèses précédentes, il existe $\lambda>0$ tel que :
+	\[\forall t,\ \mathcal{L}(N_t)=\mathcal{P}(\lambda t) \text{ (Loi de Poisson de paramètre }\lambda t)\]
+	\[\forall k\in\mathbb{N},\ \mathbb{P}(N_t=k)=\frac{(\lambda t)^k}{k!} e^{-\lambda t}\]
+	\[\mathbb{E}(N_t)=\lambda t \text{ : nombre moyen d'évènements surevnus dans un intervalle de temps de longueur t}\]
+}
+
+\begin{dem}
+Posons $p_k(t)=\mathbb{P}(N_t=k)$.
+$\bullet$ Calcul de $p_0(t)$ :
+	\[\mathbb{P}(N_{t+h}=0)=\mathbb{P}(N_{t+h}-N_t=0,N_t=0)\]
+Par indépendance :
+	\[\mathbb{P}(N_{t+h}=0)=\mathbb{P}(N_{t+h}-N_t=0)\mathbb{P}(N_t=0)\]
+Donc $\forall s,t>0$ :
+	\[\begin{array}{c} p_0(t+s)=p_0(t)p_0(s) \\ p_0(t) \text{ décroit} \end{array}\Leftrightarrow \exists \lambda>0; p_0(t)=e^{-\lambda t}\]
+
+\bigskip
+$\bullet$ Calcul de $p_k(t),\ k\geq 1$ :
+On admettra que $\mathbb{P}(N_h\geq 2)=o(h)$\\
+$p_k(t+h)=\mathbb{P}(N_{t+h}=k)$ (avec $h$ petit).
+\begin{eqnarray*}
+p_k(t+h)&=&\mathbb{P}(N_t=k,N_{t+h}-N_t=0)+\mathbb{P}(N_t=k-1,N_{t+h}-N_t=1)+\sum_{k\leq k-2} \mathbb{P}(N_t=j,N_{t+h}-N_t=k-j)\\
+	&=&\mathbb{P}(N_t=k)\mathbb{P}(N_{t+h}-N_t=0)+\mathbb{P}(N_t=k-1)\mathbb{P}(N_{t+h}-N_t=1)+o(h)\\
+	&=&p_0(h)p_k(t)+p_1(h)p_{k-1}(t)+o(h)
+\end{eqnarray*}
+
+Or, $p_0(h)+p_1(h)+\mathbb{P}(N_h\geq 2)=1$\\
+$e^{-\lambda h}+p_A(h)+o(h)=1$\\
+$1-\lambda h+o(h)+p_1(h)+o(h)=1$
+\[\Rightarrow \left\{\begin{array}{c c c} p_1(h)&=&\lambda h+o(h) \\ p_0(h)&=&1-\lambda h+o(h) \end{array}\right.\]
+
+\[p_k(t+h)=(1-\lambda h)p_k(t)+\lambda hp_{k-1}(t)+o(h)\]
+\[\frac{1}{h}\left( p_k(t+h)-p_k(t)\right)=-\lambda p_k(t)+\lambda p_{k-1}(t)+o(1)\]
+\[\begin{array}{c} p_k'(t)=\lambda(-p_k(t)+p_{k-1}(t),\ k\geq 1\\ p_0(t)=e^{-\lambda t} \end{array}\]
+
+Variation de la constante : posons $p_k(t)=q_k(t)e^{-\lambda t}$
+\begin{eqnarray*}
+	p_k'&=&q_k'e^{-\lambda t}-\lambda q_ke^{-\lambda t} \\
+		&=&q_k'e^{-\lambda t}-\lambda p_k \\
+		&=&-\lambda p_k+\lambda q_{k-1}e^{-\lambda t}
+\end{eqnarray*}
+
+\[\Rightarrow \left\{ \begin{array}{c} q_k'=\lambda q_{k-1},\ q_k(0)=0 \\ q_0=1 \end{array}\right.\]
+$q_1(t)=\lambda t$
+$q_k(t)=\int_0^t q_{k-1}(s) ds = \frac{(\lambda t)^k}{k!}$ \\
+D'où $\mathbb{P}(N_t=k)=p_k(t)=\frac{(\lambda t)^k}{k!}e^{-\lambda t}$, $\mathcal{L}(N_t)=\mathcal{P}(\lambda t)$.\\
+Donc le nombre moyen d'évenements survenant pendant une durée $t$ est $\mathbb{E}(N_t)=\lambda t$
+\end{dem}
+
+\Theo{}{$\forall n$, $\mathcal{L}(T_n)=\gamma(\lambda, n)$ : loi de la somme de $n$ variables aléaoitres suivant une loi $\mathcal{E}(\lambda)$ indépendantes.
+\[\text{Densité : } f_n(t)=\frac{\lambda^nt^{n-1}}{(n-1)!}e^{-\lambda t}\]
+\[\mathbb{E}(T_n)=\frac{n}{\lambda}\]}
+
+\begin{dem}
+\[\mathbb{P}(T_1>t\mathbb{P}(N_t=0)=e^{-\lambda t}\]
+Donc $\gamma(\lambda,1)=\mathcal{E}(\lambda)$.
+\begin{eqnarray*}
+	\mathbb{P}(T_n>t)&=&\mathbb{P}(N_t<n)\\
+			&=&\sum_{k=0}^{n-1} \mathbb{P}(N_t=k)\\
+			&=& \sum_{k=0}^{n-1} \frac{(\lambda t)^k}{k!} e^{-\lambda t}\\
+			&=& 1-F_n(t)
+\end{eqnarray*}
+En dérivant, on trouve $f_n=F_n'$
+\end{dem}
+
+\Theo{}{Soit $U_n=T_n-T_{n-1}$ ($T_0=0$) la durée entre deux arrivées. Alors les $(U_n)_n$ sont indépendants et de même loi $\mathcal{E}(\lambda)$.}
+
+\begin{dem}
+Pour simplifier, on ne le fait que pour $U_1$ et $U_2$.
+$t_1>0$, $t_2>0$, $h>0$, $k>0$ (petits).\\
+\begin{eqnarray*}
+\end{eqnarray*}
+A reprendre.
+\end{dem}
+
+\section{Répartition poissonnienne}
+On considère un espace mesure $(E,\mathcal{B},\mu)$ et une répartition aléatoire de points sur cet ensemble.\\
+\underline{Hypothèses :} Soit $A\in\mathcal{B}$\\
+$N_A$ : nombre de points dans A. On suppose : \begin{itemize}
+	\item les accroissements indépendants : Si $A,B\in\mathcal{B}$ et $A\cap B=\emptyset$, alors $N_A\Inde N_B$.
+	\item les accroissements stationnaires : la loi de $N_A$ ne dépendant que de la mesure de $A$ $\mu(A)$
+\end{itemize}
+
+\Theo{}{$\exists \lambda>0$, $\forall A\in\mathcal{B}$, si $\mu(A)<\infty$ :
+	\[\mathcal{L}(N_1)=\mathcal{P}(\lambda \mu(A))\]}
+
+\begin{dem}
+$A_0=\emptyset$. Considérons une famille $(A_r)_r$ de parties mesurables emboitées.
+	\[r<s\Rightarrow A_r\subset A_s\]
+avec $\mu(A_r)=r$.\\
+$N_r$ : nombre de points de $A_r$, $N_0=0$.\\
+Si $r<s$, $N_s-N_r$ est le nombre de points de $A_s\backslash A_r$, indépendant de $N_r$.
+
+\bigskip
+La loi de $N_r-N_s$ dépendant de la mesure de $A_s\backslash A_r$, donc de $r-s$.
+	\[\Rightarrow \mathcal{L}(N_r)=\mathcal{P}(\lambda r)\]
+Si $A$ a pour mesure $\mu(A)$ :
+	\[\mathcal{L}(N_A)=\mathcal{L}(N_{A_r})=\mathcal{P}(\lambda r)=\mathcal{P}(\lambda \mu(A))\]
+\end{dem}

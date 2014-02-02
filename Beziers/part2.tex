@@ -1,0 +1,143 @@
+\section{Courbes B-Splines - Courbes de Bézier dans $\mathbb{R}^s$}
+\subsection{Polynômes de Bernstein}
+Les courbes de Bezier apparaîtront comme un cas particulier de B-Splines.\\
+Fixons $k$ et prenons [a,b]=[0,1]. Nous allons considérer les B-Splines $B_{i,k,t}$, la suite de n\oe uds $t=(t_i)_i$ étant définie de la manière suivante :
+	\[\left\{ \begin{array}{c} t_0=...=t_k=0 \\ t_{k+1}=...=t_{2k+1}=1 \end{array}\right.\]
+Ainsi, les $w_{i+1,k}(X)=X$ si $t_{i+1}<t_{i+k+1}$, $i\leq k-1$ et les polynômes $B_{i,k}$ sont les polynômes de degré $k$ sur [0,1] vérifiant :
+	\[B_{i,k,t}(X)=XB_{i,k-1,t}(X)+(1-X)B_{i+1,k-1,t}(X)\]
+Les $B_{i,k}$ forment une base de l'espace des polynômes sur [0,1] de degré $\leq k$ appelée base de Bernstein.\\
+\underline{Notation :} Les polynômes de Bernstein se notent $B_i^k$, ce qui les distinguent des B-Splines classiques.
+
+\Prop{}{$B_i^k(X)=\binom{k}{i} X^i(1-X)^{k-i}$}
+
+\begin{dem}
+La relation de récurrence entre B-Splines s'écrit :
+	\[B_{i,k,t}(X)=XB_{i,k-1,t}(X)+(1-X)B_{i+1,k-1,t}(X)\]
+où $B_{i,k}$ est la B-Spline de degré $k$ définie à l'aide de la suite de n\oe uds : 
+	\[\left\{ \begin{array}{c} t_0=...=t_k=0 \\ t_{k+1}=...=t_{2k+1}=1 \end{array}\right.\]
+D'autre part, le polynôme de Bernstein $B_j^{k-1}$ est par définition égal ) $B_{j,k-1,t'}$ avec $t'$ la suite de n\oe uds telle que :
+	\[\left\{ \begin{array}{c} t_0'=...=t_{k-1}'=0 \\ t_k'=...=t_{2k-1}'=1 \end{array}\right.\]
+On a donc :
+	\[B_{j,k-1,t}=B_{j-1,k-1,t'}=B_{j-1}^{k-1}\]
+La relation de récurrence devient alors :
+	\[B_i^k(X)=XB_{i-1}^{k-1}(X)+(1-X)B_i^{k-1}(X)\]
+On procède par récurrence. La propriété est vraie pour k=0.\\
+Supposons la propriété vraie au rang $k-1$ et démontrons que l'implication $(\mathcal{P}(k-1)\Rightarrow \mathcal{P}(k))$ est vraie.\\
+D'après la formule de récurrence :
+\begin{eqnarray*}
+	B_i^k(X)&=&XB_{i-1}^{k-1}(X)+(1-X)B_i^{k-1}(X)\\
+		&=&X\binom{k-1}{i-1}X^{i-1}(1-X)^{k-i}+(1-X)\binom{k-i}{i}X^i(1-X)^{k-1-i}\\
+		&=&\binom{i}{k}X^i(1-X)^{k-i}
+\end{eqnarray*}
+\end{dem}
+
+\Propo{}{\begin{enumerate}
+	\item $B_i^k$ est un polynôme de degré $k$. Les $\{B_i^k\}$ forment une base des polynômes de degré $\leq k$.
+	\item $B_i^k(X)\geq 0$ pour $X\in[0,1]$
+	\item $\sum_{i=0}^k B_i^k(X)=1$ $\forall X\in[0,1]$
+	\item $B_i^k(X)=B^k_{k-i}(1-X)$
+	\item $B_i^k(0)=1$ si $t_i$ est de multiplicité $k+1$, c'est-à-dire si $i=0$. Sinon, $B_i^k(0)=0$
+\end{enumerate}}
+
+\subsection{Les courbes B-Splines}
+Dans la suite, on note $t$ la variable d'une courbe paramétrée.\\
+Soit $n$ points $P_0,...,P_{n-1}$ de $\mathbb{R}^s$ tels que :
+	\[\forall i\in\{0,...,n-1\}, P_i=(X_{1,i},...,X_{s,i})\]
+
+\Def{}{On appelle courbe B-Spline associée au polygone $P_0,...,P_{n-1}$ la courbe paramétrée $\gamma$ définie par : $\forall t\in[a,b]$,
+	\[S(t)=\sum_{i=0}^{n-1}B_{i,k}(t)P_i = (X_1(t),...,X_s(t))\]
+avec $\forall j\in\{1,...,s\}$, $X_j(t)=\sum_{i=0}^{n-1} B_{i,k}(t)X_{j,i}$.\\
+Les $P_i$ sont appelés les points de contrôle de la courbe B-Spline.\\
+Le polygone $\{P_0,...,P_{n-1}\}$ est appelé polygone de contrôle.}
+
+\Theo{}{On se onne $\{P_i\}_{i=0}^{n-1}$ points de contrôle, $\{t_i\}_{i=0}^{n=m+k}$, $t_0,...,t_k\leq a$, $t_n,...,t_{n-k}\geq b$. 
+	\[S(t)=\sum_{i=0}^{n-1} B_{i,k}(t)P_i\]
+\begin{enumerate}
+	\item $\gamma$ ne passe en général pas par les points $P_i$. On a cependant $S(a)=P_0$ et $S'(a)$ dans la direction $\overrightarrow{P_0P_1}$ si $t_0=...=t_k=a$ et $S(b)=P_{n-1}$ et $S'(b)$ dans la direction $\overrightarrow{P_{n-2}P_{n-1}}$ si $t_n=...=t_{n+k}=b$
+	\item $\gamma$ est dans l'enveloppe convexe fermée des points $P_0,...,P_{n-1}$ (plus petit ensemble convexe fermé contenant le polygone $P_0,...,P_{n-1}$)\\
+En fait, si $t\in[t_j,t_{j+1}[$, la courbe $\gamma$ est dans l'enveloppe convexe de $P_{j-k},...,P_j$
+	\item Si les n\oe ds $t_i$, $k+1\leq i\leq n-1$ sont simples, alors $\gamma$ est une courbe de classe $\mathcal{C}^{k-1}$ et est formée de $n$ arcs paramétrés polynomiaux de degré $\leq k$.
+\end{enumerate}}
+
+\begin{dem}
+A reprendre.
+\end{dem}
+
+(Revoir exemple)
+
+\subsection{Algorithme pour les courbes splines}
+\subsubsection{Algorithme d'évaluation en un point}
+\Propo{}{Soit $S(t)=\sum_{i=0}^{n-1} P_iB_{i,k}(t)$ et supposons $\tau\in[t_j,t_{j+1}[$.
+\begin{itemize}
+	\item $P_i^{(0)}=P_i$ $\forall i\in\{j-k,...,j\}$
+	\item Pour $0\leq r\leq k-1$, 
+		\[P_i^{(r+1)}(\tau)=w_{i,k-r}(\tau)P_i^{(r)}(\tau)+(1-w_{i,k-r}(\tau))P_{i-1}^{(r)}(\tau)\]
+		pour $j-k+r+1\leq i\leq j$
+	\item $S(\tau)=P_j^{(k)}(\tau)$
+\end{itemize}}
+
+(Exemple)
+
+\Rem{}{Das le cas d'une courbe de Bézier, l'algorithme st plus simple car les $w_{i,k}(t)$ ne dépendant pas de $k$.\\
+Si $B(t)=\sum_{i=0}^k P_iB_i^k(t)$ est une courbe de Bézier de degré $k$ ayant pour points de contrôle $P_i\in\mathbb{R}^s$, l'algorithme d'évaluation prend la forme suivante :
+\begin{itemize}
+	\item $P_i^{(0)}=P_i$ $\forall i\in \{0,...,k\}$
+	\item Pour $0\leq r\leq k-1$, $r+1\leq i\leq k$ :
+		\[P_i^{(r+1)}(\tau)=\tau P_i^{(r)}(\tau)+(1-\tau)P_{i-1}^{(r)}(\tau)\]
+	\item $B(\tau)=P_k^{(k)}(\tau)$
+\end{itemize}}
+
+\subsection{Algorithme de calcul des dérivées}
+\Propo{}{Soit $S(t)=\sum_{i=0}^{n-1} P_iB_{ik}(t)$ une courbe B-Spline. On a alors :
+	\[D^rS(t)=\sum_{i=r}^{n-1} P_i^rB_{i,k-r}(t)\]
+avec \[P_i^0=P_i\ \forall i\in\{0,...,n-1\}\]
+	\[P_i^r=(k-r+1)\frac{P_i^{r-1}-P_{i-1}^{r-1}}{t_{i+k-r+1}-t_i}\]}
+
+On explicite à présent l'algorithme dans le cas particulier des courbes de Béier, soit :
+	\[B(t)=\sum_{i=0}^k P_iB_i^k(t)\]
+une courbe de Bézier de degré $k$. Posons $\Delta P_i=P_{i+1}-P_i$.
+	\[\Delta^2 P_i=\Delta(\Delta P_i)=P_{i+2}-2P_{i+1}+P_i\]
+	\[\Delta^kP_i=\sum_{j=0}^k (-1)^{k+j} \binom{k}{j} P_{i+j}\]
+
+On a \[D^rB(t)=\frac{k!}{(k-r)!}\sum_{i=0}^{k-r} \Delta^r P_i B_i^{k-r}(t)\]
+
+Si on veut maintenant évaluer $D^rB$ en $t=\tau_0$, on utilise l'algorithme de De Casterljau. L4algorithme se déroule de la manière suivante :
+\begin{enumerate}
+	\item On évalue $B(\tau_0)$ à l'aide de l'algorithme de De Casteljau ce qui donne un tableau triangulaire $T^{(0)}$ de points $P_i^{(r)}$, $0\leq r\leq k$, $r\leq i\leq k$.
+	\item On passe du tableau $T^{(p)}$ au tableau $T^{(p+1)}$ par application de l'opérteur $\Delta$
+	\item $D^rB(\tau_0)$ est donné par le dernier élément du tableau $T^{(r)}$.
+\end{enumerate}
+
+(Revoir exemple dans le cas $k=3$)
+
+\subsection{Interpolation}
+cf TD5
+
+\subsection{Raccords entre courbes}
+Considérons deux courbes splines de degré $k$ dans $\mathbb{R}^s$. 
+	\[S_1(t)=\sum_{i=0}^{n-1} P_iB_{ik}(t),\ a\leq t\leq b\]
+$(t_i)_{i=0}^{m=n+k}$, $t_0=...=t_k\leq a$ et $t_n,...,t_{n+k}\geq b$\\
+et \[S_2(t)=\sum_{i=0}^{n'-1}\hat{P}_i\hat{B}_{i,k}(t),\ \hat{a}\leq t\leq \hat{b}\]
+$(\hat{t}_i)_{i=0}^{m'=n'+k}$, $\hat{t}_0=...=\hat{t}_k\leq a$ et $\hat{t}_{n'},...,\hat{t}_{n'+k}\geq b$\\
+
+Si on veut raccorder $S_1$ et $S_2$, il faut alors supposer $\hat{t}_0=t_n$,...,$\hat{t}_k=t_{n+k}$. Si on pose :
+	\[Q_i=P_i,\ 0\leq i\leq n-1,\ \tilde{B}_{ik}=B_{ik}\]
+	\[Q_{i+n}=\hat{P}_i,\ 0\leq i\leq n'-1,\ \tilde{B}_{i+n,k}=\hat{B}_{ik}\]
+
+alors la courbe \[r(t)=\sum_{i=0}^{n+n'-1} Q_i\tilde{B}_{ik}(t)\]
+est une courbe spline qui coïncide avec$S_1(t)$ pour $t\in[a,b]$ et avec $S_2(t)$ pour $t\in[\hat{a},\hat{b}]$.
+
+\bigskip
+Nous allons traîter le cas de raccord différentiable dans le cas de courbe de Bézier. Considérons :
+	\[B_1(t)=\sum_{i=0}^k P_iB_i^k(t),\ 0\leq t\leq 1\]
+	\[B_2(t)=\sum_{i=0}^k \hat{P}_i\hat{B}_i^k(t-1),\ 1\leq t\leq 2\]
+
+\underline{Choix du raccord entre $B_1$ et $B_2$ au point $t=1$ :}\\
+On a : \[D^rB_1(t)=\frac{k!}{(k-r)!}\Delta^rP_{k-r}\]
+	\[D^rB_2(1)=\frac{k!}{(k-r)!}\Delta^r\hat{P}_0\]
+
+\Propo{}{Raccord de classe $\mathcal{C}^p$ : $\Delta^rP_{k-r}=\Delta^r\hat{P}_0$ pour $r=0,...,p$.\\
+Si $r=0$, $P_k=\hat{P}_0$.}
+
+\part{Approximation de surfaces}
+
