@@ -52,6 +52,12 @@
 \item Théorème sur E compact avec un système affine
 \item Si aucune fonction F, que dire pour la comtrôlabilité ?
 \item Condition nécessaire et suffisante pour la contrôlabilité complète d'un système affine complet.
+\item Définition d'une fonction d'énergie de S
+\item Définition d'une fonction propre
+\item Définition système conservatif ou dissipatif
+\item Commande feedback qui stabilise un système
+\item Théorème sur la stabilisation assyptotique d'un système affine conservatif
+\item Définition découplé
 \end{enumerate}
 
 \part{\'El\'ements finis}
@@ -98,7 +104,8 @@
 
 \part{Béziers-Splines}
 \begin{enumerate}
-\section{Courbes paramétrées}
+\section{Approximation de courbes dans $\mathbb{R}$}
+\subsection{Courbes paramétrées}
 \item Régularité, p-régulier
 \item Arc admet un veteur limite tangeant
 \item Suivant p et q pairs et impairs
@@ -112,14 +119,14 @@
 \item Courbure algébrique, rayon de courbure, centre de courbure, cercle osculateur, développée
 \item Formules de Frénet
 \item Trouver un plan tangeant
-\section{Splines}
+\subsection{Splines}
 \item Définition de la suite $\tau$, $r$, $\mathcal{P}^{k,\tau,r}$
 \item Dimension et base de $\mathcal{P}^{k,\tau,r}$
 \item Particularité des fonctions splines, dimension de l'espace des fonctions splines
 \item Conditions (C) pour splines cubiques
 \item Unicité ?
 \item Problème de minimisation vérifié par une fonction spline cubique
-\section{B-Splines}
+\subsection{B-Splines}
 \item Définition de n\oe uds, multiplicité k
 \item Définition de $w_{ij}(x)$
 \item Relation de récurrence pour les $B_{i,k}$
@@ -128,11 +135,28 @@
 \item Formule de dérivée à droite
 \item Définition de $\mathcal{P}^{k,\tau}$
 \item Lien entre n, m et k. Condition pour une base.
-\section{Algorithme}
+\subsection{Algorithme}
 \item Définition de $S$
 \item Algorithme de De Casteljan dévaluation en un point
 \item Algorithme des dérivées
 \item Algorithme d'insertion d'un n\oe ud
+\section{Approximation de courbes dans $\mathbb{R}^s$}
+\subsection{Courbes B-Splines}
+\item Définition des polynômes de Bernstein, expression explicite
+\item 5 propositions
+\item Définition d'une courbe B-Spline, point de contrôle, polygone
+\item 3 propriétés des courbes B-Spline
+\subsection{Algorithmes}
+\item Algorithme d'évaluation. Cas d'une courbe de Bézier.
+\item Algorithme de calcul de dérivées. 
+\item Raccord entre deux courbes
+\section{Approximation de surfaces}
+\item Espace de Sobolev + norme
+\item Injections canoniques, convergence faible
+\item Injection canonique dans le cas des espaces de Sobolev
+\item Injections compacts
+\item Théorème de Stanpacchia
+\item Théorème de Necas
 \end{enumerate}
 
 \part{Optimisation linéaire}
@@ -165,7 +189,27 @@
 \item \textbf{Problème dual}
 \item Problème d'optimisation linéaire, passage du problème sous forme canonique à la forme standard
 \item Ensemble des solutions réalisables, sommets
-\item Définition de $\Gamma$, $A_{\gamma}$ et $\mathcal{B}$. 
+\item Définition de $\Gamma$, $A_{\gamma}$ et $\mathcal{B}$, composantes de/hors base. 
+\item Définition de $x_X$, $x_N$, B, N. Redéfinition de $Ax$. 
+\item Définition d'une solution de base associé à la base $\gamma$
+\item Définition d'une solution de base réalisable, base réalisable. Solution non dégénéré.
+\item \textbf{Les sommets de $X_{ad}$ sont exactement les solutions de base réalisable}
+\item \textbf{S'il existe une solution optimale de $(P_L)$ alors il existe une solution optimale de base réalisable}
+\item \textbf{Lemme sur $c^Tx$ et vecteur des prix marginaux}
+\item \textbf{Lien vecteur des prix marginaux et solution optimale}
+\item Définition de $E_{\gamma}$ et de $S_{\gamma, j^*}$
+\item \textbf{Si $S_{\gamma, j^*}$ non vide ?}
+\item \textbf{Redéfinition de $\delta$, comme quoi il appartient à B}
+\item \textbf{Critère de Dantzig}
+\item Définition des vraibles entrantes et sortantes selon le critère naturel et le critère de Bland
+\item Problème de première ou deuxième espèce
+\item \textbf{Comment construire une base réalisable dans le cas d'un problème de première espèce}
+\item Bien connaître les problèmes de deuxième espèce
+\item Définition du problème dual (et comment on y arrive)
+\item \textbf{Inégalité entre primal et dual}
+\item Corollaire
+\item \textbf{Équivalence des solutions}
+\item Définition de base primale ou duale réalisable.
 \end{enumerate}
 
 \part{Processus de Markov}
@@ -194,10 +238,37 @@
 \item \textbf{Équilvalence à chaîne régulière}
 \item \textbf{Théorème fondamental des chaînes régulières}
 \item \textbf{Théorème ergodique}
+\item Générateur infinitésimal
+\item Propriété des $a_j^i$
+\item Théorème Backward et Forward
+\item Définition d'absorbant, équivalence avec le générateur infinitésimal
+\item Définition des instants de transition
+\item Théorème fondamental
+\item Chaîne discrète associée, classification, écriture du générateur infinitésimal
+\item Limite $e^{t\chi}$ ?
+\item Temps moyen passé par j sachant qu'on est parti de i, transitoires
+\item Autre moyen de l'avoir
+\item Probabilité de finir dans une classe finale donnée
+\item Équivalence à $i\rightsquigarrow j$
+\item Chaîne régulière en temps continu. Équivalence
+\item Définition de loi de probabilité invariante. Équivalence avec générateur infinitésimal.
+\item Théorème fondamental pour les chaînes régulières
+\item Théorème ergodique en temps continu
+\item Processus d'entrée-Sortie : définition de S et T
+\item Lois de S et de T
+\item Loi de l'instant de première transition
+\item Savoir retrouver le générateur infinitésimal
+\item Processus de Poisson, processus de comptage
+\item Hypothèses des processus de comptage
+\item Théorème sur la loi de ces processus
+\item Théorème sur la loi des processus de Poisson
+\item Loi de la durée entre deux arrivées
+\item Truc sur un espace mesurable
 \end{enumerate}
 
 \part{Statistiques}
 \begin{enumerate}
+\section{Série chronologique}
 \item Définition suite chronologique
 \item Deux modèles de décomposition : quelle combinaison ? Dans quels cas va-t-on choisir l'un ou l'autre ?
 \item Moindres carrés : expression de $a$ et $b$. 
@@ -207,6 +278,7 @@
 \item Formule des moyennes mobiles
 \item Définition MMC
 \item Étape dans la décomposition d'une série chronologique
+\section{Modèle Linéaire Gaussien}
 \item Loi du chi2 : espérance et variance
 \item Loi de Student, de Fisher, carré d'une Student
 \item Définition MLG
@@ -227,5 +299,25 @@
 \item Statistique de test pour les contrastes
 \item Estimateur des $\mu_i$ et des $\sigma_i^2$
 \item IC pour $\mu_i$
+\section{ANOVA 1}
+\item Facteur, niveau
+\item Modèle de l'ANOVA 1 : modèle avec $\mu_i$ et avec les $\alpha_i$ (sans oublier les hypothèses)
+\item Dimension du modèle
+\item Approche comparaison de modèle : deux hypothèses testées. 5 étapes d'estimation dans modèle complet ou non
+\item Statistique de test, sa loi sous $H_0$
+\item Définition d'un contraste. 
+\item Pour un contraste donné : hypothèses de test, statistique de test et loi
+\item Estimations des paramètres $\mu_i$ : intervalle de confiance
+\item Comment pourrait-on contruire un IC pour les $\alpha_i$ ?
+\section{MLG multiple}
+\item Variance d'un vecteur aléatoire. Propriétés de l'espérance et de la variance.
+\item Écriture vectorielle du MLG multiple
+\item Estimateur de $\theta$. Loi de T, d'une fonction de $S^2$
+\item Construction d'un intervalle de confiance pour les $\theta_k$.
+\item Lien entre loi de Student et combinaison linéaire de composantes de $\theta$
+\item Revoir construction d'un IC pour une valeur inconnue $y_0$
+\section{ANOVA 2}
+\item Plan complet équilibré => Orthogonal
+\item Modèle final d'ANOVA 2. Contrainte d'identifiabilité
 \end{enumerate}
 \end{document}

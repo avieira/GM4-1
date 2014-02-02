@@ -67,14 +67,14 @@ Les composantes $(x_{\gamma(1)},...,x_{\gamma(m)})$ sont appelées les composant
 
 Pour $\gamma\in\mathcal{B}$, on note
 	\[x_{\mathcal{B}}=(x_{\gamma(1)},...,x_{\gamma(m)})\]
-	\[x_{N}=(x_{\hat{\gamma(1)}},...,x_{\hat{\gamma(m)}})\]
+	\[x_{N}=(x_{\hat{\gamma}(1)},...,x_{\hat{\gamma}(n-m)})\]
 	\[B=A_{\gamma}\]
 	\[N=A_{\hat{\gamma}}\]
 \[Ax=Bx_{\mathcal{B}}+Nx_N\]
 
 Comme $rg(B)=rg(A_{\gamma})=m$, B est inversible. Donc les contraintes $Ax=b$ peuvent se réécrire :
 	\[Bx_{\mathcal{B}}=b-Nx_N\]
-	\[\Rightarrow B^{-1}(b-Nx_N)\]
+	\[\Rightarrow x_B=B^{-1}(b-Nx_N)\]
 
 \Def{}{Soit $\gamma\in\mathcal{B}$, on appelle solution de base du système $Ax=b$ associé à la base $\gamma$ la solution $x^*$ définie par :
 	\[\begin{array}{c c c}
@@ -83,7 +83,7 @@ Comme $rg(B)=rg(A_{\gamma})=m$, B est inversible. Donc les contraintes $Ax=b$ pe
 	\end{array}\]}
 
 
-\Def{}{Une solution de base réalisable est une solution de base tel que $x_{\mathcal{B}}\geq0$ ($\rightarrow x^*\in X_{ad}$).\\
+\Def{}{Une solution de base réalisable est une solution de base telle que $x_{\mathcal{B}}^*\geq0$ ($\rightarrow x^*\in X_{ad}$).\\
 Dans ce cas, $\gamma$ est appelée base réalisable. On note $\mathcal{R}$ l'ensemble des bases réallisables.\\
 Enfin on dit que $x^*$ est non dégénéré si $x_{\mathcal{B}}^*>0$ (ie $B^{-1}b>0$).}
 
@@ -91,7 +91,7 @@ Enfin on dit que $x^*$ est non dégénéré si $x_{\mathcal{B}}^*>0$ (ie $B^{-1}
 
 \begin{dem}
 Soit $x^*$ une solution de base réalisable associée à la base $\gamma\in\mathcal{R}$.\\
-Par l'absurde, on va supposer que $x^*$ n'est pas un sommet de $X_{ad}$/ 
+Par l'absurde, on va supposer que $x^*$ n'est pas un sommet de $X_{ad}$.
 	\[\forall \theta\in]0,1[, \exists y,z\in X_{ad}, y\neq z; x^*=\theta y+(1-\theta)z\]
 $\forall i\in\{0,...,n-m\}$, on a :
 	\[x_{\hat{\gamma}(i)}=0=\underbrace{\theta}_{>0} \underbrace{y_{\hat{\gamma}(i)}}_{\geq 0} + \underbrace{(1-\theta)}_{>0}\underbrace{z_{\hat{\gamma}(i)}}_{\geq 0}\]
@@ -107,9 +107,9 @@ Réciproquement, on suppose que $x^*$ est un sommet de $X_{ad}$. On note $k$ le 
 \[\exists \gamma_1 : \{1,...,k\}\to\{1,...,n\} \text{ strictement croissante telle que } x^*_{\gamma_1(i)}>0,\ \forall i=1,...,k\]
 On veut montrer que les vecteurs $A_{\gamma_1(1)},...,A_{\gamma_1(k)}$ sont libres. Si c'est le cas, on pourra compléter cette famille de vecteurs afin d'obtenir une base.\\
 ($\Rightarrow$ On définit $\gamma\in\Gamma$ telle que :\begin{itemize}
-\item $\gamma_1(\{1,...,k\}\subset\gamma(\{1,...,m\})$
-\item $\gamma\in\mathcal{B}$
-\end{itemize})
+\item $\gamma_1(\{1,...,k\})\subset\gamma(\{1,...,m\})$
+\item $\gamma\in\mathcal{B}$)
+\end{itemize}
 
 Par l'absurde, on suppose que $A_{\gamma_1(1)},...,A_{\gamma_1(k)}$ sont liés. Alors $\exists y\in\mathbb{R}^n$, $y\neq 0$, 
 \[\sum_{i=1}^k y_{\gamma_1(i)}A_{\gamma_1(i)}=0\]
@@ -118,7 +118,7 @@ $\forall \varepsilon>0$, on a \[A(x+\varepsilon y)=Ax+\varepsilon \underbrace{Ay
 \[A(x-\varepsilon y)=Ax-\varepsilon Ay = b\]
 On a $x^*_{\gamma_1(i)}\pm \varepsilon y_{\gamma_1(i)}>0$, $\forall i=1,...,k$ pour $\varepsilon$ assez petit.\\
 De plus, $x^*_{\hat{\gamma}_1(i)}\pm \varepsilon y_{\hat{\gamma}_1(i)}=x^*_{\hat{\gamma}_1(i)}=0$
-	\[\Rightarrow x^*+\varepsilon y\in X_{ad},\ \forall0\leq \varepsilon \leq \varepsilon_0\]
+	\[\Rightarrow x^*\pm\varepsilon y\in X_{ad},\ \forall0\leq \varepsilon \leq \varepsilon_0\]
 Or, $x^*=\frac{1}{2}(x^*+\varepsilon y) + \frac{1}{2}(x^*-\varepsilon y)$. Donc $x^*$ n'est pas un sommet de $X_{ad}$. Contradiction.
 \end{dem}
 
@@ -136,8 +136,8 @@ Comme $c$ est un point de minimum, on a :
 	\[\Rightarrow \pm\langle c, y\rangle \geq 0\]
 	\[\langle c,y\rangle=0\]
 On pose $\varepsilon_1=\sup\{\varepsilon>0;\ x\pm\varepsilon y\in X_{ad}\}$. 
-	\[\exists i\in \{1,...,k\} \text{ tel que } (x+\varepsilon y)_{\gamma_1(i)}=0 \text{ ou } (x-\varepsilon y)_{\gamma_1(i)}=0\]
-On pose $z=x+\varepsilon y$ ou $z=x-\varepsilon$. tel que $z_{\gamma_1(i)}=0$. z est donc une solution otpimale 
+	\[\exists i\in \{1,...,k\}, 0<\varepsilon<\varepsilon_1 \text{ tels que } (x+\varepsilon y)_{\gamma_1(i)}=0 \text{ ou } (x-\varepsilon y)_{\gamma_1(i)}=0\]
+On pose $z=x+\varepsilon y$ ou $z=x-\varepsilon y$. tel que $z_{\gamma_1(i)}=0$. z est donc une solution optimale 
 \[(\langle c,z\rangle=\langle c,x\pm\varepsilon y\rangle = \langle c,x\rangle)\]
 qui a au plus $k-1$ composantes non nulles.\\
 On peut refaire la preuve en remplaçant $x$ par $z$ (et en diminuant $k$) jusqu'à obtenir une famille libre.
@@ -146,24 +146,24 @@ On peut refaire la preuve en remplaçant $x$ par $z$ (et en diminuant $k$) jusqu
 \underline{Remarque :} D'après les deux propositions précédentes, en prenant $c=0$ (toutes les solutions admissibles sont optimales), si $X_{ad}=\emptyset$, alors $X_{ad}$ possède au moins 1 sommet (ceci n'est pas le cas pour un polyèdre quelconque).
 
 \section{Algorithme du simplexe}
-\underline{Idée :} Parcourir les sommets du polyèdre en diminuant le coût en passant d'un sommet au suvant.
+\underline{Idée :} Parcourir les sommets du polyèdre en diminuant le coût en passant d'un sommet au suivant.
 
-\Lem{}{Soit $\gamma\in\mathbb{R}$ et $x^*$ la solution de base réalisable associée.\\
+\Lem{}{Soit $\gamma\in\mathcal{R}$ et $x^*$ la solution de base réalisable associée.\\
 Pour $x\in X_{ad}$ réalisable, on a :
-	\[X_B=X^*_B-B^{-1}Nx_N\]
-	\[c^Tx=X^Tx^*-d^Tx\]
-où $d^T_N=cN^T-C_B^TB^{-1}N$ et $d^T_B=0$.}
+	\[x_B=x^*_B-B^{-1}Nx_N\]
+	\[c^Tx=c^Tx^*+d^Tx\]
+où $d^T_N=c_N^T-c_B^TB^{-1}N$ et $d^T_B=0$.}
 
 \begin{dem}
 \begin{eqnarray*}
-	Ax&=&Bx_Nx_N=b\\
+	Ax&=&Bx_B+Nx_N=b\\
 \rightarrow x_B&=&B^{-1}b-B^{-1}Nx_N
 \end{eqnarray*}
 Or, $x^*_B=B^{-1}b$, donc \[x_B=x^*_B-B^{-1}Nx_N\]
 
 \begin{eqnarray*}
 	c^Tx&=&c_B^Tx_B+c^T_Nx_n\\
-	&=&c^T_B(x^*_B-B^{-1}Nx_N)+x^T_N x_N\\
+	&=&c^T_B(x^*_B-B^{-1}Nx_N)+c^T_N x_N\\
 	&=&c^T_Bx_B^*+(c^T_N-c^T_BB^{-1}N)x_N\\
 	&=&c^Tx^*+d^Tx
 \end{eqnarray*}
@@ -172,12 +172,12 @@ Or, $x^*_B=B^{-1}b$, donc \[x_B=x^*_B-B^{-1}Nx_N\]
 \Def{}{On dit que le vecteur $d$ est le veteur des prix marginaux associé à la base $\gamma$.}
 
 \Propo{}{Soit $\gamma$ une base réalisable et $x^*$ la solution de base associée.\\
-Si toutes les composantes de $d$ sont positives, alors $s^*$ est une solution otpimale.\\
+Si toutes les composantes de $d$ sont positives, alors $x^*$ est une solution otpimale.\\
 Si de plus, $x^*$ est non dégénérée ($B^{-1}b>0$) et est une solution optimale, alors les composantes de $d$ sont positives.}
 
 \begin{dem}
 Soit $x$ une solution réalisable. alors 
-\[c^Tx=x^Tx^*+\underbrace{d^T}_{\geq 0}\underbrace{x}_{\geq 0}\geq c^Tx^*\]
+\[c^Tx=c^Tx^*+\underbrace{d^T}_{\geq 0}\underbrace{x}_{\geq 0}\geq c^Tx^*\]
 $x^*$ est donc une solution optimale.
 
 \bigskip
@@ -211,13 +211,13 @@ $\Rightarrow$ $x^*$ n'est pas otimal. Absurde.
 \end{dem}
 
 \subsection{Privot à partir d'une base réalisable : critère de Dantzig}
-Étant donné un choix de base $\gamma\in B$, tel que $x^*$ soit une solution de base réalisable mais pas otimale, le but est de trouver une nouvelle base $\delta\in B$ tel que la solution de base $y^*$ associée à $S$ soit réalisable et tel que 
+Étant donné un choix de base $\gamma\in B$, tel que $x^*$ soit une solution de base réalisable mais pas optimale, le but est de trouver une nouvelle base $\delta\in B$ tel que la solution de base $y^*$ associée à $\delta$ soit réalisable et telle que 
 \[c^Ty^*\leq c^Tx^*\]
 Cette méthode opère au moyen d'un pivot dans le sens où $\gamma(\{1,...,m\})$ et $\delta(\{1,...,m\})$ ne diffèrent que par 1 seul élément.\\
 En pratique, on note 
-	\[E_{\gamma}=j\in\{1,...,n-m\};\ d_{\hat{\gamma}(j)}<0\}\]
+	\[E_{\gamma}=\{j\in\{1,...,n-m\};\ d_{\hat{\gamma}(j)}<0\}\]
 Si la solution de base $x^*$ associée à $\gamma$ n'est pas optimale, alors $E_{\gamma}\neq \emptyset$.\\
-Soit $j\in E_{\gamma}$ (plusieurs choix possibles, on verra ça plus tard). On définit l'ensemble 
+Soit $j^*\in E_{\gamma}$ (plusieurs choix possibles, on verra ça plus tard). On définit l'ensemble 
 	\[S_{\gamma,j^*}=\left\{i\in\{1,...,m\};\ (B^{-1}N)_{i,j^*}>0 \right\}\]
 
 \Propo{}{Si $S_{\gamma,j^*}=\emptyset$, alors le problème $(P_L)$ n'admet pas de solution car la fonction coût n'est pas bornée inférieurement sur $X_{ad}$.}
@@ -227,7 +227,7 @@ Soit $j\in E_{\gamma}$ (plusieurs choix possibles, on verra ça plus tard). On d
 \begin{eqnarray*}
 	x_{\hat{\gamma}(j)}&=&0 \text{ si } j\in\{1,...,n-m\}\textbackslash \{j^*\}\\
 	x_{\hat{\gamma}(j^*)}&=&t\\
-	x_{\gamma(i)}&=&B^{-1}b-t(B^{-1}N)_{ij^*} \text{ si } i\in\{1,...,m\}
+	x_{\gamma(i)}&=&(B^{-1}b)_i-t(B^{-1}N)_{ij^*} \text{ si } i\in\{1,...,m\}
 \end{eqnarray*}
 
 On a $Ax=b$ par construction.\\
@@ -237,12 +237,12 @@ $\Rightarrow$ $x$ est une solution admissible.
 \bigskip
 De plus :
 \begin{eqnarray*}
-	c^Tx&=&x^Tx^*+d^Tx\\
+	c^Tx&=&c^Tx^*+d^Tx\\
 		&=&c^Tx^*+d_N^Tx_N\\
 		&=&c^Tx^*+\underbrace{d_{\hat{\gamma}(j^*)}}_{<0}t
 \end{eqnarray*}
 
-Quant $t\to +\infty$, on a $c^Tx\to -\infty$, avec $x\in X^{ad}$. Ma fonction coût n'est donc pas bornée inférieurement.
+Quand $t\to +\infty$, on a $c^Tx\to -\infty$, avec $x\in X_{ad}$. La fonction coût n'est donc pas bornée inférieurement.
 \end{dem}
 
 On suppose à partir de maintenant que la fonction coût est bornée inférieurement.
@@ -250,7 +250,7 @@ On suppose à partir de maintenant que la fonction coût est bornée inférieure
 On choisit $i^*\in S_{\gamma,j^*}$.
 
 \Lem{}{Soit $\delta\in\Gamma$ l'unique application telle que 
-	\[\delta(\{1,...,m\})=\hat{\gamma}(\{1,...,m\}\textbackslash\gamma(i^*)\cup\hat{\gamma}(j^*)\]
+	\[\delta(\{1,...,m\})=\gamma(\{1,...,m\})\backslash\gamma(i^*)\cup\hat{\gamma}(j^*)\]
 Alors $\delta\in B$.}
 
 \begin{dem}
@@ -258,19 +258,19 @@ Montrons que :
 	\[A_{\hat{\gamma}(j^*)}=\sum_{i=1}^m (B^{-1}N)_{ij^*}A_{\gamma(i)}\]
 \begin{eqnarray*}
 	\sum_{i=1}^m (B^{-1}N)_{ij^*}A_{\gamma(i)}&=&\sum_{i=1}^m \sum_{j=1}^m B^{-1}_{ij}N_{jj^*}A_{\gamma(i)}\\
-			&=&\sum_{j=1}^* N_{jj^*} \sum_{i=1}^m B^{-1}_{ij}\begin{pmatrix} B_{1i}\\ \vdots \\ B_{mi} \end{pmatrix} \\
+			&=&\sum_{j=1}^m N_{jj^*} \sum_{i=1}^m B^{-1}_{ij}\begin{pmatrix} B_{1i}\\ \vdots \\ B_{mi} \end{pmatrix} \\
 			&=&\sum_{j=1}^m N_{jj^*} \begin{pmatrix} \sum_{i=1}^m B_{1i}B^{-1}_{ij} \\ \vdots \\ \sum_{i=1}^m B_{mi}B^{-1}_{ij} \end{pmatrix} \\
-			&=&\sum_{i=1}^m N_{jj^*} \begin{pmatrix} (BB^{-1})_{1j} \\ \vdots \\ (BB^{-1})_{mj} \end{pmatrix}\\
+			&=&\sum_{j=1}^m N_{jj^*} \begin{pmatrix} (BB^{-1})_{1j} \\ \vdots \\ (BB^{-1})_{mj} \end{pmatrix}\\
 			&=&\sum_{j=1}^m N_{jj^*}e_j \\
 			&=&A_{\hat{\gamma}(j^*)}
 \end{eqnarray*}
-Comme $\{A_{\gamma(i)}\}_{i=1}^m$ forme une base et que $(B^{-1}N)_{i^*j^*}>0$, on ne peut pas exprimer $A_{\hat{gamma(j^*)}}$ comme une combinaison linéaire de $A_{\gamma(i)}$ pour $i=1,...,n$ avec $i\neq i^*$. \\
+Comme $\{A_{\gamma(i)}\}_{i=1}^m$ forme une base et que $(B^{-1}N)_{i^*j^*}>0$, on ne peut pas exprimer $A_{\hat{\gamma}(j^*)}$ comme une combinaison linéaire de $A_{\gamma(i)}$ pour $i=1,...,n$ avec $i\neq i^*$. \\
 Donc $((A_{\gamma(i)})_{i=1,...,m,\ i\neq i^*},A_{\hat{\gamma}(j^*)})$ forme une base.
 	\[\Rightarrow \delta \in B\]
 \end{dem}
 
-\Lem{Critère de Dantzig}{On choisit $i^*$ tel que $\frac{x_{\gamma(i^*)}}{(B^{-1}N)_{i^*j^*}}=t_{j^*}=\min_{i\in S_{\gamma,j^*}}\frac{x_{\gamma(i)}}{(B^{-1}N)_{ij^*}}$. Alors $\delta$ défini dans le lemme précédent est une base réalisable. De plus, si $y^*$ désigne la solution de base réalisale associée à $\delta$ alors
-	\[x^Ty^*\leq c^Tx^*\]
+\Lem{Critère de Dantzig}{On choisit $i^*$ tel que $\frac{x_{\gamma(i^*)}}{(B^{-1}N)_{i^*j^*}}=t_{j^*}=\min_{i\in S_{\gamma,j^*}}\frac{x_{\gamma(i)}}{(B^{-1}N)_{ij^*}}$. Alors $\delta$ défini dans le lemme précédent est une base réalisable. De plus, si $y^*$ désigne la solution de base réalisable associée à $\delta$ alors
+	\[c^Ty^*\leq c^Tx^*\]
 l'inégalité étant stricte si $t_{j^*}>0$.}
 
 \begin{dem}
@@ -278,7 +278,7 @@ On définit $y\in\mathbb{R}^n$ par :
 	\[y_{\hat{\gamma}(i)}=0\ \forall i\in\{1,...,n-m\}\backslash\{j^*\}\]
 	\[y_{\hat{\gamma}(j^*)}=t_{j^*}\]
 	\[y_{\gamma(i)}=x^*_{\gamma(i)}=t_{j^*}(B^{-1}N)_{i,j^*}\ \forall i\in\{1,...,m\}\]
-où $x^*$ est la solution de base réalisable assoricée à $\gamma$.
+où $x^*$ est la solution de base réalisable associée à $\gamma$.
 \begin{eqnarray*}
 	Ay&=&By_B+Ny_N\\
 	  &=&B(x^*_B-t_{j^*}(B^{-1}N)_{\bullet,j^*})+Ny_N\\
@@ -287,7 +287,7 @@ où $x^*$ est la solution de base réalisable assoricée à $\gamma$.
 \end{eqnarray*}
 De plus, $y\geq 0$ (par définition de $t_{j^*}$).\\
 Donc $y$ est une solution réalisable.
-	\[y_{\gamma}(i^*)=\hat{x}_{\gamma(i^*)}-t_{j^*}(B^{-1}N)_{i^*j^*}=0\]
+	\[y_{\gamma(i^*)}=\hat{x}_{\gamma(i^*)}-t_{j^*}(B^{-1}N)_{i^*j^*}=0\]
 et $y_{\hat{\gamma}(i)}=0$ $\forall i\in\{1,...,n-m\}\backslash\{j^*\}$. Donc $y_{\hat{\delta}(j)}=0$, $\forall j\in\{1,...,n-m\}$.\\
 Donc $y$ est la solution de base réalisable associée à la base $\delta$. Donc $\delta$ est une base réalisable.
 \begin{eqnarray*}
@@ -309,12 +309,12 @@ car :
 	\[d_{\hat{\gamma}(j^*)}=\min_{j\in\{1,...,n-m\}}d_{\hat{\gamma}(j)}\]
 et $j^*=\min\{j,\ d_{\hat{\gamma}(j)}=d_{\hat{\gamma}(j^*)}\}$.
 On appelle variable sortante selon le critère naturel la variable $x_{\gamma(i^*)}$ tel que :
-	\[i^*=\min\{i\in S_{\gamma,j^*}, \frac{x_{\gamma(i)}}{(B^{-1}N)_{i,j^*}}=t_{j^*}\]}
+	\[i^*=\min\left\{i\in S_{\gamma,j^*}, \frac{x_{\gamma(i)}}{(B^{-1}N)_{i,j^*}}\right\}=t_{j^*}\]}
 
 \Def{Critère de Bland}{On choisit la variable entrante selon le critère de Bland pour que $x_{\hat{\gamma}(j^*)}$ soit telle que :
 	\[j^*=\min \{j, j\in E_{\gamma}\}\]
 et la variable sortante $x_{\gamma(i^*)}$ telle que :
-	\[i^*=\min\{i\in S_{\gamma,j^*}, \frac{x_{\gamma(i)}}{(B^{-1}N)_{i,j^*}}=t_{j^*}\]}
+	\[i^*=\min\left\{i\in S_{\gamma,j^*}, \frac{x_{\gamma(i)}}{(B^{-1}N)_{i,j^*}}\right\}=t_{j^*}\]}
 
 \subsection{Détermination d'une première base réalisable}
 On considère le problème :
@@ -328,7 +328,7 @@ On considère le problème :
 \Def{}{Le problème (\ref{1reBase}) est un problème de première espèce si toutes les composantes de $b$ sont positives.\\
 Dans le cas contraire, ou si le problème n'est pas sous forme canonique, on dit qu'il s'agit d'un problème de deuxième espèce.}
 
-On considère pour le moment un problèe de première espèce ($b\geq 0$).
+On considère pour le moment un problème de première espèce ($b\geq 0$).
 
 \[(*)\Leftrightarrow 	\left\{ \begin{array}{c c c c} \inf_{x\in\mathbb{R}^n} & \multicolumn{3}{c}{\bar{c}^T\bar{x}} \\
 						\text{s. c.}     & \bar{A}\bar{x} &=& \bar{b} \\
@@ -351,7 +351,7 @@ $\bar{b}=b$
 \end{dem}
 
 On doit maintenant traiter des problèmes de deuxième espèce.\\
-On commence par le cas d'un problème sous forme canonique.
+On commence par le cas d'un problème sous forme standard.
 \begin{equation}\tag{1} \label{1erBas2}
 	\left\{ \begin{array}{c c c c} \inf_{x\in\mathbb{R}^n} & \multicolumn{3}{c}{\langle c,x\rangle} \\
 						\text{s. c.}     & Ax &=& b \\
@@ -431,7 +431,7 @@ Pour ce faire, on part des $m$ contraintes d'inégalités :
 	\[\sum_{j=1}^q a_{ij}x_j\leq b_i,\ i=1,...,m\]
 On prend $y_i>0$ : 
 \begin{eqnarray*}
-	\sum_{i=1}^m y_i \sum_{j=1}^q a_{ij}x_j&\leq& \sum_{i=1}^* y_ib_i\\
+	\sum_{i=1}^m y_i \sum_{j=1}^q a_{ij}x_j&\leq& \sum_{i=1}^m y_ib_i\\
 	\sum_{j=1}^q \left( \sum_{i=1}^m -y_ia_{ij}\right) x_j&\geq& -\sum_{i=1}^m y_ib_i
 \end{eqnarray*}
 
@@ -447,10 +447,10 @@ Donc $c^Tx^*\geq -b^Ty$, $\forall y\geq 0,\ y\in\mathbb{R}^m$ vérifiant \[-\sum
 	\end{array} \right.
 \end{equation}}
 
-\Theo{}{Si $x$ est une solution réalisable de (\ref{Dual}), et si $y$ est une solution réalisation de (\ref{Dual2}), alors \[x^Tc\geq -b^Ty\]
-En particulier, si $c^Tx=-b^Ty$, alors $x$ est une sollution optimale de (\ref{Dual}) et $y$ est une solution optimale de (\ref{Dual2}).}
+\Theo{}{Si $x$ est une solution réalisable de (\ref{Dual}), et si $y$ est une solution réalisable de (\ref{Dual2}), alors \[x^Tc\geq -b^Ty\]
+En particulier, si $c^Tx=-b^Ty$, alors $x$ est une solution optimale de (\ref{Dual}) et $y$ est une solution optimale de (\ref{Dual2}).}
 
-\Coro{}{Si a fonction coît n'est pas minorée sur l'ensemble admissible, alors le problème dual n'admet pas de solution réalisable.\\
+\Coro{}{Si la fonction coût n'est pas minorée sur l'ensemble admissible, alors le problème dual n'admet pas de solution réalisable.\\
 Inversement, si le problème dual n'est pas majoré sur son ensemble admissible, alors le problème primal n'admet pas de solution réalisable.}
 
 \underline{Remarque :} La réciproque est fausse en général.
@@ -478,7 +478,7 @@ On note $\gamma$ la base réalisable associée à :
 On note $d$ le vecteur des prix marginaux. $(d_B=0, d_N^T=c_N^T-c_B^TB^{-1}N)$\\
 Soit $\bar{x}\in\mathbb{R}^{q+m}$ tel que $\bar{A}\bar{x}=b$. On a : 
 \begin{eqnarray*}
-	c^T\bar{x}&=&x^Tx^* + d^T\bar{x} \\
+	c^T\bar{x}&=&c^Tx^* + d^T\bar{x} \\
 		&=& c^Tx^* + \sum_{i=1}^q d_i\bar{x}_i + \sum_{i=1}^m d_{q+i}\bar{x}_{q+i}
 \end{eqnarray*}
 Or, $\bar{x}_{q+i}=b_i-\sum_{j=1}^q a_{ij}\bar{x}_j$
@@ -509,5 +509,5 @@ De plus, ($**$) implique :
 	\[c^Tx^*=-b^Ty^*\]
 \end{dem}
 
-\Def{}{O dit qu'une base $\gamma$ est primal-réalisable si $B^{-1}b\geq 0$.\\
+\Def{}{On dit qu'une base $\gamma$ est primal-réalisable si $B^{-1}b\geq 0$.\\
 De même, on dit qu'elle est duale-réalisable si $d_N^T=c_N^T-c_B^TB^{-1}N\geq 0$.}
